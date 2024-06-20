@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Physics | Fyrox Book</title>
+  <meta name="description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Physics | Fyrox Book" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Physics | Fyrox Book" />
+  
+  <meta name="twitter:description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Dmitry Stepanov" />
+
+
+<meta name="date" content="2024-06-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="scene-1.html"/>
+<link rel="next" href="sound-system.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Fyrox Game Engine Book</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#engine-version"><i class="fa fa-check"></i><b>1.1</b> Engine Version</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#how-to-read-the-book"><i class="fa fa-check"></i><b>1.2</b> How to read the book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#api-documentation"><i class="fa fa-check"></i><b>1.3</b> API Documentation</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#required-knowledge"><i class="fa fa-check"></i><b>1.4</b> Required knowledge</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#support-the-development"><i class="fa fa-check"></i><b>1.5</b> Support the development</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#introduction-to-fyrox"><i class="fa fa-check"></i><b>2.1</b> Introduction to Fyrox</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#what-can-the-engine-do"><i class="fa fa-check"></i><b>2.1.1</b> What can the engine do?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction.html"><a href="introduction.html#how-does-the-engine-work"><i class="fa fa-check"></i><b>2.1.2</b> How does the engine work?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction.html"><a href="introduction.html#programming-languages"><i class="fa fa-check"></i><b>2.1.3</b> Programming languages</a></li>
+<li class="chapter" data-level="2.1.4" data-path="introduction.html"><a href="introduction.html#engine-features"><i class="fa fa-check"></i><b>2.1.4</b> Engine Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#system-requirements"><i class="fa fa-check"></i><b>2.2</b> System Requirements</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#supported-platforms"><i class="fa fa-check"></i><b>2.2.1</b> Supported Platforms</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#basic-concepts"><i class="fa fa-check"></i><b>2.3</b> Basic concepts</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction.html"><a href="introduction.html#classic-oop"><i class="fa fa-check"></i><b>2.3.1</b> Classic OOP</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction.html"><a href="introduction.html#scenes"><i class="fa fa-check"></i><b>2.3.2</b> Scenes</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction.html"><a href="introduction.html#nodes-and-scene-graph"><i class="fa fa-check"></i><b>2.3.3</b> Nodes and Scene Graph</a></li>
+<li class="chapter" data-level="2.3.4" data-path="introduction.html"><a href="introduction.html#plugins"><i class="fa fa-check"></i><b>2.3.4</b> Plugins</a></li>
+<li class="chapter" data-level="2.3.5" data-path="introduction.html"><a href="introduction.html#scripts"><i class="fa fa-check"></i><b>2.3.5</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#design-philosophy-and-goals"><i class="fa fa-check"></i><b>2.4</b> Design Philosophy and Goals</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction.html"><a href="introduction.html#safety"><i class="fa fa-check"></i><b>2.4.1</b> Safety</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction.html"><a href="introduction.html#performance"><i class="fa fa-check"></i><b>2.4.2</b> Performance</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introduction.html"><a href="introduction.html#ease-of-use"><i class="fa fa-check"></i><b>2.4.3</b> Ease of use</a></li>
+<li class="chapter" data-level="2.4.4" data-path="introduction.html"><a href="introduction.html#battle-tested"><i class="fa fa-check"></i><b>2.4.4</b> Battle-tested</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#frequently-asked-questions"><i class="fa fa-check"></i><b>2.5</b> Frequently Asked Questions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#which-graphics-api-does-the-engine-use"><i class="fa fa-check"></i><b>2.5.1</b> Which graphics API does the engine use?</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction.html"><a href="introduction.html#is-the-engine-based-on-ecs"><i class="fa fa-check"></i><b>2.5.2</b> Is the engine based on ECS?</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction.html"><a href="introduction.html#what-kinds-of-games-can-i-make-using-fyrox"><i class="fa fa-check"></i><b>2.5.3</b> What kinds of games can I make using Fyrox?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#editor-plugins-and-scripts"><i class="fa fa-check"></i><b>3.1</b> Editor, Plugins and Scripts</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="getting-started.html"><a href="getting-started.html#platform-specific-dependencies"><i class="fa fa-check"></i><b>3.1.1</b> Platform-specific Dependencies</a></li>
+<li class="chapter" data-level="3.1.2" data-path="getting-started.html"><a href="getting-started.html#quick-start"><i class="fa fa-check"></i><b>3.1.2</b> Quick Start</a></li>
+<li class="chapter" data-level="3.1.3" data-path="getting-started.html"><a href="getting-started.html#project-generator"><i class="fa fa-check"></i><b>3.1.3</b> Project Generator</a></li>
+<li class="chapter" data-level="3.1.4" data-path="getting-started.html"><a href="getting-started.html#using-the-latest-engine-version"><i class="fa fa-check"></i><b>3.1.4</b> Using the Latest Engine Version</a></li>
+<li class="chapter" data-level="3.1.5" data-path="getting-started.html"><a href="getting-started.html#adding-game-logic"><i class="fa fa-check"></i><b>3.1.5</b> Adding Game Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#code-hot-reloading"><i class="fa fa-check"></i><b>3.2</b> Code Hot Reloading</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="getting-started.html"><a href="getting-started.html#how-to-use"><i class="fa fa-check"></i><b>3.2.1</b> How To Use</a></li>
+<li class="chapter" data-level="3.2.2" data-path="getting-started.html"><a href="getting-started.html#build-profiles"><i class="fa fa-check"></i><b>3.2.2</b> Build Profiles</a></li>
+<li class="chapter" data-level="3.2.3" data-path="getting-started.html"><a href="getting-started.html#stability"><i class="fa fa-check"></i><b>3.2.3</b> Stability</a></li>
+<li class="chapter" data-level="3.2.4" data-path="getting-started.html"><a href="getting-started.html#technical-details-and-limitations"><i class="fa fa-check"></i><b>3.2.4</b> Technical Details and Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#fyroxed-overview"><i class="fa fa-check"></i><b>3.3</b> FyroxEd Overview</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#windows"><i class="fa fa-check"></i><b>3.3.1</b> Windows</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#creating-or-loading-a-scene"><i class="fa fa-check"></i><b>3.3.2</b> Creating or loading a Scene</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#populating-a-scene"><i class="fa fa-check"></i><b>3.3.3</b> Populating a Scene</a></li>
+<li class="chapter" data-level="3.3.4" data-path="getting-started.html"><a href="getting-started.html#saving-a-scene"><i class="fa fa-check"></i><b>3.3.4</b> Saving a Scene</a></li>
+<li class="chapter" data-level="3.3.5" data-path="getting-started.html"><a href="getting-started.html#undoing-and-redoing"><i class="fa fa-check"></i><b>3.3.5</b> Undoing and redoing</a></li>
+<li class="chapter" data-level="3.3.6" data-path="getting-started.html"><a href="getting-started.html#controls"><i class="fa fa-check"></i><b>3.3.6</b> Controls</a></li>
+<li class="chapter" data-level="3.3.7" data-path="getting-started.html"><a href="getting-started.html#play-mode"><i class="fa fa-check"></i><b>3.3.7</b> Play Mode</a></li>
+<li class="chapter" data-level="3.3.8" data-path="getting-started.html"><a href="getting-started.html#additional-utilities"><i class="fa fa-check"></i><b>3.3.8</b> Additional Utilities</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#scene-and-scene-graph"><i class="fa fa-check"></i><b>3.4</b> Scene and Scene Graph</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="getting-started.html"><a href="getting-started.html#building-blocks-or-scene-nodes"><i class="fa fa-check"></i><b>3.4.1</b> Building Blocks or Scene Nodes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="getting-started.html"><a href="getting-started.html#local-and-global-coordinates"><i class="fa fa-check"></i><b>3.4.2</b> Local and Global Coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="getting-started.html"><a href="getting-started.html#assets"><i class="fa fa-check"></i><b>3.5</b> Assets</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="getting-started.html"><a href="getting-started.html#asset-types"><i class="fa fa-check"></i><b>3.5.1</b> Asset Types</a></li>
+<li class="chapter" data-level="3.5.2" data-path="getting-started.html"><a href="getting-started.html#asset-management-1"><i class="fa fa-check"></i><b>3.5.2</b> Asset Management</a></li>
+<li class="chapter" data-level="3.5.3" data-path="getting-started.html"><a href="getting-started.html#asset-instantiation"><i class="fa fa-check"></i><b>3.5.3</b> Asset Instantiation</a></li>
+<li class="chapter" data-level="3.5.4" data-path="getting-started.html"><a href="getting-started.html#loading-assets"><i class="fa fa-check"></i><b>3.5.4</b> Loading Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="getting-started.html"><a href="getting-started.html#data-management"><i class="fa fa-check"></i><b>3.6</b> Data Management</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="getting-started.html"><a href="getting-started.html#motivation"><i class="fa fa-check"></i><b>3.6.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.6.2" data-path="getting-started.html"><a href="getting-started.html#technical-details"><i class="fa fa-check"></i><b>3.6.2</b> Technical Details</a></li>
+<li class="chapter" data-level="3.6.3" data-path="getting-started.html"><a href="getting-started.html#advantages"><i class="fa fa-check"></i><b>3.6.3</b> Advantages</a></li>
+<li class="chapter" data-level="3.6.4" data-path="getting-started.html"><a href="getting-started.html#disadvantages"><i class="fa fa-check"></i><b>3.6.4</b> Disadvantages</a></li>
+<li class="chapter" data-level="3.6.5" data-path="getting-started.html"><a href="getting-started.html#usage"><i class="fa fa-check"></i><b>3.6.5</b> Usage</a></li>
+<li class="chapter" data-level="3.6.6" data-path="getting-started.html"><a href="getting-started.html#borrowing"><i class="fa fa-check"></i><b>3.6.6</b> Borrowing</a></li>
+<li class="chapter" data-level="3.6.7" data-path="getting-started.html"><a href="getting-started.html#freeing"><i class="fa fa-check"></i><b>3.6.7</b> Freeing</a></li>
+<li class="chapter" data-level="3.6.8" data-path="getting-started.html"><a href="getting-started.html#take-and-reserve"><i class="fa fa-check"></i><b>3.6.8</b> Take and Reserve</a></li>
+<li class="chapter" data-level="3.6.9" data-path="getting-started.html"><a href="getting-started.html#iterators"><i class="fa fa-check"></i><b>3.6.9</b> Iterators</a></li>
+<li class="chapter" data-level="3.6.10" data-path="getting-started.html"><a href="getting-started.html#direct-access"><i class="fa fa-check"></i><b>3.6.10</b> Direct Access</a></li>
+<li class="chapter" data-level="3.6.11" data-path="getting-started.html"><a href="getting-started.html#validation"><i class="fa fa-check"></i><b>3.6.11</b> Validation</a></li>
+<li class="chapter" data-level="3.6.12" data-path="getting-started.html"><a href="getting-started.html#type-erased-handles"><i class="fa fa-check"></i><b>3.6.12</b> Type-erased Handles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="getting-started.html"><a href="getting-started.html#borrow-checker"><i class="fa fa-check"></i><b>3.7</b> Borrow Checker</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="getting-started.html"><a href="getting-started.html#multiple-borrowing"><i class="fa fa-check"></i><b>3.7.1</b> Multiple Borrowing</a></li>
+<li class="chapter" data-level="3.7.2" data-path="getting-started.html"><a href="getting-started.html#message-passing"><i class="fa fa-check"></i><b>3.7.2</b> Message Passing</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="scripting.html"><a href="scripting.html"><i class="fa fa-check"></i><b>4</b> Scripting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="scripting.html"><a href="scripting.html#plugins-1"><i class="fa fa-check"></i><b>4.1</b> Plugins</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="scripting.html"><a href="scripting.html#structure"><i class="fa fa-check"></i><b>4.1.1</b> Structure</a></li>
+<li class="chapter" data-level="4.1.2" data-path="scripting.html"><a href="scripting.html#plugin-context"><i class="fa fa-check"></i><b>4.1.2</b> Plugin Context</a></li>
+<li class="chapter" data-level="4.1.3" data-path="scripting.html"><a href="scripting.html#control-flow"><i class="fa fa-check"></i><b>4.1.3</b> Control Flow</a></li>
+<li class="chapter" data-level="4.1.4" data-path="scripting.html"><a href="scripting.html#editor-and-plugins"><i class="fa fa-check"></i><b>4.1.4</b> Editor and Plugins</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="scripting.html"><a href="scripting.html#executor"><i class="fa fa-check"></i><b>4.2</b> Executor</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="scripting.html"><a href="scripting.html#usage-1"><i class="fa fa-check"></i><b>4.2.1</b> Usage</a></li>
+<li class="chapter" data-level="4.2.2" data-path="scripting.html"><a href="scripting.html#typical-use-cases"><i class="fa fa-check"></i><b>4.2.2</b> Typical Use Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="scripting.html"><a href="scripting.html#scripts-1"><i class="fa fa-check"></i><b>4.3</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="scripting.html"><a href="scripting.html#when-to-use-scripts-and-when-not"><i class="fa fa-check"></i><b>4.3.1</b> When to Use Scripts and When Not</a></li>
+<li class="chapter" data-level="4.3.2" data-path="scripting.html"><a href="scripting.html#script-structure"><i class="fa fa-check"></i><b>4.3.2</b> Script Structure</a></li>
+<li class="chapter" data-level="4.3.3" data-path="scripting.html"><a href="scripting.html#script-template-generator"><i class="fa fa-check"></i><b>4.3.3</b> Script Template Generator</a></li>
+<li class="chapter" data-level="4.3.4" data-path="scripting.html"><a href="scripting.html#script-registration"><i class="fa fa-check"></i><b>4.3.4</b> Script Registration</a></li>
+<li class="chapter" data-level="4.3.5" data-path="scripting.html"><a href="scripting.html#script-attachment"><i class="fa fa-check"></i><b>4.3.5</b> Script Attachment</a></li>
+<li class="chapter" data-level="4.3.6" data-path="scripting.html"><a href="scripting.html#script-context"><i class="fa fa-check"></i><b>4.3.6</b> Script Context</a></li>
+<li class="chapter" data-level="4.3.7" data-path="scripting.html"><a href="scripting.html#execution-order"><i class="fa fa-check"></i><b>4.3.7</b> Execution order</a></li>
+<li class="chapter" data-level="4.3.8" data-path="scripting.html"><a href="scripting.html#message-passing-1"><i class="fa fa-check"></i><b>4.3.8</b> Message passing</a></li>
+<li class="chapter" data-level="4.3.9" data-path="scripting.html"><a href="scripting.html#accessing-other-scripts-data"><i class="fa fa-check"></i><b>4.3.9</b> Accessing Other Script’s Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="scripting.html"><a href="scripting.html#tasks"><i class="fa fa-check"></i><b>4.4</b> Tasks</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="scripting.html"><a href="scripting.html#how-it-works"><i class="fa fa-check"></i><b>4.4.1</b> How it works</a></li>
+<li class="chapter" data-level="4.4.2" data-path="scripting.html"><a href="scripting.html#examples"><i class="fa fa-check"></i><b>4.4.2</b> Examples</a></li>
+<li class="chapter" data-level="4.4.3" data-path="scripting.html"><a href="scripting.html#performance-1"><i class="fa fa-check"></i><b>4.4.3</b> Performance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="scene-1.html"><a href="scene-1.html"><i class="fa fa-check"></i><b>5</b> Scene</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create"><i class="fa fa-check"></i><b>5.0.1</b> How to create</a></li>
+<li class="chapter" data-level="5.0.2" data-path="scene-1.html"><a href="scene-1.html#where-all-my-scenes-located"><i class="fa fa-check"></i><b>5.0.2</b> Where all my scenes located?</a></li>
+<li class="chapter" data-level="5.0.3" data-path="scene-1.html"><a href="scene-1.html#building-scene-asynchronously"><i class="fa fa-check"></i><b>5.0.3</b> Building scene asynchronously</a></li>
+<li class="chapter" data-level="5.0.4" data-path="scene-1.html"><a href="scene-1.html#managing-multiple-scenes"><i class="fa fa-check"></i><b>5.0.4</b> Managing multiple scenes</a></li>
+<li class="chapter" data-level="5.0.5" data-path="scene-1.html"><a href="scene-1.html#ambient-lighting"><i class="fa fa-check"></i><b>5.0.5</b> Ambient lighting</a></li>
+<li class="chapter" data-level="5.1" data-path="scene-1.html"><a href="scene-1.html#graph"><i class="fa fa-check"></i><b>5.1</b> Graph</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-1"><i class="fa fa-check"></i><b>5.1.1</b> How to create</a></li>
+<li class="chapter" data-level="5.1.2" data-path="scene-1.html"><a href="scene-1.html#adding-nodes"><i class="fa fa-check"></i><b>5.1.2</b> Adding nodes</a></li>
+<li class="chapter" data-level="5.1.3" data-path="scene-1.html"><a href="scene-1.html#how-to-modify-the-hierarchy"><i class="fa fa-check"></i><b>5.1.3</b> How to modify the hierarchy</a></li>
+<li class="chapter" data-level="5.1.4" data-path="scene-1.html"><a href="scene-1.html#how-to-remove-nodes"><i class="fa fa-check"></i><b>5.1.4</b> How to remove nodes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="scene-1.html"><a href="scene-1.html#transformation"><i class="fa fa-check"></i><b>5.2</b> Transformation</a></li>
+<li class="chapter" data-level="5.3" data-path="scene-1.html"><a href="scene-1.html#prefabs"><i class="fa fa-check"></i><b>5.3</b> Prefabs</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-and-use-a-prefab"><i class="fa fa-check"></i><b>5.3.1</b> How to create and use a prefab</a></li>
+<li class="chapter" data-level="5.3.2" data-path="scene-1.html"><a href="scene-1.html#property-inheritance"><i class="fa fa-check"></i><b>5.3.2</b> Property inheritance</a></li>
+<li class="chapter" data-level="5.3.3" data-path="scene-1.html"><a href="scene-1.html#hierarchical-prefabs"><i class="fa fa-check"></i><b>5.3.3</b> Hierarchical Prefabs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="scene-1.html"><a href="scene-1.html#property-inheritance-1"><i class="fa fa-check"></i><b>5.4</b> Property Inheritance</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-inheritable-properties"><i class="fa fa-check"></i><b>5.4.1</b> How To Create Inheritable Properties</a></li>
+<li class="chapter" data-level="5.4.2" data-path="scene-1.html"><a href="scene-1.html#which-fields-should-be-inheritable"><i class="fa fa-check"></i><b>5.4.2</b> Which Fields Should Be Inheritable?</a></li>
+<li class="chapter" data-level="5.4.3" data-path="scene-1.html"><a href="scene-1.html#editor"><i class="fa fa-check"></i><b>5.4.3</b> Editor</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="scene-1.html"><a href="scene-1.html#base-node"><i class="fa fa-check"></i><b>5.5</b> Base node</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-2"><i class="fa fa-check"></i><b>5.5.1</b> How to create</a></li>
+<li class="chapter" data-level="5.5.2" data-path="scene-1.html"><a href="scene-1.html#building-a-complex-hierarchy"><i class="fa fa-check"></i><b>5.5.2</b> Building a complex hierarchy</a></li>
+<li class="chapter" data-level="5.5.3" data-path="scene-1.html"><a href="scene-1.html#transform"><i class="fa fa-check"></i><b>5.5.3</b> Transform</a></li>
+<li class="chapter" data-level="5.5.4" data-path="scene-1.html"><a href="scene-1.html#visibility"><i class="fa fa-check"></i><b>5.5.4</b> Visibility</a></li>
+<li class="chapter" data-level="5.5.5" data-path="scene-1.html"><a href="scene-1.html#enablingdisabling-scene-nodes"><i class="fa fa-check"></i><b>5.5.5</b> Enabling/disabling scene nodes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="scene-1.html"><a href="scene-1.html#mesh-node"><i class="fa fa-check"></i><b>5.6</b> Mesh node</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="scene-1.html"><a href="scene-1.html#surfaces"><i class="fa fa-check"></i><b>5.6.1</b> Surfaces</a></li>
+<li class="chapter" data-level="5.6.2" data-path="scene-1.html"><a href="scene-1.html#how-to-create-3"><i class="fa fa-check"></i><b>5.6.2</b> How to create</a></li>
+<li class="chapter" data-level="5.6.3" data-path="scene-1.html"><a href="scene-1.html#animation-1"><i class="fa fa-check"></i><b>5.6.3</b> Animation</a></li>
+<li class="chapter" data-level="5.6.4" data-path="scene-1.html"><a href="scene-1.html#data-buffers"><i class="fa fa-check"></i><b>5.6.4</b> Data Buffers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="scene-1.html"><a href="scene-1.html#light-node"><i class="fa fa-check"></i><b>5.7</b> Light node</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="scene-1.html"><a href="scene-1.html#light-types"><i class="fa fa-check"></i><b>5.7.1</b> Light types</a></li>
+<li class="chapter" data-level="5.7.2" data-path="scene-1.html"><a href="scene-1.html#light-scattering"><i class="fa fa-check"></i><b>5.7.2</b> Light scattering</a></li>
+<li class="chapter" data-level="5.7.3" data-path="scene-1.html"><a href="scene-1.html#shadows"><i class="fa fa-check"></i><b>5.7.3</b> Shadows</a></li>
+<li class="chapter" data-level="5.7.4" data-path="scene-1.html"><a href="scene-1.html#performance-2"><i class="fa fa-check"></i><b>5.7.4</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="scene-1.html"><a href="scene-1.html#sprite"><i class="fa fa-check"></i><b>5.8</b> Sprite</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-4"><i class="fa fa-check"></i><b>5.8.1</b> How to create</a></li>
+<li class="chapter" data-level="5.8.2" data-path="scene-1.html"><a href="scene-1.html#animation-2"><i class="fa fa-check"></i><b>5.8.2</b> Animation</a></li>
+<li class="chapter" data-level="5.8.3" data-path="scene-1.html"><a href="scene-1.html#general-rules"><i class="fa fa-check"></i><b>5.8.3</b> General rules</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="scene-1.html"><a href="scene-1.html#particle-system"><i class="fa fa-check"></i><b>5.9</b> Particle system</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="scene-1.html"><a href="scene-1.html#basic-concepts-1"><i class="fa fa-check"></i><b>5.9.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="5.9.2" data-path="scene-1.html"><a href="scene-1.html#how-to-create-5"><i class="fa fa-check"></i><b>5.9.2</b> How to create</a></li>
+<li class="chapter" data-level="5.9.3" data-path="scene-1.html"><a href="scene-1.html#soft-particles"><i class="fa fa-check"></i><b>5.9.3</b> Soft particles</a></li>
+<li class="chapter" data-level="5.9.4" data-path="scene-1.html"><a href="scene-1.html#restarting-emission"><i class="fa fa-check"></i><b>5.9.4</b> Restarting emission</a></li>
+<li class="chapter" data-level="5.9.5" data-path="scene-1.html"><a href="scene-1.html#enabling-or-disabling-particle-systems"><i class="fa fa-check"></i><b>5.9.5</b> Enabling or disabling particle systems</a></li>
+<li class="chapter" data-level="5.9.6" data-path="scene-1.html"><a href="scene-1.html#performance-3"><i class="fa fa-check"></i><b>5.9.6</b> Performance</a></li>
+<li class="chapter" data-level="5.9.7" data-path="scene-1.html"><a href="scene-1.html#limitations"><i class="fa fa-check"></i><b>5.9.7</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="scene-1.html"><a href="scene-1.html#terrain"><i class="fa fa-check"></i><b>5.10</b> Terrain</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="scene-1.html"><a href="scene-1.html#basic-concepts-2"><i class="fa fa-check"></i><b>5.10.1</b> Basic concepts</a></li>
+<li class="chapter" data-level="5.10.2" data-path="scene-1.html"><a href="scene-1.html#creating-terrain-in-the-editor"><i class="fa fa-check"></i><b>5.10.2</b> Creating terrain in the editor</a></li>
+<li class="chapter" data-level="5.10.3" data-path="scene-1.html"><a href="scene-1.html#creating-terrain-from-code"><i class="fa fa-check"></i><b>5.10.3</b> Creating terrain from code</a></li>
+<li class="chapter" data-level="5.10.4" data-path="scene-1.html"><a href="scene-1.html#physics-1"><i class="fa fa-check"></i><b>5.10.4</b> Physics</a></li>
+<li class="chapter" data-level="5.10.5" data-path="scene-1.html"><a href="scene-1.html#performance-4"><i class="fa fa-check"></i><b>5.10.5</b> Performance</a></li>
+<li class="chapter" data-level="5.10.6" data-path="scene-1.html"><a href="scene-1.html#chunking"><i class="fa fa-check"></i><b>5.10.6</b> Chunking</a></li>
+<li class="chapter" data-level="5.10.7" data-path="scene-1.html"><a href="scene-1.html#level-of-detail"><i class="fa fa-check"></i><b>5.10.7</b> Level-of-detail</a></li>
+<li class="chapter" data-level="5.10.8" data-path="scene-1.html"><a href="scene-1.html#limitations-and-known-issues"><i class="fa fa-check"></i><b>5.10.8</b> Limitations and known issues</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="scene-1.html"><a href="scene-1.html#camera-node"><i class="fa fa-check"></i><b>5.11</b> Camera node</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-6"><i class="fa fa-check"></i><b>5.11.1</b> How to create</a></li>
+<li class="chapter" data-level="5.11.2" data-path="scene-1.html"><a href="scene-1.html#projection-modes"><i class="fa fa-check"></i><b>5.11.2</b> Projection modes</a></li>
+<li class="chapter" data-level="5.11.3" data-path="scene-1.html"><a href="scene-1.html#performance-5"><i class="fa fa-check"></i><b>5.11.3</b> Performance</a></li>
+<li class="chapter" data-level="5.11.4" data-path="scene-1.html"><a href="scene-1.html#skybox"><i class="fa fa-check"></i><b>5.11.4</b> Skybox</a></li>
+<li class="chapter" data-level="5.11.5" data-path="scene-1.html"><a href="scene-1.html#color-grading-look-up-tables"><i class="fa fa-check"></i><b>5.11.5</b> Color grading look-up tables</a></li>
+<li class="chapter" data-level="5.11.6" data-path="scene-1.html"><a href="scene-1.html#picking"><i class="fa fa-check"></i><b>5.11.6</b> Picking</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="scene-1.html"><a href="scene-1.html#exposure-and-hdr"><i class="fa fa-check"></i><b>5.12</b> Exposure and HDR</a></li>
+<li class="chapter" data-level="5.13" data-path="scene-1.html"><a href="scene-1.html#decal-node"><i class="fa fa-check"></i><b>5.13</b> Decal node</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-7"><i class="fa fa-check"></i><b>5.13.1</b> How to create</a></li>
+<li class="chapter" data-level="5.13.2" data-path="scene-1.html"><a href="scene-1.html#textures"><i class="fa fa-check"></i><b>5.13.2</b> Textures</a></li>
+<li class="chapter" data-level="5.13.3" data-path="scene-1.html"><a href="scene-1.html#rendering-1"><i class="fa fa-check"></i><b>5.13.3</b> Rendering</a></li>
+<li class="chapter" data-level="5.13.4" data-path="scene-1.html"><a href="scene-1.html#bounds"><i class="fa fa-check"></i><b>5.13.4</b> Bounds</a></li>
+<li class="chapter" data-level="5.13.5" data-path="scene-1.html"><a href="scene-1.html#layers-1"><i class="fa fa-check"></i><b>5.13.5</b> Layers</a></li>
+<li class="chapter" data-level="5.13.6" data-path="scene-1.html"><a href="scene-1.html#performance-6"><i class="fa fa-check"></i><b>5.13.6</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="scene-1.html"><a href="scene-1.html#rectangle-node"><i class="fa fa-check"></i><b>5.14</b> Rectangle node</a>
+<ul>
+<li class="chapter" data-level="5.14.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-8"><i class="fa fa-check"></i><b>5.14.1</b> How to create</a></li>
+<li class="chapter" data-level="5.14.2" data-path="scene-1.html"><a href="scene-1.html#specifying-image-portion-for-rendering"><i class="fa fa-check"></i><b>5.14.2</b> Specifying image portion for rendering</a></li>
+<li class="chapter" data-level="5.14.3" data-path="scene-1.html"><a href="scene-1.html#animation-3"><i class="fa fa-check"></i><b>5.14.3</b> Animation</a></li>
+<li class="chapter" data-level="5.14.4" data-path="scene-1.html"><a href="scene-1.html#performance-7"><i class="fa fa-check"></i><b>5.14.4</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.15" data-path="scene-1.html"><a href="scene-1.html#custom-scene-node"><i class="fa fa-check"></i><b>5.15</b> Custom Scene Node</a>
+<ul>
+<li class="chapter" data-level="5.15.1" data-path="scene-1.html"><a href="scene-1.html#limitations-1"><i class="fa fa-check"></i><b>5.15.1</b> Limitations</a></li>
+<li class="chapter" data-level="5.15.2" data-path="scene-1.html"><a href="scene-1.html#editor-support"><i class="fa fa-check"></i><b>5.15.2</b> Editor support</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="physics-2.html"><a href="physics-2.html"><i class="fa fa-check"></i><b>6</b> Physics</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="physics-2.html"><a href="physics-2.html#differences-between-3d-and-2d"><i class="fa fa-check"></i><b>6.0.1</b> Differences between 3D and 2D</a></li>
+<li class="chapter" data-level="6.1" data-path="physics-2.html"><a href="physics-2.html#rigid-body-node"><i class="fa fa-check"></i><b>6.1</b> Rigid body node</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="physics-2.html"><a href="physics-2.html#how-to-create-9"><i class="fa fa-check"></i><b>6.1.1</b> How to create</a></li>
+<li class="chapter" data-level="6.1.2" data-path="physics-2.html"><a href="physics-2.html#colliders"><i class="fa fa-check"></i><b>6.1.2</b> Colliders</a></li>
+<li class="chapter" data-level="6.1.3" data-path="physics-2.html"><a href="physics-2.html#force-and-torque"><i class="fa fa-check"></i><b>6.1.3</b> Force and torque</a></li>
+<li class="chapter" data-level="6.1.4" data-path="physics-2.html"><a href="physics-2.html#kinematic-rigid-bodies"><i class="fa fa-check"></i><b>6.1.4</b> Kinematic rigid bodies</a></li>
+<li class="chapter" data-level="6.1.5" data-path="physics-2.html"><a href="physics-2.html#continuous-collision-detection"><i class="fa fa-check"></i><b>6.1.5</b> Continuous collision detection</a></li>
+<li class="chapter" data-level="6.1.6" data-path="physics-2.html"><a href="physics-2.html#dominance"><i class="fa fa-check"></i><b>6.1.6</b> Dominance</a></li>
+<li class="chapter" data-level="6.1.7" data-path="physics-2.html"><a href="physics-2.html#d-rigid-bodies"><i class="fa fa-check"></i><b>6.1.7</b> 2D rigid bodies</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="physics-2.html"><a href="physics-2.html#collider-node"><i class="fa fa-check"></i><b>6.2</b> Collider node</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="physics-2.html"><a href="physics-2.html#shapes"><i class="fa fa-check"></i><b>6.2.1</b> Shapes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="physics-2.html"><a href="physics-2.html#how-to-create-10"><i class="fa fa-check"></i><b>6.2.2</b> How to create</a></li>
+<li class="chapter" data-level="6.2.3" data-path="physics-2.html"><a href="physics-2.html#collision-filtering"><i class="fa fa-check"></i><b>6.2.3</b> Collision filtering</a></li>
+<li class="chapter" data-level="6.2.4" data-path="physics-2.html"><a href="physics-2.html#using-colliders-for-hit-boxes"><i class="fa fa-check"></i><b>6.2.4</b> Using colliders for hit boxes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="physics-2.html"><a href="physics-2.html#joint"><i class="fa fa-check"></i><b>6.3</b> Joint</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="physics-2.html"><a href="physics-2.html#bodies-binding"><i class="fa fa-check"></i><b>6.3.1</b> Bodies Binding</a></li>
+<li class="chapter" data-level="6.3.2" data-path="physics-2.html"><a href="physics-2.html#how-to-create-11"><i class="fa fa-check"></i><b>6.3.2</b> How to create</a></li>
+<li class="chapter" data-level="6.3.3" data-path="physics-2.html"><a href="physics-2.html#limits"><i class="fa fa-check"></i><b>6.3.3</b> Limits</a></li>
+<li class="chapter" data-level="6.3.4" data-path="physics-2.html"><a href="physics-2.html#usage-2"><i class="fa fa-check"></i><b>6.3.4</b> Usage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="physics-2.html"><a href="physics-2.html#ray-casting"><i class="fa fa-check"></i><b>6.4</b> Ray Casting</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="physics-2.html"><a href="physics-2.html#avoiding-unnecessary-allocations"><i class="fa fa-check"></i><b>6.4.1</b> Avoiding unnecessary allocations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="physics-2.html"><a href="physics-2.html#ragdoll"><i class="fa fa-check"></i><b>6.5</b> Ragdoll</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="physics-2.html"><a href="physics-2.html#how-to-create-12"><i class="fa fa-check"></i><b>6.5.1</b> How To Create</a></li>
+<li class="chapter" data-level="6.5.2" data-path="physics-2.html"><a href="physics-2.html#video-tutorials"><i class="fa fa-check"></i><b>6.5.2</b> Video Tutorials</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sound-system.html"><a href="sound-system.html"><i class="fa fa-check"></i><b>7</b> Sound System</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sound-system.html"><a href="sound-system.html#audio-bus"><i class="fa fa-check"></i><b>7.1</b> Audio Bus</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="sound-system.html"><a href="sound-system.html#graph-1"><i class="fa fa-check"></i><b>7.1.1</b> Graph</a></li>
+<li class="chapter" data-level="7.1.2" data-path="sound-system.html"><a href="sound-system.html#effects"><i class="fa fa-check"></i><b>7.1.2</b> Effects</a></li>
+<li class="chapter" data-level="7.1.3" data-path="sound-system.html"><a href="sound-system.html#editor-1"><i class="fa fa-check"></i><b>7.1.3</b> Editor</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="sound-system.html"><a href="sound-system.html#sound-1"><i class="fa fa-check"></i><b>7.2</b> Sound</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="sound-system.html"><a href="sound-system.html#how-to-create-13"><i class="fa fa-check"></i><b>7.2.1</b> How to create</a></li>
+<li class="chapter" data-level="7.2.2" data-path="sound-system.html"><a href="sound-system.html#d-and-3d"><i class="fa fa-check"></i><b>7.2.2</b> 2D and 3D</a></li>
+<li class="chapter" data-level="7.2.3" data-path="sound-system.html"><a href="sound-system.html#audio-bus-1"><i class="fa fa-check"></i><b>7.2.3</b> Audio bus</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="sound-system.html"><a href="sound-system.html#head-related-transfer-function"><i class="fa fa-check"></i><b>7.3</b> Head Related Transfer Function</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="sound-system.html"><a href="sound-system.html#hrtf-on-practice"><i class="fa fa-check"></i><b>7.3.1</b> HRTF on practice</a></li>
+<li class="chapter" data-level="7.3.2" data-path="sound-system.html"><a href="sound-system.html#performance-8"><i class="fa fa-check"></i><b>7.3.2</b> Performance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="animation-4.html"><a href="animation-4.html"><i class="fa fa-check"></i><b>8</b> Animation</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="animation-4.html"><a href="animation-4.html#web-demo"><i class="fa fa-check"></i><b>8.0.1</b> Web Demo</a></li>
+<li class="chapter" data-level="8.0.2" data-path="animation-4.html"><a href="animation-4.html#track-binding"><i class="fa fa-check"></i><b>8.0.2</b> Track binding</a></li>
+<li class="chapter" data-level="8.0.3" data-path="animation-4.html"><a href="animation-4.html#time-slice-and-looping"><i class="fa fa-check"></i><b>8.0.3</b> Time slice and looping</a></li>
+<li class="chapter" data-level="8.0.4" data-path="animation-4.html"><a href="animation-4.html#speed"><i class="fa fa-check"></i><b>8.0.4</b> Speed</a></li>
+<li class="chapter" data-level="8.0.5" data-path="animation-4.html"><a href="animation-4.html#enabling-or-disabling-animations"><i class="fa fa-check"></i><b>8.0.5</b> Enabling or disabling animations</a></li>
+<li class="chapter" data-level="8.0.6" data-path="animation-4.html"><a href="animation-4.html#signals"><i class="fa fa-check"></i><b>8.0.6</b> Signals</a></li>
+<li class="chapter" data-level="8.0.7" data-path="animation-4.html"><a href="animation-4.html#creating-from-code"><i class="fa fa-check"></i><b>8.0.7</b> Creating From Code</a></li>
+<li class="chapter" data-level="8.0.8" data-path="animation-4.html"><a href="animation-4.html#importing"><i class="fa fa-check"></i><b>8.0.8</b> Importing</a></li>
+<li class="chapter" data-level="8.0.9" data-path="animation-4.html"><a href="animation-4.html#playing-an-animation"><i class="fa fa-check"></i><b>8.0.9</b> Playing an Animation</a></li>
+<li class="chapter" data-level="8.1" data-path="animation-4.html"><a href="animation-4.html#animation-editor"><i class="fa fa-check"></i><b>8.1</b> Animation Editor</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="animation-4.html"><a href="animation-4.html#typical-workflow"><i class="fa fa-check"></i><b>8.1.1</b> Typical Workflow</a></li>
+<li class="chapter" data-level="8.1.2" data-path="animation-4.html"><a href="animation-4.html#toolbar"><i class="fa fa-check"></i><b>8.1.2</b> Toolbar</a></li>
+<li class="chapter" data-level="8.1.3" data-path="animation-4.html"><a href="animation-4.html#track-list"><i class="fa fa-check"></i><b>8.1.3</b> Track List</a></li>
+<li class="chapter" data-level="8.1.4" data-path="animation-4.html"><a href="animation-4.html#curve-editor"><i class="fa fa-check"></i><b>8.1.4</b> Curve Editor</a></li>
+<li class="chapter" data-level="8.1.5" data-path="animation-4.html"><a href="animation-4.html#property-binding"><i class="fa fa-check"></i><b>8.1.5</b> Property Binding</a></li>
+<li class="chapter" data-level="8.1.6" data-path="animation-4.html"><a href="animation-4.html#animation-importing"><i class="fa fa-check"></i><b>8.1.6</b> Animation Importing</a></li>
+<li class="chapter" data-level="8.1.7" data-path="animation-4.html"><a href="animation-4.html#preview-mode"><i class="fa fa-check"></i><b>8.1.7</b> Preview Mode</a></li>
+<li class="chapter" data-level="8.1.8" data-path="animation-4.html"><a href="animation-4.html#root-motion"><i class="fa fa-check"></i><b>8.1.8</b> Root Motion</a></li>
+<li class="chapter" data-level="8.1.9" data-path="animation-4.html"><a href="animation-4.html#limitations-2"><i class="fa fa-check"></i><b>8.1.9</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="animation-4.html"><a href="animation-4.html#animation-blending"><i class="fa fa-check"></i><b>8.2</b> Animation Blending</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="animation-4.html"><a href="animation-4.html#how-to-create-14"><i class="fa fa-check"></i><b>8.2.1</b> How to create</a></li>
+<li class="chapter" data-level="8.2.2" data-path="animation-4.html"><a href="animation-4.html#from-editor-2"><i class="fa fa-check"></i><b>8.2.2</b> From editor</a></li>
+<li class="chapter" data-level="8.2.3" data-path="animation-4.html"><a href="animation-4.html#from-code-2"><i class="fa fa-check"></i><b>8.2.3</b> From code</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="animation-4.html"><a href="animation-4.html#animation-blending-state-machine-absm-editor"><i class="fa fa-check"></i><b>8.3</b> Animation Blending State Machine (ABSM) Editor</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="animation-4.html"><a href="animation-4.html#toolbar-1"><i class="fa fa-check"></i><b>8.3.1</b> Toolbar</a></li>
+<li class="chapter" data-level="8.3.2" data-path="animation-4.html"><a href="animation-4.html#parameters"><i class="fa fa-check"></i><b>8.3.2</b> Parameters</a></li>
+<li class="chapter" data-level="8.3.3" data-path="animation-4.html"><a href="animation-4.html#state-graph"><i class="fa fa-check"></i><b>8.3.3</b> State Graph</a></li>
+<li class="chapter" data-level="8.3.4" data-path="animation-4.html"><a href="animation-4.html#state-viewer"><i class="fa fa-check"></i><b>8.3.4</b> State Viewer</a></li>
+<li class="chapter" data-level="8.3.5" data-path="animation-4.html"><a href="animation-4.html#layer-mask"><i class="fa fa-check"></i><b>8.3.5</b> Layer Mask</a></li>
+<li class="chapter" data-level="8.3.6" data-path="animation-4.html"><a href="animation-4.html#preview-mode-1"><i class="fa fa-check"></i><b>8.3.6</b> Preview Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="animation-4.html"><a href="animation-4.html#signals-1"><i class="fa fa-check"></i><b>8.4</b> Signals</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="animation-4.html"><a href="animation-4.html#how-to-add"><i class="fa fa-check"></i><b>8.4.1</b> How to add</a></li>
+<li class="chapter" data-level="8.4.2" data-path="animation-4.html"><a href="animation-4.html#reacting-to-signal-events"><i class="fa fa-check"></i><b>8.4.2</b> Reacting to signal events</a></li>
+<li class="chapter" data-level="8.4.3" data-path="animation-4.html"><a href="animation-4.html#events-from-absm"><i class="fa fa-check"></i><b>8.4.3</b> Events from ABSM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="animation-4.html"><a href="animation-4.html#root-motion-1"><i class="fa fa-check"></i><b>8.5</b> Root Motion</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="animation-4.html"><a href="animation-4.html#how-to-enable"><i class="fa fa-check"></i><b>8.5.1</b> How to enable</a></li>
+<li class="chapter" data-level="8.5.2" data-path="animation-4.html"><a href="animation-4.html#how-to-use-1"><i class="fa fa-check"></i><b>8.5.2</b> How to use</a></li>
+<li class="chapter" data-level="8.5.3" data-path="animation-4.html"><a href="animation-4.html#combining-root-motion-with-procedural-motion"><i class="fa fa-check"></i><b>8.5.3</b> Combining root motion with procedural motion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="animation-4.html"><a href="animation-4.html#sprite-animation"><i class="fa fa-check"></i><b>8.6</b> Sprite Animation</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="animation-4.html"><a href="animation-4.html#how-to-use-2"><i class="fa fa-check"></i><b>8.6.1</b> How to use</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>9</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>9.1</b> Equations</a></li>
+<li class="chapter" data-level="9.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>9.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="9.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>9.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>10</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>10.1</b> Publishing</a></li>
+<li class="chapter" data-level="10.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>10.2</b> 404 pages</a></li>
+<li class="chapter" data-level="10.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>10.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fyrox Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="physics-2" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Physics<a href="physics-2.html#physics-2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The engine have full-featured physics engine under the hood (Rapier), it helps you to simulate physics in your games.
+There is first-class support for both 2D and 3D physics. There are three main physics entities in the engine:</p>
+<ul>
+<li>Rigid Body - responsible for rigid body dynamics simulation, must have at least one collider to be able to interact with other rigid bodies in the world.</li>
+<li>Collider - responsible for collision detection.</li>
+<li>Joint - responsible for motion restriction between two rigid bodies.</li>
+</ul>
+<p>All these entities are ordinary scene nodes, so they can be arranged into any hierarchy in the scene. However there some rules that have to be followed to make physics simulation work as intended:</p>
+<ul>
+<li>Rigid body node must have at least one <em>direct child</em> Collider node, otherwise rigid body won’t interact with other rigid bodies in the world.</li>
+<li>Joint node must have two <em>direct child</em> rigid bodies, otherwise joint will have no effect.</li>
+</ul>
+<div id="differences-between-3d-and-2d" class="section level3 hasAnchor" number="6.0.1">
+<h3><span class="header-section-number">6.0.1</span> Differences between 3D and 2D<a href="physics-2.html#differences-between-3d-and-2d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There is a very few differences between 3D and 2D physics, the most obvious is that 2D physics does simulation only in oXY plane (the plane of the screen). 2D physics has less collider shapes available since some 3D shapes degenerate in 2D, for example cylinder 3D shape in 2D is just a rectangle. There is also lesser amount of joints available in 2D, there is no revolute joint for example. Unlike 3D physics entities, 2D physics entities exist in the separate <code>scene::dim2</code> module.</p>
+</div>
+<div id="rigid-body-node" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Rigid body node<a href="physics-2.html#rigid-body-node" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rigid body node is the one of main physical entities in the engine. Rigid body nodes can be affected by gravity, external forces and other rigid bodies. Use rigid body node everywhere you need natural physical behavior for your objects.</p>
+<div id="how-to-create-9" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> How to create<a href="physics-2.html#how-to-create-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use RigidBodyBuilder to create a rigid body instance:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scene/rigid_body.rs:create_cube_rigid_body}}</code></pre>
+</div>
+<div id="colliders" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Colliders<a href="physics-2.html#colliders" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rigid body must have at least one collider to participate in simulation properly, multiple colliders can be used to create complex shapes from simple shapes, you can create concave objects this way. Every collider <strong>must</strong> be a direct child node of a rigid body. In the editor it could look like this:</p>
+<div class="float">
+<img src="./colliders.png" alt="colliders" />
+<div class="figcaption">colliders</div>
+</div>
+<p>Note that, <code>Box</code> node here is an instance of <code>Rigid Body 2D</code>, and it has <code>Collider 2D</code> as a child and some sprite. This structure (when a rigid body has a collider as a child) is mandatory for physics engine to work correctly! Collider won’t work (participate in physical simulation) without a rigid body and a rigid body won’t work without a collider. This applied to both 2D and 3D.</p>
+<p>Keep in mind, that your graphical representation of an object (some node like <code>Mesh</code>, <code>Sprite</code>, etc.) must be attached to a rigid body. Otherwise, the rigid body will move, but the graphical representation won’t. You can also arrange it other way around: a graphical node can have rigid body with a collider, but that requires the rigid body to be kinematic. This is used to create <a href="./collider.md#using-colliders-for-hit-boxes">hit boxes</a>, or any other things that should have physical representation, but move together with graphical node.</p>
+</div>
+<div id="force-and-torque" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Force and torque<a href="physics-2.html#force-and-torque" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can apply forces and torque to any rigid body, but only dynamic bodies will be affected. There is two ways of applying force to a rigid body: at center of mass or at particular point at the body:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scene/rigid_body.rs:apply_force_and_torque}}</code></pre>
+</div>
+<div id="kinematic-rigid-bodies" class="section level3 hasAnchor" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Kinematic rigid bodies<a href="physics-2.html#kinematic-rigid-bodies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes you may want to have direct control over position/rotation of a rigid body and tell the physics engine to not do simulation for the body. This can be achieved by making the rigid body <em>kinematic</em>:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scene/rigid_body.rs:create_kinematic_rigid_body}}</code></pre>
+</div>
+<div id="continuous-collision-detection" class="section level3 hasAnchor" number="6.1.5">
+<h3><span class="header-section-number">6.1.5</span> Continuous collision detection<a href="physics-2.html#continuous-collision-detection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Fast-moving rigid bodies can “fly through” other objects (for example a bullet can completely ignore walls if it is moving too fast), this happens because of discrete calculation. This can be fixed by using continuous collision detection, to enable it use either <code>.with_ccd_enabled(state)</code> of <code>RigidBodyBuilder</code> or <code>.set_ccd_enabled(state)</code> of <code>RigidBody</code>.</p>
+</div>
+<div id="dominance" class="section level3 hasAnchor" number="6.1.6">
+<h3><span class="header-section-number">6.1.6</span> Dominance<a href="physics-2.html#dominance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dominance allows you to set a priority of forces applied to rigid bodies. It defines which rigid body can affect what rigid body, for example you can set the highest dominance for actors and leave dominance of everything else at zero, this way actors will be able to push any other dynamic bodies, but dynamic bodies won’t affect actors. This is useful when you don’t want your actors be pushed by surrounding objects (like if someone throws a box at an actor, it will stay still if it has higher dominance)</p>
+</div>
+<div id="d-rigid-bodies" class="section level3 hasAnchor" number="6.1.7">
+<h3><span class="header-section-number">6.1.7</span> 2D rigid bodies<a href="physics-2.html#d-rigid-bodies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>2D rigid bodies have no difference with 3D, except the simulation happens in oXY plane and Z coordinate is ignored.</p>
+</div>
+</div>
+<div id="collider-node" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Collider node<a href="physics-2.html#collider-node" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Collider is a geometrical shape that is used for collision detection, contact manifold generation, etc. Colliders are used in pair with rigid bodies, they make rigid body participate in collisions.</p>
+<p><strong>Important:</strong> Colliders only works in pair with rigid bodies! Colliders won’t be used by the engine, unless they are direct children of a rigid body. Read <a href="./rigid_body.md#colliders">this chapter</a> for more info.</p>
+<div id="shapes" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Shapes<a href="physics-2.html#shapes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Collider can have almost any shape, the engine offers the following shapes for 3D:</p>
+<ul>
+<li>Ball - dynamic sphere shape.</li>
+<li>Cylinder - dynamic cylinder shape.</li>
+<li>Cone - dynamic cone shape.</li>
+<li>Cuboid - dynamic box shape.</li>
+<li>Capsule - dynamic capsule shape.</li>
+<li>Segment - dynamic segment (“line”) shape</li>
+<li>Triangle - simple dynamic triangle shape</li>
+<li>Triangle mesh - static concave shape, can be used together with any static level geometry (wall, floors, ceilings,
+anything else)</li>
+<li>Height field - static height field shape, can be used together with terrains.</li>
+<li>Polyhedron - dynamic concave shape.</li>
+</ul>
+<p>Also, there is a similar, but smaller set for 2D (because some shapes degenerate in 2D):</p>
+<ul>
+<li>Ball - dynamic circle shape.</li>
+<li>Cuboid - dynamic rectangle shape.</li>
+<li>Capsule - dynamic capsule shape.</li>
+<li>Segment - dynamic segment (“line”) shape.</li>
+<li>Triangle - dynamic triangle shape.</li>
+<li>Trimesh - static triangle mesh shape.</li>
+<li>Heightfield - static height field shape.</li>
+</ul>
+<p><em>Dynamic</em> in both lists means that such shapes can be used together with <em>dynamic</em> rigid bodies, they’ll correctly handle
+all collisions and simulation will look as it should. <em>Static</em> means that such shape should be used only with <em>static</em> rigid bodies.</p>
+</div>
+<div id="how-to-create-10" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> How to create<a href="physics-2.html#how-to-create-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use ColliderBuilder to create an instance of collider from code with any shape you want.</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scene/collider.rs:create_capsule_collider}}</code></pre>
+<p>In the editor you can use <code>MainMenu -&gt; Create -&gt; Physics -&gt; Collider</code>, or right-click on a node in <code>World Viewer</code> and select <code>Add Child -&gt; Physics -&gt; Collider</code>. Collider must be direct child of a rigid body, colliders do nothing on their own!</p>
+</div>
+<div id="collision-filtering" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Collision filtering<a href="physics-2.html#collision-filtering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes there’s a need to prevent collision between various groups of colliders. Fyrox supports bit-wise collision filtering exactly for this purpose. For instance, you may have two groups of colliders: actors and powerups, and you want the actors to completely ignore collisions with powerups (and vice versa). In this case you can set collision groups for actors like so:</p>
+<div class="float">
+<img src="images/physics_collision_groups_a.png" alt="actors collision groups" />
+<div class="figcaption">actors collision groups</div>
+</div>
+<p>And set the collision groups for powerups like so:</p>
+<div class="float">
+<img src="images/physics_collision_groups_b.png" alt="powerups collision groups" />
+<div class="figcaption">powerups collision groups</div>
+</div>
+<p>As you can see, actors and powerups now have separate <code>memberships</code> (read - groups) and filters. This way, the actors will collide with everything, but powerups and vice versa.</p>
+</div>
+<div id="using-colliders-for-hit-boxes" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Using colliders for hit boxes<a href="physics-2.html#using-colliders-for-hit-boxes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can use colliders to simulate hit boxes for your game characters. It can be done by creating a rigid body with <code>KinematicPositionBased</code> type and an appropriate collider as a child node. As the last step you need to attach the body to a bone in your character’s model. Here’s a quick example from the editor:</p>
+<div class="float">
+<img src="images/physics_hitbox.png" alt="hitbox" />
+<div class="figcaption">hitbox</div>
+</div>
+<p>As you can see, the rigid body has a capsule collider as a child and the body is attached to the neck bone. The body has <code>KinematicPositionBased</code> type, which will ensure that the body won’t be simulated, instead its position will be synchronized with the position of the parent bone.</p>
+<p>To actually use the hit boxes in your game, you can either use a ray-casting to perform a hit scan or you can use contacts information to fetch the stuff with which a hit box was contacted. See <a href="./ray.md">Ray casting</a> chapter of the section.</p>
+</div>
+</div>
+<div id="joint" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Joint<a href="physics-2.html#joint" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Joint is a configurable link between two rigid bodies, it restricts relative motion of two bodies. Fyrox provides a fixed set of joints that are suitable for various applications.</p>
+<ul>
+<li>Fixed Joint - hard link between two bodies, it is the same is if two rigid bodies were “welded” to each other with a metal rod.</li>
+<li>Revolute Joint - restricts all translational movement and any rotations around Y and Z axes, but leaves rotation around local X axis free. An example of the joint from real world is a door hinge, it allows the door to rotate around single axis, but not move.</li>
+<li>Prismatic Joint - restricts all rotations, movement is allowed along single axis (local X of the joint). An example of the joint from real world could be a slider that supports drawers on a table.</li>
+<li>Ball Joint - restricts all movement, but leaves rotations unrestricted. An example of a ball joint from real world could be human shoulder.</li>
+</ul>
+<p>2D joints does not have revolute joints, because it degenerates into ball joint.</p>
+<div id="bodies-binding" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Bodies Binding<a href="physics-2.html#bodies-binding" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the joint is created and all bodies are set to it, it uses self global transform and bodies global transforms to calculate local frames for bodies. This process is called <em>binding</em>, it happens once when the joint is created, but can be initiated by moving the joint to some other position by changing local transform of the joint.</p>
+</div>
+<div id="how-to-create-11" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> How to create<a href="physics-2.html#how-to-create-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To create a joint from code use <code>JointBuilder</code>:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scene/joint.rs:create_joint}}</code></pre>
+<p>Once the joint is created, it will bind given bodies, using the process describe in the above section.</p>
+<p>To create a joint from editor, use <code>MainMenu -&gt; Create -&gt; Physics -&gt; Joint</code>, select the new joint and find <code>Body1</code> and <code>Body2</code> properties. Assign the fields by holding <code>Alt</code> key and drag’n’drop a rigid body to a field. Move the joint to correct position to ensure the binding will happen as intended.</p>
+</div>
+<div id="limits" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Limits<a href="physics-2.html#limits" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can restrict motion on primary joint axis (rotational and translational) by setting a limit to desired axis.</p>
+<ul>
+<li>Ball Joint have three angular limits, one per rotation around an axis. The angle range is given in radians.</li>
+<li>Prismatic Joint have only one limit it is maximum linear distance between two bodies along primary joint axis.</li>
+<li>Revolute Joint have a single angular limit around primary axis. The angle range is given in radians.</li>
+<li>Fixed Joint does not have any limit setting, because it locks all degrees of freedom.</li>
+</ul>
+</div>
+<div id="usage-2" class="section level3 hasAnchor" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> Usage<a href="physics-2.html#usage-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Joints can be used to create many game entities, such as doors, chains and rag dolls. The most interesting here is rag doll. It is used to create realistic behaviour for humans and creatures in games. In general, it is a set of rigid bodies, colliders and joints. Where each joint configured to match joints of a creature, for example ball joint could be used for shoulders, revolute joints for knees and elbows.</p>
+</div>
+</div>
+<div id="ray-casting" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Ray Casting<a href="physics-2.html#ray-casting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ray casting allows you to query intersections of a ray with rigid bodies in a scene. Typical usage for ray casting is hit-scan weapons (weapons that shoots high-speed projectiles), AI collision avoidance, etc. To query intersections, use physics world instance of a scene graph:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scene/ray.rs:do_ray_cast}}</code></pre>
+<p>The function above will return a collection of intersections that are sorted by intersection distance (a distance from beginning of the ray to an intersection point). Each intersection is represented by the following structure:</p>
+<pre class="rust,no_run"><code>pub struct Intersection {
+    pub collider: Handle&lt;Node&gt;,
+    pub normal: Vector3&lt;f32&gt;,
+    pub position: Point3&lt;f32&gt;,
+    pub feature: FeatureId,
+    pub toi: f32,
+}</code></pre>
+<ul>
+<li><code>collider</code> - a handle of the collider with which intersection was detected. To obtain a handle to rigid body, borrow the <code>collider</code> and fetch its <code>parent</code> field: <code>graph[collider].parent()</code>.</li>
+<li><code>normal</code> - a normal at the intersection position in world coordinates.</li>
+<li><code>position</code> - a position of the intersection in world coordinates.</li>
+<li><code>feature</code> - additional data that contains a kind of the feature with which intersection was detected as well as its index. FeatureId::Face might have index that is greater than amount of triangles in a triangle mesh, this means that intersection was detected from “back” side of a face. To “fix” that index, simply subtract amount of triangles of a triangle mesh from the value.</li>
+<li><code>toi</code> - (<code>time of impact</code>) a distance from ray’s origin to <code>position</code>.</li>
+</ul>
+<div id="avoiding-unnecessary-allocations" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Avoiding unnecessary allocations<a href="physics-2.html#avoiding-unnecessary-allocations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As you might’ve noticed, the function above return <code>Vec&lt;Intersection&gt;</code> which allocates intersections on heap. This is relatively slow and could be sped up a lot by using static array on stack:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scene/ray.rs:do_static_ray_cast}}</code></pre>
+<p><code>usage_example</code> shows how to use the <code>do_static_ray_cast</code> function - all you need to do is to specify maximum amount of intersections you’re interested in as a generic parameter.</p>
+</div>
+</div>
+<div id="ragdoll" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Ragdoll<a href="physics-2.html#ragdoll" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ragdoll physics is a sort of procedural animation, that allows you to create naturally looking death animations and body physics in general. Ragdoll is just an arbitrary combination of rigid bodies, colliders, joints. Rigid bodies and colliders define physical “boundaries” for limbs of your character, while joints restrict relative motion (linear and rotational).</p>
+<div id="how-to-create-12" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> How To Create<a href="physics-2.html#how-to-create-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Creating a ragdoll manually is a very tedious procedure, you need to create rigid bodies and colliders for every body part of your character, place them correctly, adjust their size, etc. Then you need to create a set of joints, that connects body parts, and then setup linear and angular limits. To save time, Fyrox has a special tool called <code>Ragdoll Wizard</code>:</p>
+<div class="float">
+<img src="images/physics_ragdoll.png" alt="ragdoll wizard" />
+<div class="figcaption">ragdoll wizard</div>
+</div>
+<p>It can be opened from <code>Utils</code> menu and contains quite a lot of node handle fields that needs to be filled. Thankfully, there’s an <code>Autofill</code> button, by pressing which, the wizard will try to find respective bones of the skeleton and put their handles in the respective fields in the wizard. For now, it is configured to work with <a href="https://www.mixamo.com">mixamo</a> skeletons.</p>
+<p>Other parameters are listed below:</p>
+<ul>
+<li><code>Total Mass</code> - total mass of the ragdoll, it will be used to configure masses of rigid bodies of body parts.</li>
+<li><code>Use CCD</code> - a flag, that defines whether the continuous collision detection (CCD) for body parts should be used or not.
+It is advised to keep this flag on, otherwise body parts might get stuck or fall through the floor, leading to “explosive” ragdoll behaviour.</li>
+<li><code>Can Sleep</code> - a flag, that defines whether the body parts can “sleep” or not. Sleep in this case means, that a body part can be excluded from physical simulation if it is not moving for some time.</li>
+<li><code>Collision Groups</code> and <code>Solver Groups</code> could be used to configure <a href="collider.md#collision-filtering">collision filtering</a>.
+It is very important in case if your character has a physical capsule, that is used to “standard” character physics. In this case body parts must ignore physical capsule (and vice versa), otherwise your ragdoll will “explode”.</li>
+</ul>
+<p>After everything is filled in, you can click <code>OK</code> button and if everything is correct, you should see a bunch of new scene nodes in the world viewer, located under a <code>Ragdoll</code> scene node:</p>
+<div class="float">
+<img src="images/physics_ragdoll2.png" alt="ragdoll result" />
+<div class="figcaption">ragdoll result</div>
+</div>
+<p>As you can see, the amount of entities you’d have to create and configure manually is quite high. Keep in mind, that ragdoll wizard can’t generate perfect ragdoll, because of lack of information. The generated ragdoll will most likely require some minor tweaks (mostly joint angular limits).</p>
+</div>
+<div id="video-tutorials" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Video Tutorials<a href="physics-2.html#video-tutorials" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There’s one video tutorial about ragdoll wizard, it also shows the final results in game:</p>
+<iframe width="560" height="315" src="https://youtube.com/embed/TxSlqGhCxYc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="scene-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sound-system.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-physics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

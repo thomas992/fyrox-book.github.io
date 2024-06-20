@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Scripting | Fyrox Book</title>
+  <meta name="description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Scripting | Fyrox Book" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Scripting | Fyrox Book" />
+  
+  <meta name="twitter:description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Dmitry Stepanov" />
+
+
+<meta name="date" content="2024-06-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="getting-started.html"/>
+<link rel="next" href="scene-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Fyrox Game Engine Book</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#engine-version"><i class="fa fa-check"></i><b>1.1</b> Engine Version</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#how-to-read-the-book"><i class="fa fa-check"></i><b>1.2</b> How to read the book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#api-documentation"><i class="fa fa-check"></i><b>1.3</b> API Documentation</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#required-knowledge"><i class="fa fa-check"></i><b>1.4</b> Required knowledge</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#support-the-development"><i class="fa fa-check"></i><b>1.5</b> Support the development</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#introduction-to-fyrox"><i class="fa fa-check"></i><b>2.1</b> Introduction to Fyrox</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#what-can-the-engine-do"><i class="fa fa-check"></i><b>2.1.1</b> What can the engine do?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction.html"><a href="introduction.html#how-does-the-engine-work"><i class="fa fa-check"></i><b>2.1.2</b> How does the engine work?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction.html"><a href="introduction.html#programming-languages"><i class="fa fa-check"></i><b>2.1.3</b> Programming languages</a></li>
+<li class="chapter" data-level="2.1.4" data-path="introduction.html"><a href="introduction.html#engine-features"><i class="fa fa-check"></i><b>2.1.4</b> Engine Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#system-requirements"><i class="fa fa-check"></i><b>2.2</b> System Requirements</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#supported-platforms"><i class="fa fa-check"></i><b>2.2.1</b> Supported Platforms</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#basic-concepts"><i class="fa fa-check"></i><b>2.3</b> Basic concepts</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction.html"><a href="introduction.html#classic-oop"><i class="fa fa-check"></i><b>2.3.1</b> Classic OOP</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction.html"><a href="introduction.html#scenes"><i class="fa fa-check"></i><b>2.3.2</b> Scenes</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction.html"><a href="introduction.html#nodes-and-scene-graph"><i class="fa fa-check"></i><b>2.3.3</b> Nodes and Scene Graph</a></li>
+<li class="chapter" data-level="2.3.4" data-path="introduction.html"><a href="introduction.html#plugins"><i class="fa fa-check"></i><b>2.3.4</b> Plugins</a></li>
+<li class="chapter" data-level="2.3.5" data-path="introduction.html"><a href="introduction.html#scripts"><i class="fa fa-check"></i><b>2.3.5</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#design-philosophy-and-goals"><i class="fa fa-check"></i><b>2.4</b> Design Philosophy and Goals</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction.html"><a href="introduction.html#safety"><i class="fa fa-check"></i><b>2.4.1</b> Safety</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction.html"><a href="introduction.html#performance"><i class="fa fa-check"></i><b>2.4.2</b> Performance</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introduction.html"><a href="introduction.html#ease-of-use"><i class="fa fa-check"></i><b>2.4.3</b> Ease of use</a></li>
+<li class="chapter" data-level="2.4.4" data-path="introduction.html"><a href="introduction.html#battle-tested"><i class="fa fa-check"></i><b>2.4.4</b> Battle-tested</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#frequently-asked-questions"><i class="fa fa-check"></i><b>2.5</b> Frequently Asked Questions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#which-graphics-api-does-the-engine-use"><i class="fa fa-check"></i><b>2.5.1</b> Which graphics API does the engine use?</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction.html"><a href="introduction.html#is-the-engine-based-on-ecs"><i class="fa fa-check"></i><b>2.5.2</b> Is the engine based on ECS?</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction.html"><a href="introduction.html#what-kinds-of-games-can-i-make-using-fyrox"><i class="fa fa-check"></i><b>2.5.3</b> What kinds of games can I make using Fyrox?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#editor-plugins-and-scripts"><i class="fa fa-check"></i><b>3.1</b> Editor, Plugins and Scripts</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="getting-started.html"><a href="getting-started.html#platform-specific-dependencies"><i class="fa fa-check"></i><b>3.1.1</b> Platform-specific Dependencies</a></li>
+<li class="chapter" data-level="3.1.2" data-path="getting-started.html"><a href="getting-started.html#quick-start"><i class="fa fa-check"></i><b>3.1.2</b> Quick Start</a></li>
+<li class="chapter" data-level="3.1.3" data-path="getting-started.html"><a href="getting-started.html#project-generator"><i class="fa fa-check"></i><b>3.1.3</b> Project Generator</a></li>
+<li class="chapter" data-level="3.1.4" data-path="getting-started.html"><a href="getting-started.html#using-the-latest-engine-version"><i class="fa fa-check"></i><b>3.1.4</b> Using the Latest Engine Version</a></li>
+<li class="chapter" data-level="3.1.5" data-path="getting-started.html"><a href="getting-started.html#adding-game-logic"><i class="fa fa-check"></i><b>3.1.5</b> Adding Game Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#code-hot-reloading"><i class="fa fa-check"></i><b>3.2</b> Code Hot Reloading</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="getting-started.html"><a href="getting-started.html#how-to-use"><i class="fa fa-check"></i><b>3.2.1</b> How To Use</a></li>
+<li class="chapter" data-level="3.2.2" data-path="getting-started.html"><a href="getting-started.html#build-profiles"><i class="fa fa-check"></i><b>3.2.2</b> Build Profiles</a></li>
+<li class="chapter" data-level="3.2.3" data-path="getting-started.html"><a href="getting-started.html#stability"><i class="fa fa-check"></i><b>3.2.3</b> Stability</a></li>
+<li class="chapter" data-level="3.2.4" data-path="getting-started.html"><a href="getting-started.html#technical-details-and-limitations"><i class="fa fa-check"></i><b>3.2.4</b> Technical Details and Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#fyroxed-overview"><i class="fa fa-check"></i><b>3.3</b> FyroxEd Overview</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#windows"><i class="fa fa-check"></i><b>3.3.1</b> Windows</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#creating-or-loading-a-scene"><i class="fa fa-check"></i><b>3.3.2</b> Creating or loading a Scene</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#populating-a-scene"><i class="fa fa-check"></i><b>3.3.3</b> Populating a Scene</a></li>
+<li class="chapter" data-level="3.3.4" data-path="getting-started.html"><a href="getting-started.html#saving-a-scene"><i class="fa fa-check"></i><b>3.3.4</b> Saving a Scene</a></li>
+<li class="chapter" data-level="3.3.5" data-path="getting-started.html"><a href="getting-started.html#undoing-and-redoing"><i class="fa fa-check"></i><b>3.3.5</b> Undoing and redoing</a></li>
+<li class="chapter" data-level="3.3.6" data-path="getting-started.html"><a href="getting-started.html#controls"><i class="fa fa-check"></i><b>3.3.6</b> Controls</a></li>
+<li class="chapter" data-level="3.3.7" data-path="getting-started.html"><a href="getting-started.html#play-mode"><i class="fa fa-check"></i><b>3.3.7</b> Play Mode</a></li>
+<li class="chapter" data-level="3.3.8" data-path="getting-started.html"><a href="getting-started.html#additional-utilities"><i class="fa fa-check"></i><b>3.3.8</b> Additional Utilities</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#scene-and-scene-graph"><i class="fa fa-check"></i><b>3.4</b> Scene and Scene Graph</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="getting-started.html"><a href="getting-started.html#building-blocks-or-scene-nodes"><i class="fa fa-check"></i><b>3.4.1</b> Building Blocks or Scene Nodes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="getting-started.html"><a href="getting-started.html#local-and-global-coordinates"><i class="fa fa-check"></i><b>3.4.2</b> Local and Global Coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="getting-started.html"><a href="getting-started.html#assets"><i class="fa fa-check"></i><b>3.5</b> Assets</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="getting-started.html"><a href="getting-started.html#asset-types"><i class="fa fa-check"></i><b>3.5.1</b> Asset Types</a></li>
+<li class="chapter" data-level="3.5.2" data-path="getting-started.html"><a href="getting-started.html#asset-management-1"><i class="fa fa-check"></i><b>3.5.2</b> Asset Management</a></li>
+<li class="chapter" data-level="3.5.3" data-path="getting-started.html"><a href="getting-started.html#asset-instantiation"><i class="fa fa-check"></i><b>3.5.3</b> Asset Instantiation</a></li>
+<li class="chapter" data-level="3.5.4" data-path="getting-started.html"><a href="getting-started.html#loading-assets"><i class="fa fa-check"></i><b>3.5.4</b> Loading Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="getting-started.html"><a href="getting-started.html#data-management"><i class="fa fa-check"></i><b>3.6</b> Data Management</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="getting-started.html"><a href="getting-started.html#motivation"><i class="fa fa-check"></i><b>3.6.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.6.2" data-path="getting-started.html"><a href="getting-started.html#technical-details"><i class="fa fa-check"></i><b>3.6.2</b> Technical Details</a></li>
+<li class="chapter" data-level="3.6.3" data-path="getting-started.html"><a href="getting-started.html#advantages"><i class="fa fa-check"></i><b>3.6.3</b> Advantages</a></li>
+<li class="chapter" data-level="3.6.4" data-path="getting-started.html"><a href="getting-started.html#disadvantages"><i class="fa fa-check"></i><b>3.6.4</b> Disadvantages</a></li>
+<li class="chapter" data-level="3.6.5" data-path="getting-started.html"><a href="getting-started.html#usage"><i class="fa fa-check"></i><b>3.6.5</b> Usage</a></li>
+<li class="chapter" data-level="3.6.6" data-path="getting-started.html"><a href="getting-started.html#borrowing"><i class="fa fa-check"></i><b>3.6.6</b> Borrowing</a></li>
+<li class="chapter" data-level="3.6.7" data-path="getting-started.html"><a href="getting-started.html#freeing"><i class="fa fa-check"></i><b>3.6.7</b> Freeing</a></li>
+<li class="chapter" data-level="3.6.8" data-path="getting-started.html"><a href="getting-started.html#take-and-reserve"><i class="fa fa-check"></i><b>3.6.8</b> Take and Reserve</a></li>
+<li class="chapter" data-level="3.6.9" data-path="getting-started.html"><a href="getting-started.html#iterators"><i class="fa fa-check"></i><b>3.6.9</b> Iterators</a></li>
+<li class="chapter" data-level="3.6.10" data-path="getting-started.html"><a href="getting-started.html#direct-access"><i class="fa fa-check"></i><b>3.6.10</b> Direct Access</a></li>
+<li class="chapter" data-level="3.6.11" data-path="getting-started.html"><a href="getting-started.html#validation"><i class="fa fa-check"></i><b>3.6.11</b> Validation</a></li>
+<li class="chapter" data-level="3.6.12" data-path="getting-started.html"><a href="getting-started.html#type-erased-handles"><i class="fa fa-check"></i><b>3.6.12</b> Type-erased Handles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="getting-started.html"><a href="getting-started.html#borrow-checker"><i class="fa fa-check"></i><b>3.7</b> Borrow Checker</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="getting-started.html"><a href="getting-started.html#multiple-borrowing"><i class="fa fa-check"></i><b>3.7.1</b> Multiple Borrowing</a></li>
+<li class="chapter" data-level="3.7.2" data-path="getting-started.html"><a href="getting-started.html#message-passing"><i class="fa fa-check"></i><b>3.7.2</b> Message Passing</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="scripting.html"><a href="scripting.html"><i class="fa fa-check"></i><b>4</b> Scripting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="scripting.html"><a href="scripting.html#plugins-1"><i class="fa fa-check"></i><b>4.1</b> Plugins</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="scripting.html"><a href="scripting.html#structure"><i class="fa fa-check"></i><b>4.1.1</b> Structure</a></li>
+<li class="chapter" data-level="4.1.2" data-path="scripting.html"><a href="scripting.html#plugin-context"><i class="fa fa-check"></i><b>4.1.2</b> Plugin Context</a></li>
+<li class="chapter" data-level="4.1.3" data-path="scripting.html"><a href="scripting.html#control-flow"><i class="fa fa-check"></i><b>4.1.3</b> Control Flow</a></li>
+<li class="chapter" data-level="4.1.4" data-path="scripting.html"><a href="scripting.html#editor-and-plugins"><i class="fa fa-check"></i><b>4.1.4</b> Editor and Plugins</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="scripting.html"><a href="scripting.html#executor"><i class="fa fa-check"></i><b>4.2</b> Executor</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="scripting.html"><a href="scripting.html#usage-1"><i class="fa fa-check"></i><b>4.2.1</b> Usage</a></li>
+<li class="chapter" data-level="4.2.2" data-path="scripting.html"><a href="scripting.html#typical-use-cases"><i class="fa fa-check"></i><b>4.2.2</b> Typical Use Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="scripting.html"><a href="scripting.html#scripts-1"><i class="fa fa-check"></i><b>4.3</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="scripting.html"><a href="scripting.html#when-to-use-scripts-and-when-not"><i class="fa fa-check"></i><b>4.3.1</b> When to Use Scripts and When Not</a></li>
+<li class="chapter" data-level="4.3.2" data-path="scripting.html"><a href="scripting.html#script-structure"><i class="fa fa-check"></i><b>4.3.2</b> Script Structure</a></li>
+<li class="chapter" data-level="4.3.3" data-path="scripting.html"><a href="scripting.html#script-template-generator"><i class="fa fa-check"></i><b>4.3.3</b> Script Template Generator</a></li>
+<li class="chapter" data-level="4.3.4" data-path="scripting.html"><a href="scripting.html#script-registration"><i class="fa fa-check"></i><b>4.3.4</b> Script Registration</a></li>
+<li class="chapter" data-level="4.3.5" data-path="scripting.html"><a href="scripting.html#script-attachment"><i class="fa fa-check"></i><b>4.3.5</b> Script Attachment</a></li>
+<li class="chapter" data-level="4.3.6" data-path="scripting.html"><a href="scripting.html#script-context"><i class="fa fa-check"></i><b>4.3.6</b> Script Context</a></li>
+<li class="chapter" data-level="4.3.7" data-path="scripting.html"><a href="scripting.html#execution-order"><i class="fa fa-check"></i><b>4.3.7</b> Execution order</a></li>
+<li class="chapter" data-level="4.3.8" data-path="scripting.html"><a href="scripting.html#message-passing-1"><i class="fa fa-check"></i><b>4.3.8</b> Message passing</a></li>
+<li class="chapter" data-level="4.3.9" data-path="scripting.html"><a href="scripting.html#accessing-other-scripts-data"><i class="fa fa-check"></i><b>4.3.9</b> Accessing Other Script’s Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="scripting.html"><a href="scripting.html#tasks"><i class="fa fa-check"></i><b>4.4</b> Tasks</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="scripting.html"><a href="scripting.html#how-it-works"><i class="fa fa-check"></i><b>4.4.1</b> How it works</a></li>
+<li class="chapter" data-level="4.4.2" data-path="scripting.html"><a href="scripting.html#examples"><i class="fa fa-check"></i><b>4.4.2</b> Examples</a></li>
+<li class="chapter" data-level="4.4.3" data-path="scripting.html"><a href="scripting.html#performance-1"><i class="fa fa-check"></i><b>4.4.3</b> Performance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="scene-1.html"><a href="scene-1.html"><i class="fa fa-check"></i><b>5</b> Scene</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create"><i class="fa fa-check"></i><b>5.0.1</b> How to create</a></li>
+<li class="chapter" data-level="5.0.2" data-path="scene-1.html"><a href="scene-1.html#where-all-my-scenes-located"><i class="fa fa-check"></i><b>5.0.2</b> Where all my scenes located?</a></li>
+<li class="chapter" data-level="5.0.3" data-path="scene-1.html"><a href="scene-1.html#building-scene-asynchronously"><i class="fa fa-check"></i><b>5.0.3</b> Building scene asynchronously</a></li>
+<li class="chapter" data-level="5.0.4" data-path="scene-1.html"><a href="scene-1.html#managing-multiple-scenes"><i class="fa fa-check"></i><b>5.0.4</b> Managing multiple scenes</a></li>
+<li class="chapter" data-level="5.0.5" data-path="scene-1.html"><a href="scene-1.html#ambient-lighting"><i class="fa fa-check"></i><b>5.0.5</b> Ambient lighting</a></li>
+<li class="chapter" data-level="5.1" data-path="scene-1.html"><a href="scene-1.html#graph"><i class="fa fa-check"></i><b>5.1</b> Graph</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-1"><i class="fa fa-check"></i><b>5.1.1</b> How to create</a></li>
+<li class="chapter" data-level="5.1.2" data-path="scene-1.html"><a href="scene-1.html#adding-nodes"><i class="fa fa-check"></i><b>5.1.2</b> Adding nodes</a></li>
+<li class="chapter" data-level="5.1.3" data-path="scene-1.html"><a href="scene-1.html#how-to-modify-the-hierarchy"><i class="fa fa-check"></i><b>5.1.3</b> How to modify the hierarchy</a></li>
+<li class="chapter" data-level="5.1.4" data-path="scene-1.html"><a href="scene-1.html#how-to-remove-nodes"><i class="fa fa-check"></i><b>5.1.4</b> How to remove nodes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="scene-1.html"><a href="scene-1.html#transformation"><i class="fa fa-check"></i><b>5.2</b> Transformation</a></li>
+<li class="chapter" data-level="5.3" data-path="scene-1.html"><a href="scene-1.html#prefabs"><i class="fa fa-check"></i><b>5.3</b> Prefabs</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-and-use-a-prefab"><i class="fa fa-check"></i><b>5.3.1</b> How to create and use a prefab</a></li>
+<li class="chapter" data-level="5.3.2" data-path="scene-1.html"><a href="scene-1.html#property-inheritance"><i class="fa fa-check"></i><b>5.3.2</b> Property inheritance</a></li>
+<li class="chapter" data-level="5.3.3" data-path="scene-1.html"><a href="scene-1.html#hierarchical-prefabs"><i class="fa fa-check"></i><b>5.3.3</b> Hierarchical Prefabs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="scene-1.html"><a href="scene-1.html#property-inheritance-1"><i class="fa fa-check"></i><b>5.4</b> Property Inheritance</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-inheritable-properties"><i class="fa fa-check"></i><b>5.4.1</b> How To Create Inheritable Properties</a></li>
+<li class="chapter" data-level="5.4.2" data-path="scene-1.html"><a href="scene-1.html#which-fields-should-be-inheritable"><i class="fa fa-check"></i><b>5.4.2</b> Which Fields Should Be Inheritable?</a></li>
+<li class="chapter" data-level="5.4.3" data-path="scene-1.html"><a href="scene-1.html#editor"><i class="fa fa-check"></i><b>5.4.3</b> Editor</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="scene-1.html"><a href="scene-1.html#base-node"><i class="fa fa-check"></i><b>5.5</b> Base node</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-2"><i class="fa fa-check"></i><b>5.5.1</b> How to create</a></li>
+<li class="chapter" data-level="5.5.2" data-path="scene-1.html"><a href="scene-1.html#building-a-complex-hierarchy"><i class="fa fa-check"></i><b>5.5.2</b> Building a complex hierarchy</a></li>
+<li class="chapter" data-level="5.5.3" data-path="scene-1.html"><a href="scene-1.html#transform"><i class="fa fa-check"></i><b>5.5.3</b> Transform</a></li>
+<li class="chapter" data-level="5.5.4" data-path="scene-1.html"><a href="scene-1.html#visibility"><i class="fa fa-check"></i><b>5.5.4</b> Visibility</a></li>
+<li class="chapter" data-level="5.5.5" data-path="scene-1.html"><a href="scene-1.html#enablingdisabling-scene-nodes"><i class="fa fa-check"></i><b>5.5.5</b> Enabling/disabling scene nodes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="scene-1.html"><a href="scene-1.html#mesh-node"><i class="fa fa-check"></i><b>5.6</b> Mesh node</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="scene-1.html"><a href="scene-1.html#surfaces"><i class="fa fa-check"></i><b>5.6.1</b> Surfaces</a></li>
+<li class="chapter" data-level="5.6.2" data-path="scene-1.html"><a href="scene-1.html#how-to-create-3"><i class="fa fa-check"></i><b>5.6.2</b> How to create</a></li>
+<li class="chapter" data-level="5.6.3" data-path="scene-1.html"><a href="scene-1.html#animation-1"><i class="fa fa-check"></i><b>5.6.3</b> Animation</a></li>
+<li class="chapter" data-level="5.6.4" data-path="scene-1.html"><a href="scene-1.html#data-buffers"><i class="fa fa-check"></i><b>5.6.4</b> Data Buffers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="scene-1.html"><a href="scene-1.html#light-node"><i class="fa fa-check"></i><b>5.7</b> Light node</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="scene-1.html"><a href="scene-1.html#light-types"><i class="fa fa-check"></i><b>5.7.1</b> Light types</a></li>
+<li class="chapter" data-level="5.7.2" data-path="scene-1.html"><a href="scene-1.html#light-scattering"><i class="fa fa-check"></i><b>5.7.2</b> Light scattering</a></li>
+<li class="chapter" data-level="5.7.3" data-path="scene-1.html"><a href="scene-1.html#shadows"><i class="fa fa-check"></i><b>5.7.3</b> Shadows</a></li>
+<li class="chapter" data-level="5.7.4" data-path="scene-1.html"><a href="scene-1.html#performance-2"><i class="fa fa-check"></i><b>5.7.4</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="scene-1.html"><a href="scene-1.html#sprite"><i class="fa fa-check"></i><b>5.8</b> Sprite</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-4"><i class="fa fa-check"></i><b>5.8.1</b> How to create</a></li>
+<li class="chapter" data-level="5.8.2" data-path="scene-1.html"><a href="scene-1.html#animation-2"><i class="fa fa-check"></i><b>5.8.2</b> Animation</a></li>
+<li class="chapter" data-level="5.8.3" data-path="scene-1.html"><a href="scene-1.html#general-rules"><i class="fa fa-check"></i><b>5.8.3</b> General rules</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="scene-1.html"><a href="scene-1.html#particle-system"><i class="fa fa-check"></i><b>5.9</b> Particle system</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="scene-1.html"><a href="scene-1.html#basic-concepts-1"><i class="fa fa-check"></i><b>5.9.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="5.9.2" data-path="scene-1.html"><a href="scene-1.html#how-to-create-5"><i class="fa fa-check"></i><b>5.9.2</b> How to create</a></li>
+<li class="chapter" data-level="5.9.3" data-path="scene-1.html"><a href="scene-1.html#soft-particles"><i class="fa fa-check"></i><b>5.9.3</b> Soft particles</a></li>
+<li class="chapter" data-level="5.9.4" data-path="scene-1.html"><a href="scene-1.html#restarting-emission"><i class="fa fa-check"></i><b>5.9.4</b> Restarting emission</a></li>
+<li class="chapter" data-level="5.9.5" data-path="scene-1.html"><a href="scene-1.html#enabling-or-disabling-particle-systems"><i class="fa fa-check"></i><b>5.9.5</b> Enabling or disabling particle systems</a></li>
+<li class="chapter" data-level="5.9.6" data-path="scene-1.html"><a href="scene-1.html#performance-3"><i class="fa fa-check"></i><b>5.9.6</b> Performance</a></li>
+<li class="chapter" data-level="5.9.7" data-path="scene-1.html"><a href="scene-1.html#limitations"><i class="fa fa-check"></i><b>5.9.7</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="scene-1.html"><a href="scene-1.html#terrain"><i class="fa fa-check"></i><b>5.10</b> Terrain</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="scene-1.html"><a href="scene-1.html#basic-concepts-2"><i class="fa fa-check"></i><b>5.10.1</b> Basic concepts</a></li>
+<li class="chapter" data-level="5.10.2" data-path="scene-1.html"><a href="scene-1.html#creating-terrain-in-the-editor"><i class="fa fa-check"></i><b>5.10.2</b> Creating terrain in the editor</a></li>
+<li class="chapter" data-level="5.10.3" data-path="scene-1.html"><a href="scene-1.html#creating-terrain-from-code"><i class="fa fa-check"></i><b>5.10.3</b> Creating terrain from code</a></li>
+<li class="chapter" data-level="5.10.4" data-path="scene-1.html"><a href="scene-1.html#physics-1"><i class="fa fa-check"></i><b>5.10.4</b> Physics</a></li>
+<li class="chapter" data-level="5.10.5" data-path="scene-1.html"><a href="scene-1.html#performance-4"><i class="fa fa-check"></i><b>5.10.5</b> Performance</a></li>
+<li class="chapter" data-level="5.10.6" data-path="scene-1.html"><a href="scene-1.html#chunking"><i class="fa fa-check"></i><b>5.10.6</b> Chunking</a></li>
+<li class="chapter" data-level="5.10.7" data-path="scene-1.html"><a href="scene-1.html#level-of-detail"><i class="fa fa-check"></i><b>5.10.7</b> Level-of-detail</a></li>
+<li class="chapter" data-level="5.10.8" data-path="scene-1.html"><a href="scene-1.html#limitations-and-known-issues"><i class="fa fa-check"></i><b>5.10.8</b> Limitations and known issues</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="scene-1.html"><a href="scene-1.html#camera-node"><i class="fa fa-check"></i><b>5.11</b> Camera node</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-6"><i class="fa fa-check"></i><b>5.11.1</b> How to create</a></li>
+<li class="chapter" data-level="5.11.2" data-path="scene-1.html"><a href="scene-1.html#projection-modes"><i class="fa fa-check"></i><b>5.11.2</b> Projection modes</a></li>
+<li class="chapter" data-level="5.11.3" data-path="scene-1.html"><a href="scene-1.html#performance-5"><i class="fa fa-check"></i><b>5.11.3</b> Performance</a></li>
+<li class="chapter" data-level="5.11.4" data-path="scene-1.html"><a href="scene-1.html#skybox"><i class="fa fa-check"></i><b>5.11.4</b> Skybox</a></li>
+<li class="chapter" data-level="5.11.5" data-path="scene-1.html"><a href="scene-1.html#color-grading-look-up-tables"><i class="fa fa-check"></i><b>5.11.5</b> Color grading look-up tables</a></li>
+<li class="chapter" data-level="5.11.6" data-path="scene-1.html"><a href="scene-1.html#picking"><i class="fa fa-check"></i><b>5.11.6</b> Picking</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="scene-1.html"><a href="scene-1.html#exposure-and-hdr"><i class="fa fa-check"></i><b>5.12</b> Exposure and HDR</a></li>
+<li class="chapter" data-level="5.13" data-path="scene-1.html"><a href="scene-1.html#decal-node"><i class="fa fa-check"></i><b>5.13</b> Decal node</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-7"><i class="fa fa-check"></i><b>5.13.1</b> How to create</a></li>
+<li class="chapter" data-level="5.13.2" data-path="scene-1.html"><a href="scene-1.html#textures"><i class="fa fa-check"></i><b>5.13.2</b> Textures</a></li>
+<li class="chapter" data-level="5.13.3" data-path="scene-1.html"><a href="scene-1.html#rendering-1"><i class="fa fa-check"></i><b>5.13.3</b> Rendering</a></li>
+<li class="chapter" data-level="5.13.4" data-path="scene-1.html"><a href="scene-1.html#bounds"><i class="fa fa-check"></i><b>5.13.4</b> Bounds</a></li>
+<li class="chapter" data-level="5.13.5" data-path="scene-1.html"><a href="scene-1.html#layers-1"><i class="fa fa-check"></i><b>5.13.5</b> Layers</a></li>
+<li class="chapter" data-level="5.13.6" data-path="scene-1.html"><a href="scene-1.html#performance-6"><i class="fa fa-check"></i><b>5.13.6</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="scene-1.html"><a href="scene-1.html#rectangle-node"><i class="fa fa-check"></i><b>5.14</b> Rectangle node</a>
+<ul>
+<li class="chapter" data-level="5.14.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-8"><i class="fa fa-check"></i><b>5.14.1</b> How to create</a></li>
+<li class="chapter" data-level="5.14.2" data-path="scene-1.html"><a href="scene-1.html#specifying-image-portion-for-rendering"><i class="fa fa-check"></i><b>5.14.2</b> Specifying image portion for rendering</a></li>
+<li class="chapter" data-level="5.14.3" data-path="scene-1.html"><a href="scene-1.html#animation-3"><i class="fa fa-check"></i><b>5.14.3</b> Animation</a></li>
+<li class="chapter" data-level="5.14.4" data-path="scene-1.html"><a href="scene-1.html#performance-7"><i class="fa fa-check"></i><b>5.14.4</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.15" data-path="scene-1.html"><a href="scene-1.html#custom-scene-node"><i class="fa fa-check"></i><b>5.15</b> Custom Scene Node</a>
+<ul>
+<li class="chapter" data-level="5.15.1" data-path="scene-1.html"><a href="scene-1.html#limitations-1"><i class="fa fa-check"></i><b>5.15.1</b> Limitations</a></li>
+<li class="chapter" data-level="5.15.2" data-path="scene-1.html"><a href="scene-1.html#editor-support"><i class="fa fa-check"></i><b>5.15.2</b> Editor support</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="physics-2.html"><a href="physics-2.html"><i class="fa fa-check"></i><b>6</b> Physics</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="physics-2.html"><a href="physics-2.html#differences-between-3d-and-2d"><i class="fa fa-check"></i><b>6.0.1</b> Differences between 3D and 2D</a></li>
+<li class="chapter" data-level="6.1" data-path="physics-2.html"><a href="physics-2.html#rigid-body-node"><i class="fa fa-check"></i><b>6.1</b> Rigid body node</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="physics-2.html"><a href="physics-2.html#how-to-create-9"><i class="fa fa-check"></i><b>6.1.1</b> How to create</a></li>
+<li class="chapter" data-level="6.1.2" data-path="physics-2.html"><a href="physics-2.html#colliders"><i class="fa fa-check"></i><b>6.1.2</b> Colliders</a></li>
+<li class="chapter" data-level="6.1.3" data-path="physics-2.html"><a href="physics-2.html#force-and-torque"><i class="fa fa-check"></i><b>6.1.3</b> Force and torque</a></li>
+<li class="chapter" data-level="6.1.4" data-path="physics-2.html"><a href="physics-2.html#kinematic-rigid-bodies"><i class="fa fa-check"></i><b>6.1.4</b> Kinematic rigid bodies</a></li>
+<li class="chapter" data-level="6.1.5" data-path="physics-2.html"><a href="physics-2.html#continuous-collision-detection"><i class="fa fa-check"></i><b>6.1.5</b> Continuous collision detection</a></li>
+<li class="chapter" data-level="6.1.6" data-path="physics-2.html"><a href="physics-2.html#dominance"><i class="fa fa-check"></i><b>6.1.6</b> Dominance</a></li>
+<li class="chapter" data-level="6.1.7" data-path="physics-2.html"><a href="physics-2.html#d-rigid-bodies"><i class="fa fa-check"></i><b>6.1.7</b> 2D rigid bodies</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="physics-2.html"><a href="physics-2.html#collider-node"><i class="fa fa-check"></i><b>6.2</b> Collider node</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="physics-2.html"><a href="physics-2.html#shapes"><i class="fa fa-check"></i><b>6.2.1</b> Shapes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="physics-2.html"><a href="physics-2.html#how-to-create-10"><i class="fa fa-check"></i><b>6.2.2</b> How to create</a></li>
+<li class="chapter" data-level="6.2.3" data-path="physics-2.html"><a href="physics-2.html#collision-filtering"><i class="fa fa-check"></i><b>6.2.3</b> Collision filtering</a></li>
+<li class="chapter" data-level="6.2.4" data-path="physics-2.html"><a href="physics-2.html#using-colliders-for-hit-boxes"><i class="fa fa-check"></i><b>6.2.4</b> Using colliders for hit boxes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="physics-2.html"><a href="physics-2.html#joint"><i class="fa fa-check"></i><b>6.3</b> Joint</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="physics-2.html"><a href="physics-2.html#bodies-binding"><i class="fa fa-check"></i><b>6.3.1</b> Bodies Binding</a></li>
+<li class="chapter" data-level="6.3.2" data-path="physics-2.html"><a href="physics-2.html#how-to-create-11"><i class="fa fa-check"></i><b>6.3.2</b> How to create</a></li>
+<li class="chapter" data-level="6.3.3" data-path="physics-2.html"><a href="physics-2.html#limits"><i class="fa fa-check"></i><b>6.3.3</b> Limits</a></li>
+<li class="chapter" data-level="6.3.4" data-path="physics-2.html"><a href="physics-2.html#usage-2"><i class="fa fa-check"></i><b>6.3.4</b> Usage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="physics-2.html"><a href="physics-2.html#ray-casting"><i class="fa fa-check"></i><b>6.4</b> Ray Casting</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="physics-2.html"><a href="physics-2.html#avoiding-unnecessary-allocations"><i class="fa fa-check"></i><b>6.4.1</b> Avoiding unnecessary allocations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="physics-2.html"><a href="physics-2.html#ragdoll"><i class="fa fa-check"></i><b>6.5</b> Ragdoll</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="physics-2.html"><a href="physics-2.html#how-to-create-12"><i class="fa fa-check"></i><b>6.5.1</b> How To Create</a></li>
+<li class="chapter" data-level="6.5.2" data-path="physics-2.html"><a href="physics-2.html#video-tutorials"><i class="fa fa-check"></i><b>6.5.2</b> Video Tutorials</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sound-system.html"><a href="sound-system.html"><i class="fa fa-check"></i><b>7</b> Sound System</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sound-system.html"><a href="sound-system.html#audio-bus"><i class="fa fa-check"></i><b>7.1</b> Audio Bus</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="sound-system.html"><a href="sound-system.html#graph-1"><i class="fa fa-check"></i><b>7.1.1</b> Graph</a></li>
+<li class="chapter" data-level="7.1.2" data-path="sound-system.html"><a href="sound-system.html#effects"><i class="fa fa-check"></i><b>7.1.2</b> Effects</a></li>
+<li class="chapter" data-level="7.1.3" data-path="sound-system.html"><a href="sound-system.html#editor-1"><i class="fa fa-check"></i><b>7.1.3</b> Editor</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="sound-system.html"><a href="sound-system.html#sound-1"><i class="fa fa-check"></i><b>7.2</b> Sound</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="sound-system.html"><a href="sound-system.html#how-to-create-13"><i class="fa fa-check"></i><b>7.2.1</b> How to create</a></li>
+<li class="chapter" data-level="7.2.2" data-path="sound-system.html"><a href="sound-system.html#d-and-3d"><i class="fa fa-check"></i><b>7.2.2</b> 2D and 3D</a></li>
+<li class="chapter" data-level="7.2.3" data-path="sound-system.html"><a href="sound-system.html#audio-bus-1"><i class="fa fa-check"></i><b>7.2.3</b> Audio bus</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="sound-system.html"><a href="sound-system.html#head-related-transfer-function"><i class="fa fa-check"></i><b>7.3</b> Head Related Transfer Function</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="sound-system.html"><a href="sound-system.html#hrtf-on-practice"><i class="fa fa-check"></i><b>7.3.1</b> HRTF on practice</a></li>
+<li class="chapter" data-level="7.3.2" data-path="sound-system.html"><a href="sound-system.html#performance-8"><i class="fa fa-check"></i><b>7.3.2</b> Performance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="animation-4.html"><a href="animation-4.html"><i class="fa fa-check"></i><b>8</b> Animation</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="animation-4.html"><a href="animation-4.html#web-demo"><i class="fa fa-check"></i><b>8.0.1</b> Web Demo</a></li>
+<li class="chapter" data-level="8.0.2" data-path="animation-4.html"><a href="animation-4.html#track-binding"><i class="fa fa-check"></i><b>8.0.2</b> Track binding</a></li>
+<li class="chapter" data-level="8.0.3" data-path="animation-4.html"><a href="animation-4.html#time-slice-and-looping"><i class="fa fa-check"></i><b>8.0.3</b> Time slice and looping</a></li>
+<li class="chapter" data-level="8.0.4" data-path="animation-4.html"><a href="animation-4.html#speed"><i class="fa fa-check"></i><b>8.0.4</b> Speed</a></li>
+<li class="chapter" data-level="8.0.5" data-path="animation-4.html"><a href="animation-4.html#enabling-or-disabling-animations"><i class="fa fa-check"></i><b>8.0.5</b> Enabling or disabling animations</a></li>
+<li class="chapter" data-level="8.0.6" data-path="animation-4.html"><a href="animation-4.html#signals"><i class="fa fa-check"></i><b>8.0.6</b> Signals</a></li>
+<li class="chapter" data-level="8.0.7" data-path="animation-4.html"><a href="animation-4.html#creating-from-code"><i class="fa fa-check"></i><b>8.0.7</b> Creating From Code</a></li>
+<li class="chapter" data-level="8.0.8" data-path="animation-4.html"><a href="animation-4.html#importing"><i class="fa fa-check"></i><b>8.0.8</b> Importing</a></li>
+<li class="chapter" data-level="8.0.9" data-path="animation-4.html"><a href="animation-4.html#playing-an-animation"><i class="fa fa-check"></i><b>8.0.9</b> Playing an Animation</a></li>
+<li class="chapter" data-level="8.1" data-path="animation-4.html"><a href="animation-4.html#animation-editor"><i class="fa fa-check"></i><b>8.1</b> Animation Editor</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="animation-4.html"><a href="animation-4.html#typical-workflow"><i class="fa fa-check"></i><b>8.1.1</b> Typical Workflow</a></li>
+<li class="chapter" data-level="8.1.2" data-path="animation-4.html"><a href="animation-4.html#toolbar"><i class="fa fa-check"></i><b>8.1.2</b> Toolbar</a></li>
+<li class="chapter" data-level="8.1.3" data-path="animation-4.html"><a href="animation-4.html#track-list"><i class="fa fa-check"></i><b>8.1.3</b> Track List</a></li>
+<li class="chapter" data-level="8.1.4" data-path="animation-4.html"><a href="animation-4.html#curve-editor"><i class="fa fa-check"></i><b>8.1.4</b> Curve Editor</a></li>
+<li class="chapter" data-level="8.1.5" data-path="animation-4.html"><a href="animation-4.html#property-binding"><i class="fa fa-check"></i><b>8.1.5</b> Property Binding</a></li>
+<li class="chapter" data-level="8.1.6" data-path="animation-4.html"><a href="animation-4.html#animation-importing"><i class="fa fa-check"></i><b>8.1.6</b> Animation Importing</a></li>
+<li class="chapter" data-level="8.1.7" data-path="animation-4.html"><a href="animation-4.html#preview-mode"><i class="fa fa-check"></i><b>8.1.7</b> Preview Mode</a></li>
+<li class="chapter" data-level="8.1.8" data-path="animation-4.html"><a href="animation-4.html#root-motion"><i class="fa fa-check"></i><b>8.1.8</b> Root Motion</a></li>
+<li class="chapter" data-level="8.1.9" data-path="animation-4.html"><a href="animation-4.html#limitations-2"><i class="fa fa-check"></i><b>8.1.9</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="animation-4.html"><a href="animation-4.html#animation-blending"><i class="fa fa-check"></i><b>8.2</b> Animation Blending</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="animation-4.html"><a href="animation-4.html#how-to-create-14"><i class="fa fa-check"></i><b>8.2.1</b> How to create</a></li>
+<li class="chapter" data-level="8.2.2" data-path="animation-4.html"><a href="animation-4.html#from-editor-2"><i class="fa fa-check"></i><b>8.2.2</b> From editor</a></li>
+<li class="chapter" data-level="8.2.3" data-path="animation-4.html"><a href="animation-4.html#from-code-2"><i class="fa fa-check"></i><b>8.2.3</b> From code</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="animation-4.html"><a href="animation-4.html#animation-blending-state-machine-absm-editor"><i class="fa fa-check"></i><b>8.3</b> Animation Blending State Machine (ABSM) Editor</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="animation-4.html"><a href="animation-4.html#toolbar-1"><i class="fa fa-check"></i><b>8.3.1</b> Toolbar</a></li>
+<li class="chapter" data-level="8.3.2" data-path="animation-4.html"><a href="animation-4.html#parameters"><i class="fa fa-check"></i><b>8.3.2</b> Parameters</a></li>
+<li class="chapter" data-level="8.3.3" data-path="animation-4.html"><a href="animation-4.html#state-graph"><i class="fa fa-check"></i><b>8.3.3</b> State Graph</a></li>
+<li class="chapter" data-level="8.3.4" data-path="animation-4.html"><a href="animation-4.html#state-viewer"><i class="fa fa-check"></i><b>8.3.4</b> State Viewer</a></li>
+<li class="chapter" data-level="8.3.5" data-path="animation-4.html"><a href="animation-4.html#layer-mask"><i class="fa fa-check"></i><b>8.3.5</b> Layer Mask</a></li>
+<li class="chapter" data-level="8.3.6" data-path="animation-4.html"><a href="animation-4.html#preview-mode-1"><i class="fa fa-check"></i><b>8.3.6</b> Preview Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="animation-4.html"><a href="animation-4.html#signals-1"><i class="fa fa-check"></i><b>8.4</b> Signals</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="animation-4.html"><a href="animation-4.html#how-to-add"><i class="fa fa-check"></i><b>8.4.1</b> How to add</a></li>
+<li class="chapter" data-level="8.4.2" data-path="animation-4.html"><a href="animation-4.html#reacting-to-signal-events"><i class="fa fa-check"></i><b>8.4.2</b> Reacting to signal events</a></li>
+<li class="chapter" data-level="8.4.3" data-path="animation-4.html"><a href="animation-4.html#events-from-absm"><i class="fa fa-check"></i><b>8.4.3</b> Events from ABSM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="animation-4.html"><a href="animation-4.html#root-motion-1"><i class="fa fa-check"></i><b>8.5</b> Root Motion</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="animation-4.html"><a href="animation-4.html#how-to-enable"><i class="fa fa-check"></i><b>8.5.1</b> How to enable</a></li>
+<li class="chapter" data-level="8.5.2" data-path="animation-4.html"><a href="animation-4.html#how-to-use-1"><i class="fa fa-check"></i><b>8.5.2</b> How to use</a></li>
+<li class="chapter" data-level="8.5.3" data-path="animation-4.html"><a href="animation-4.html#combining-root-motion-with-procedural-motion"><i class="fa fa-check"></i><b>8.5.3</b> Combining root motion with procedural motion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="animation-4.html"><a href="animation-4.html#sprite-animation"><i class="fa fa-check"></i><b>8.6</b> Sprite Animation</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="animation-4.html"><a href="animation-4.html#how-to-use-2"><i class="fa fa-check"></i><b>8.6.1</b> How to use</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>9</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>9.1</b> Equations</a></li>
+<li class="chapter" data-level="9.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>9.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="9.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>9.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>10</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>10.1</b> Publishing</a></li>
+<li class="chapter" data-level="10.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>10.2</b> 404 pages</a></li>
+<li class="chapter" data-level="10.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>10.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fyrox Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="scripting" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Scripting<a href="scripting.html#scripting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A game based on Fyrox is a plugin to the engine and the editor. Plugin defines global application logic and can provide
+a set of scripts, that can be used to assign custom logic to scene nodes. Every script can be attached to only one
+plugin.</p>
+<p>Fyrox uses scripts to create custom game logic, scripts can be written only in Rust which ensures that your game will
+be crash-free, fast and easy to refactor.</p>
+<p>Next chapters will cover all parts and will help you to learn how to use plugins + scripts correctly.</p>
+<div id="plugins-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Plugins<a href="scripting.html#plugins-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A game based on Fyrox is a plugin to the engine and the editor. Plugin defines global application logic and provides
+a set of scripts, that can be used to assign custom logic to scene nodes.</p>
+<p>Plugin is an “entry point” of your game, it has a fixed set of methods that can be used for initialization, update,
+OS event handling, etc. Every plugin could be linked to the engine (and the editor) in two ways: statically or dynamically
+using hot reloading. <a href="../beginning/hot_reloading.md">Code hot reloading</a> is usually used for development purposes only.</p>
+<p>The main purpose of the plugins is to hold and operate on some global application data, that can be used in scripts and
+provide a set of scripts to the engine. Plugins also have much wider access to engine internals, than scripts. For example,
+it is possible to change scenes, add render passes, change resolution, etc. which is not possible from scripts.</p>
+<div id="structure" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Structure<a href="scripting.html#structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Plugin structure is defined by <a href="https://docs.rs/fyrox/latest/fyrox/plugin/trait.Plugin.html">Plugin</a> trait. Typical implementation can be generated by <code>fyrox-template</code> tool,
+and it looks something like this:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/plugin.rs:plugin_structure}}</code></pre>
+<p>As you can see, the game structure (<code>struct Game</code>) implements a bunch of traits.</p>
+<ul>
+<li><code>Reflect</code> - is needed for static reflection to inspect the content of the plugin.</li>
+<li><code>Visit</code> - is mostly needed for hot reloading, to save/load the content of the plugin.</li>
+<li><code>Default</code> - provides sensible default state of the game.</li>
+</ul>
+<p><code>Plugin</code> trait is very special - it can execute the actual game logic in one of its methods:</p>
+<ul>
+<li><code>register</code> - called once on start allowing you to register your scripts. <strong>Important:</strong> You must register all your scripts here, otherwise the engine (and the editor) will know nothing about them. Also, you should register loaders for your custom resources here. See <a href="../resources/custom.md">Custom Resource chapter</a> more info.</li>
+<li><code>init</code> - called once when the plugin registers in the engine. This method allows you to initialize the game into some sensible state. Keep in mind, that the editor will <strong>not</strong> call this method, it does not create any game instance. The method has <code>scene_path</code> parameter, in short it is a path to a scene that is currently opened in the editor (it will be <code>None</code> if either there’s no opened scene or your game was started outside the editor). It is described in <a href="scripting.html#editor-and-plugins">Editor and Plugins</a> section down below.</li>
+<li><code>on_deinit</code> - it is called when the game is about to shut down. Can be used for any clean up, for example logging that the game has closed.</li>
+<li><code>update</code> - it is called each frame at a stable rate (usually 60 Hz, but can be configured in the Executor) after the plugin is created and fully initialized. It is the main place where you should put <em>object-independent</em> game logic (such as user interface handling, global application state management, etc.), any other logic should be added via scripts.</li>
+<li><code>on_os_event</code> - it is called when the main application window receives an event from the operating system, it can be any event such as keyboard, mouse, game pad events or any other events. Please note that as for <code>update</code> method, you should put here only <em>object-independent</em> logic. Scripts can catch OS events too.</li>
+<li><code>on_ui_message</code> - it is called when there is a message from the user interface, it should be used to react to user actions (like pressed buttons, etc.)</li>
+<li><code>on_graphics_context_initialized</code> - it is called when a graphics context was successfully initialized. This method could be used to access the renderer (to change its quality settings, for instance). You can also access a main window instance and change its properties (such as title, size, resolution, etc.).</li>
+<li><code>on_graphics_context_destroyed</code> - it is called when the current graphics context was destroyed. It could happen on a small number of platforms, such as Android. Such platforms usually have some sort of suspension mode, in which you are not allowed to render graphics, to have a “window”, etc.</li>
+<li><code>before_rendering</code> - it is called when the engine is about to render a new frame. This method is useful to perform offscreen rendering (for example - <a href="../ui/rendering.md#offscreen-rendering">user interface</a>).</li>
+<li><code>on_scene_begin_loading</code> - it is called when the engine starts to load a game scene. This method could be used to show a progress bar or some sort of loading screen, etc.</li>
+<li><code>on_scene_loaded</code> - it is called when the engine successfully loaded a game scene. This method could be used to add custom logic to do something with a newly loaded scene.</li>
+</ul>
+</div>
+<div id="plugin-context" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Plugin Context<a href="scripting.html#plugin-context" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vast majority of methods accept <code>PluginContext</code> - it provides almost full access to engine entities, it has access to the renderer, scenes container, resource manager, user interface, main application window. Typical content of the context is something like this:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/context.rs:plugin_context}}</code></pre>
+<ul>
+<li><code>scenes</code> - a scene container, could be used to manage game scenes - add, remove, borrow. An example of scene loading is given in the previous code snippet in <code>Game::new()</code> method.</li>
+<li><code>resource_manager</code> - is used to load external resources (scenes, models, textures, animations, sound buffers, etc.) from different sources (disk, network storage on WebAssembly, etc.)</li>
+<li><code>user_interfaces</code> - use it to create user interface for your game, the interface is scene-independent and will remain the same even if there are multiple scenes created. There’s always at least one user interface created, it can be accessed using <code>.first()/first_mut()</code> methods. The engine support unlimited instances of user interfaces.</li>
+<li><code>graphics_context</code> - a reference to the graphics_context, it contains a reference to the window and the current renderer. It could be <code>GraphicsContext::Uninitialized</code> if your application is suspended (possible only on Android).</li>
+<li><code>dt</code> - a time passed since the last frame. The actual value is implementation-defined, but on current implementation it is equal to 1/60 of a second and does not change event if the frame rate is changing (the engine stabilizes update rate for the logic).</li>
+<li><code>lag</code> - a reference to the time accumulator, that holds remaining amount of time that should be used to update a plugin. A caller splits <code>lag</code> into multiple sub-steps using <code>dt</code> and thus stabilizes update rate. The main use of this variable, is to be able to reset <code>lag</code> when you’re doing some heavy calculations in a game loop (i.e. loading a new level) so the engine won’t try to “catch up” with all the time that was spent in heavy calculation.</li>
+<li><code>serialization_context</code> - it can be used to register scripts and custom scene nodes constructors at runtime.</li>
+<li><code>widget_constructors</code> - it can be used to register custom widgets.</li>
+<li><code>performance_statistics</code> - performance statistics from the last frame. To get a rendering performance statistics, use <code>Renderer::get_statistics</code> method, that could be obtained from the renderer instance in the current graphics context.</li>
+<li><code>elapsed_time</code> - amount of time (in seconds) that passed from creation of the engine. Keep in mind, that this value is <strong>not</strong> guaranteed to match real time. A user can change delta time with which the engine “ticks” and this delta time affects elapsed time.</li>
+<li><code>script_processor</code> - a reference to the current script processor instance, which could be used to access a list of scenes that supports scripts.</li>
+<li><code>async_scene_loader</code> - a reference to the current asynchronous scene loader instance. It could be used to request a new scene to be loaded.</li>
+<li><code>window_target</code> - special field that associates main application event loop (not game loop) with OS-specific windows. It also can be used to alternate control flow of the application.</li>
+<li><code>task_pool</code> - task pool for asynchronous task management.</li>
+</ul>
+</div>
+<div id="control-flow" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Control Flow<a href="scripting.html#control-flow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Plugin context provides access to a special variable <code>window_target</code>, which could be used to alternate control flow of the application. The most common use of it is to close the game by calling <code>window_target.unwrap().exit()</code> method. Notice the <code>unwrap()</code> here, <code>window_target</code> could not be available at all times. Ideally you should do checked access here.</p>
+</div>
+<div id="editor-and-plugins" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Editor and Plugins<a href="scripting.html#editor-and-plugins" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you’re running your game from the editor, it starts the game as a separate process and if there’s a scene opened in the editor, it tells the game instance to load it on startup. Let’s look closely at <code>Plugin::init</code> method:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/plugin.rs:plugin_init}}</code></pre>
+<p>The <code>scene_path</code> parameter is a path to a scene that is currently opened in the editor, your game should use it if you need to load a currently selected scene of the editor in your game. However, it is not strictly necessary - you may desire to start your game from a specific scene all the time, even when the game starts from the editor. If the parameter is <code>None</code>, then there is no scene loaded in the editor or the game was run outside the editor.</p>
+</div>
+</div>
+<div id="executor" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Executor<a href="scripting.html#executor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Executor is a simple wrapper that drives your game plugins, it is intended to be used for production builds of your game. The editor runs the executor in separate process when you’re entering the play mode. Basically, there is no significant difference between running the game from the editor, or running it as a separate application. The main difference is that the editor passes <code>scene_path</code> parameter for the executor when entering the play mode.</p>
+<div id="usage-1" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Usage<a href="scripting.html#usage-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Executor is meant to be a part of your project’s workspace, its typical look could something like this:</p>
+<pre class="rust,no_run"><code># extern crate fyrox;
+# use fyrox::{
+#     core::{pool::Handle, uuid::Uuid},
+#     engine::executor::Executor,
+#     plugin::{Plugin, PluginConstructor, PluginContext},
+#     scene::{Scene},
+# };
+# struct GameConstructor;
+# impl PluginConstructor for GameConstructor {
+#     fn create_instance(
+#         &amp;self,
+#         _scene_path: Option&lt;&amp;str&gt;,
+#         _context: PluginContext,
+#     ) -&gt; Box&lt;dyn Plugin&gt; {
+#         todo!()
+#     }
+# }
+fn main() {
+    let mut executor = Executor::new();
+    // Register your game constructor here.
+    executor.add_plugin_constructor(GameConstructor);
+    executor.run()
+}</code></pre>
+<p>Executor has full access to the engine, and through it to the main application window. You can freely change desired parts, <code>Executor</code> implements <code>Deref&lt;Target = Engine&gt; + DerefMut</code> traits, so you can use its instance as an “alias” to engine instance.</p>
+<p>To add a plugin to the executor, just use <code>add_plugin_constructor</code> method, it accepts any entity that implements <code>PluginConstructor</code> traits.</p>
+</div>
+<div id="typical-use-cases" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Typical Use Cases<a href="scripting.html#typical-use-cases" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This section covers typical use cases for the <code>Executor</code>.</p>
+<div id="setting-window-title" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Setting Window Title<a href="scripting.html#setting-window-title" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You can set window title when creating executor instance:</p>
+<pre class="rust,no_run"><code># extern crate fyrox;
+# use fyrox::engine::executor::Executor;
+# use fyrox::window::WindowAttributes;
+# use fyrox::engine::GraphicsContextParams;
+# use fyrox::event_loop::EventLoop;
+let executor = Executor::from_params(
+    EventLoop::new().unwrap(),
+    GraphicsContextParams {
+        window_attributes: WindowAttributes {
+            title: &quot;My Game&quot;.to_string(),
+            ..Default::default()
+        },
+        vsync: true,
+    },
+);</code></pre>
+</div>
+</div>
+</div>
+<div id="scripts-1" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Scripts<a href="scripting.html#scripts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Script - is a container for game data and logic that can be assigned to a scene node. Fyrox uses Rust for scripting, so scripts are as fast as native code. Every scene node can have any number of scripts assigned.</p>
+<div id="when-to-use-scripts-and-when-not" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> When to Use Scripts and When Not<a href="scripting.html#when-to-use-scripts-and-when-not" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Scripts are meant to be used to add data and some logic to scene nodes. That being said, you should not use scripts to hold some global state of your game (use your game plugin for that). For example, use scripts for your game items, bots, player, level, etc. On the other hand <strong>do not</strong> use scripts for leader boards, game menus, progress information, etc.</p>
+<p>Also, scripts cannot be assigned to UI widgets due to intentional Game &lt;-&gt; UI decoupling reasons. All user interface components should be created and handled in the game plugin of your game.</p>
+</div>
+<div id="script-structure" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Script Structure<a href="scripting.html#script-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Typical script structure is something like this:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/example.rs:example_script}}</code></pre>
+<p>Each script must implement following traits:</p>
+<ul>
+<li><code>Visit</code> implements serialization/deserialization functionality, it is used by the editor to save your object to a scene file.</li>
+<li><code>Reflect</code> implements compile-time reflection that provides a way to iterate over script fields, set their values, find fields by their paths, etc.</li>
+<li><code>Debug</code> - provides debugging functionality, it is mostly for the editor to let it turn the structure and its fields into string.</li>
+<li><code>Clone</code> - makes your structure clone-able, since we can clone objects, we also want the script instance to be cloned.</li>
+<li><code>Default</code> implementation is very important - the scripting system uses it to create your scripts in the default state. This is necessary to set some data to it and so on. If it’s a special case, you can always implement your own <code>Default</code>’s implementation if it’s necessary for your script.</li>
+<li><code>TypeUuidProvider</code> is used to attach some unique id for your type, every script <strong>must</strong> have a unique ID, otherwise, the engine will not be able to save and load your scripts. To generate a new UUID, use <a href="https://www.uuidgenerator.net/">Online UUID Generator</a> or any other tool that can generate UUIDs.</li>
+<li><code>ComponentProvider</code> - gives access to inner fields of the script marked with <code>#[component(include)]</code> attribute.</li>
+</ul>
+<p><code>#[visit(optional)]</code> attribute is used to suppress serialization errors when some fields are missing or changed.</p>
+</div>
+<div id="script-template-generator" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Script Template Generator<a href="scripting.html#script-template-generator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can use <code>fyrox-template</code> tool to generate all required boilerplate code for a new script, it makes adding new scripts much less tedious. To generate a new script use <code>script</code> command:</p>
+<pre class="shell"><code>fyrox-template script --name MyScript</code></pre>
+<p>It will create a new file in <code>game/src</code> directory with <code>my_script.rs</code> name and fill with required code. Do not forget to add the module with the new script to <code>lib.rs</code> like this:</p>
+<pre class="rust,no_run,compile_fail"><code>// Use your script name instead of `my_script` here.
+pub mod my_script;</code></pre>
+<p>Comments in each generated method should help you to figure out which code should be placed where and what is the purpose of every method.</p>
+<blockquote>
+<p>⚠️ Keep in mind that every new script must be registered in <code>PluginConstructor::register</code>, otherwise you won’t be able to assign the script in the editor to a node. See the next section for more info.</p>
+</blockquote>
+</div>
+<div id="script-registration" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Script Registration<a href="scripting.html#script-registration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Every script must be registered before use, otherwise the engine won’t “see” your script and won’t let you assign it to an object. <code>PluginConstructor</code> trait has <code>register</code> method exactly for script registration. To register a script you need to register it in the list of script constructors like so:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/example.rs:register}}</code></pre>
+<p>Every script type (<code>MyScript</code> in the code snippet above, you need to change it to your script type) must be registered using <a href="https://docs.rs/fyrox/latest/fyrox/script/constructor/struct.ScriptConstructorContainer.html#method.add">ScriptConstructorsContainer::add</a> method, which accepts a script type as a generic argument and its name, that will be shown in the editor. The name can be arbitrary, it is used only in the editor. You can also change it at any time, it won’t break existing scenes.</p>
+</div>
+<div id="script-attachment" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Script Attachment<a href="scripting.html#script-attachment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To assign a script and see it in action, run the editor, select an object and find <code>Scripts</code> property in the Inspector. Click on a small <code>+</code> button and select your script from the drop-down list on the newly added entry. To see the script in action, click “Play/Stop” button. The editor will run your game in separate process with the scene active in the editor.</p>
+<p>The script can be attached to a scene node from code:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/example.rs:add_my_script}}</code></pre>
+<p>Initialization as well as update of newly assigned script will happen on next update tick of the engine.</p>
+</div>
+<div id="script-context" class="section level3 hasAnchor" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Script Context<a href="scripting.html#script-context" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Script context provides access to the environment that can be used to modify engine and game state from scripts. Typical content of the context is something like this:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/context.rs:context}}</code></pre>
+<ul>
+<li><code>dt</code> - amount of time passed since last frame. The value of the variable is implementation-defined, usually it is something like 1/60 (0.016) of a second.</li>
+<li><code>elapsed_time</code> - amount of time that passed since start of your game (in seconds).</li>
+<li><code>plugins</code> - a mutable reference to all registered plugins, it allows you to access some “global” game data that does not belong to any object. For example, a plugin could store key mapping used for player controls, you can access it using <code>plugins</code> field and find desired plugin. In case of a single plugin, you just need to cast the reference to a particular type using <code>context.plugins[0].cast::&lt;MyPlugin&gt;().unwrap()</code> call.</li>
+<li><code>handle</code> - a handle of the node to which the script is assigned to (parent node). You can borrow the node using
+<code>context.scene.graph[handle]</code> call. Typecasting can be used to obtain a reference to a particular node type.</li>
+<li><code>scene</code> - a reference to parent scene of the script, it provides you full access to scene content, allowing you to add/modify/remove scene nodes.</li>
+<li><code>scene_handle</code> - a handle of a scene the script instance belongs to.</li>
+<li><code>resource_manager</code> - a reference to resource manager, you can use it to load and instantiate assets.</li>
+<li><code>message_sender</code> - a message sender. Every message sent via this sender will be then passed to every
+<code>ScriptTrait::on_message</code> method of every script.</li>
+<li><code>message_dispatcher</code> - a message dispatcher. If you need to receive messages of a particular type, you must subscribe to a type explicitly.</li>
+<li><code>task_pool</code> - task pool for asynchronous task management.</li>
+<li><code>graphics_context</code> - Current graphics context of the engine.</li>
+<li><code>user_interfaces</code> - a reference to user interface container of the engine. The engine guarantees that there’s at least one user interface exists. Use <code>context.user_interfaces.first()/first_mut()</code> to get a reference to it.</li>
+<li><code>script_index</code> - index of the script. Never save this index, it is only valid while this context exists!</li>
+</ul>
+</div>
+<div id="execution-order" class="section level3 hasAnchor" number="4.3.7">
+<h3><span class="header-section-number">4.3.7</span> Execution order<a href="scripting.html#execution-order" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Scripts have strictly defined execution order for their methods (the order if execution is linear and <strong>do not</strong> depend on actual tree structure of the graph where the script is located):</p>
+<ul>
+<li><code>on_init</code> - called first for every script instance</li>
+<li><code>on_start</code> - called after every <code>on_init</code> is called</li>
+<li><code>on_update</code> - called zero or more times per one render frame. The engine stabilizes update rate of the logic, so if your game runs at 15 FPS, the logic will still run at 60 FPS thus the <code>on_update</code> will be called 4 times per frame. The method can also be not called at all, if the FPS is very high. For example, if your game runs at 240 FPS, then <code>on_update</code> will be called once per 4 frames.</li>
+<li><code>on_message</code> - called once per incoming message.</li>
+<li><code>on_os_event</code> - called once per incoming OS event.</li>
+<li><code>on_deinit</code> - called at the end of the update cycle once when the script (or parent node) is about to be deleted.</li>
+</ul>
+<p>If a scene node has multiple scripts assigned, then they will be processed as described above in the same order as they assigned to the scene node.</p>
+</div>
+<div id="message-passing-1" class="section level3 hasAnchor" number="4.3.8">
+<h3><span class="header-section-number">4.3.8</span> Message passing<a href="scripting.html#message-passing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Script system of Fyrox supports message passing for scripts. Message passing is a mechanism that allows you to send some data (message) to a node, hierarchy of nodes or the entire graph. Each script can subscribe for a specific message type. It is an efficient way for decoupling scripts from each other. For instance, you may want to detect and respond to some event in your game. In this case when the event has happened, you send a message of a type and every “subscriber” will react to it. This way subscribers will not know anything about sender(s); they’ll only use message data to do some actions.</p>
+<p>A simple example where the message passing can be useful is when you need to react to some event in your game. Imagine, that you have weapons in your game, and they can have a laser sight that flashes with a different color when some target was hit. In very naive approach you can handle all laser sights where you handle all intersection for projectiles, but this adds a very tight coupling between laser sight and projectiles. This is totally unnecessary coupling can be made loose by using message passing. Instead of handling laser sights directly, all you need to do is to broadcast an <code>ActorDamaged { actor: Handle&lt;Node&gt;, attacker: Handle&lt;Node&gt; }</code> message. Laser sight in its turn can subscribe for such message and handle all incoming messages and compare <code>attacker</code> with owner of the laser sight and if the hit was made by <code>attacker</code> flash with some different color. In code this would like so:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/mod.rs:message_passing}}</code></pre>
+<p>There are few key parts:</p>
+<ul>
+<li>You should explicitly subscribe script instance to a message type, otherwise messages of the type won’t be delivered to your script. This is done using the message dispatcher: <code>ctx.message_dispatcher.subscribe_to::&lt;Message&gt;(ctx.handle);</code>. This should be done in <code>on_start</code> method, however it is possible to subscribe/unsubscribe at runime.</li>
+<li>You can react to messages only in special method <code>on_message</code> - here you just need to check for message type using pattern matching and do something useful.</li>
+</ul>
+<p>Try to use message passing in all cases, loose coupling significantly improves code quality and readability, however in simple projects it can be ignored completely.</p>
+</div>
+<div id="accessing-other-scripts-data" class="section level3 hasAnchor" number="4.3.9">
+<h3><span class="header-section-number">4.3.9</span> Accessing Other Script’s Data<a href="scripting.html#accessing-other-scripts-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Every script “lives” on some scene node, so to access a script data from some other script you need to know a handle of a scene node with that script first. You can do this like so:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/mod.rs:access_other_1}}
+{{#include ../code/snippets/src/scripting/mod.rs:access_other_2}}</code></pre>
+<p>In this example we have the two script types: <code>MyScript</code> and <code>MyOtherScript</code>. Now imagine that we have two scene nodes, where the first one contains <code>MyScript</code> and the second one <code>MyOtherScript</code>. <code>MyScript</code> knows about the second node by storing a handle of in <code>second_node</code> field. <code>MyScript</code> waits until <code>MyOtherScript</code> will count its internal counter to <code>60.0</code> and then prints a message into the log. This code does immutable borrowing and does not allow you to modify other script’s data. If you a mutable access, then use <code>try_get_script_of_mut</code> method (or <code>try_get_script_mut</code> for the alternative code). <code>second_node</code> field of the <code>MyScript</code> is usually assigned in the editor, but you can also find the node in your scene by using the following code:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/mod.rs:find_node}}</code></pre>
+<p>This code searches for a node with <code>SomeName</code> and assigns its handle to the <code>second_node</code> variable in the script for later use.</p>
+</div>
+</div>
+<div id="tasks" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Tasks<a href="scripting.html#tasks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Fyrox supports task-based programming for both scripts and plugins. Task is a closure that does something in a separate thread and then the result of it is returned back to the main thread. This is very useful technique, that allows you to perform heavy calculations using all available CPU power, not just one CPU core with a single main thread. Tasks could be used for pretty much anything, that can be done as a separate piece of work.</p>
+<div id="how-it-works" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> How it works<a href="scripting.html#how-it-works" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Main thread spawns a task which is then sent to the task pool. There’s a fixed set of worker threads, that extracts tasks from the task pool when there’s any. Task’s code is then executed in one of the worker thread, which may take any amount of time. When the task is completed, its result is sent to the main thread and then a callback closure is executed to do a desired action on task completion. Usually it’s something relatively fast - for example you may spawn a task that calculates a path on a large navigational mesh and when it is done, you store that path in one of your script instance from which the task was spawned. As you can see, there are two major parts - the task itself and the closure. Graphically it can be represented like this:</p>
+<div class="float">
+<img src="images/scripting_task.svg" alt="task" />
+<div class="figcaption">task</div>
+</div>
+<p>Green line represents the main thread and the two purple lines are the worker threads. There could be any number of worker threads, and usually it is a worker thread per each CPU core. Let’s take a look at a typical task path on this image (yellow-ish one). At first, we spawn a task, and it is immediately put in the task pool (in the same thread), after this if we have a free worker thread it extracts our task from the pool and sends it to execution. As you can see any task must implement <code>Send</code> trait, otherwise you’ll get a <em>compilation error</em>. When the task is complete, the worker thread sends the result (again, the result must be <code>Send</code>) to the main thread and an associated callback closure is executed to do something with the result. While the task is being executed, the main thread is not blocked, and it can do other useful stuff.</p>
+</div>
+<div id="examples" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Examples<a href="scripting.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The following example calculates a path on a navigational mesh in using task-based approach described above. At first, it prepares the “environment” for the task by cloning a shared navigational mesh (<code>Arc&lt;RwLock&lt;NavMesh&gt;&gt;</code>) into a local variable. Then it spawns a new task (<code>async move { .. }</code> block) which reads the shared navigational mesh and calculates a long path, that could take a few frames to compute (imagine a huge island, and we need to get a path from one corner to another). As the last argument to the <code>spawn_script_task</code> method we pass a closure that will be executed on the main thread when the task is complete. It just saves the computed path in the script’s field which is then used for visualization.</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/tasks.rs:script_task}}</code></pre>
+<p>Plugins could also spawn tasks, which operates on application scale basis, unlike script tasks which operates with separate script instances. A plugin task is a bit easier to use:</p>
+<pre class="rust,no_run"><code>{{#include ../code/snippets/src/scripting/tasks.rs:plugin_task}}</code></pre>
+</div>
+<div id="performance-1" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Performance<a href="scripting.html#performance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You should avoid task-based approach for small (in time terms) tasks, because each task has additional cost which might be larger than the actual task executed in-place. This is because you need to send your task to a separate thread using a channel, then the callback closure is stored as a trait object which involves memory allocation. Since tasks uses type erasure technique, they perform dynamic type casting which is not free. Also, there could be any other implementation-defined “slow” spots.</p>
+<p>A general advice would be: run a profiler first to find hot spots in your game, then try to optimize them. If you hit the optimization limit, use tasks. Do not use tasks until you really need them, try to optimize your game first! If you’re working on a simple 2D game, you’ll never need to use tasks. You might need to use tasks when your have, for instance, a procedurally generated world that should be generated on the fly. For example, if you’re making a dungeon crawler with infinite world. Tasks are also very useful for large games with loads of content and activities. You could off-thread AI, world manipulation (for example if you have a destructible world), etc. In other words - do not use a sledgehammer to hammer nails, unless you have a <em>huge</em> nail.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scene-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-scripting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

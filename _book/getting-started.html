@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Getting Started | Fyrox Book</title>
+  <meta name="description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Getting Started | Fyrox Book" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Getting Started | Fyrox Book" />
+  
+  <meta name="twitter:description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Dmitry Stepanov" />
+
+
+<meta name="date" content="2024-06-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="scripting.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Fyrox Game Engine Book</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#engine-version"><i class="fa fa-check"></i><b>1.1</b> Engine Version</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#how-to-read-the-book"><i class="fa fa-check"></i><b>1.2</b> How to read the book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#api-documentation"><i class="fa fa-check"></i><b>1.3</b> API Documentation</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#required-knowledge"><i class="fa fa-check"></i><b>1.4</b> Required knowledge</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#support-the-development"><i class="fa fa-check"></i><b>1.5</b> Support the development</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#introduction-to-fyrox"><i class="fa fa-check"></i><b>2.1</b> Introduction to Fyrox</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#what-can-the-engine-do"><i class="fa fa-check"></i><b>2.1.1</b> What can the engine do?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction.html"><a href="introduction.html#how-does-the-engine-work"><i class="fa fa-check"></i><b>2.1.2</b> How does the engine work?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction.html"><a href="introduction.html#programming-languages"><i class="fa fa-check"></i><b>2.1.3</b> Programming languages</a></li>
+<li class="chapter" data-level="2.1.4" data-path="introduction.html"><a href="introduction.html#engine-features"><i class="fa fa-check"></i><b>2.1.4</b> Engine Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#system-requirements"><i class="fa fa-check"></i><b>2.2</b> System Requirements</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#supported-platforms"><i class="fa fa-check"></i><b>2.2.1</b> Supported Platforms</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#basic-concepts"><i class="fa fa-check"></i><b>2.3</b> Basic concepts</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction.html"><a href="introduction.html#classic-oop"><i class="fa fa-check"></i><b>2.3.1</b> Classic OOP</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction.html"><a href="introduction.html#scenes"><i class="fa fa-check"></i><b>2.3.2</b> Scenes</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction.html"><a href="introduction.html#nodes-and-scene-graph"><i class="fa fa-check"></i><b>2.3.3</b> Nodes and Scene Graph</a></li>
+<li class="chapter" data-level="2.3.4" data-path="introduction.html"><a href="introduction.html#plugins"><i class="fa fa-check"></i><b>2.3.4</b> Plugins</a></li>
+<li class="chapter" data-level="2.3.5" data-path="introduction.html"><a href="introduction.html#scripts"><i class="fa fa-check"></i><b>2.3.5</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#design-philosophy-and-goals"><i class="fa fa-check"></i><b>2.4</b> Design Philosophy and Goals</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction.html"><a href="introduction.html#safety"><i class="fa fa-check"></i><b>2.4.1</b> Safety</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction.html"><a href="introduction.html#performance"><i class="fa fa-check"></i><b>2.4.2</b> Performance</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introduction.html"><a href="introduction.html#ease-of-use"><i class="fa fa-check"></i><b>2.4.3</b> Ease of use</a></li>
+<li class="chapter" data-level="2.4.4" data-path="introduction.html"><a href="introduction.html#battle-tested"><i class="fa fa-check"></i><b>2.4.4</b> Battle-tested</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#frequently-asked-questions"><i class="fa fa-check"></i><b>2.5</b> Frequently Asked Questions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#which-graphics-api-does-the-engine-use"><i class="fa fa-check"></i><b>2.5.1</b> Which graphics API does the engine use?</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction.html"><a href="introduction.html#is-the-engine-based-on-ecs"><i class="fa fa-check"></i><b>2.5.2</b> Is the engine based on ECS?</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction.html"><a href="introduction.html#what-kinds-of-games-can-i-make-using-fyrox"><i class="fa fa-check"></i><b>2.5.3</b> What kinds of games can I make using Fyrox?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#editor-plugins-and-scripts"><i class="fa fa-check"></i><b>3.1</b> Editor, Plugins and Scripts</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="getting-started.html"><a href="getting-started.html#platform-specific-dependencies"><i class="fa fa-check"></i><b>3.1.1</b> Platform-specific Dependencies</a></li>
+<li class="chapter" data-level="3.1.2" data-path="getting-started.html"><a href="getting-started.html#quick-start"><i class="fa fa-check"></i><b>3.1.2</b> Quick Start</a></li>
+<li class="chapter" data-level="3.1.3" data-path="getting-started.html"><a href="getting-started.html#project-generator"><i class="fa fa-check"></i><b>3.1.3</b> Project Generator</a></li>
+<li class="chapter" data-level="3.1.4" data-path="getting-started.html"><a href="getting-started.html#using-the-latest-engine-version"><i class="fa fa-check"></i><b>3.1.4</b> Using the Latest Engine Version</a></li>
+<li class="chapter" data-level="3.1.5" data-path="getting-started.html"><a href="getting-started.html#adding-game-logic"><i class="fa fa-check"></i><b>3.1.5</b> Adding Game Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#code-hot-reloading"><i class="fa fa-check"></i><b>3.2</b> Code Hot Reloading</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="getting-started.html"><a href="getting-started.html#how-to-use"><i class="fa fa-check"></i><b>3.2.1</b> How To Use</a></li>
+<li class="chapter" data-level="3.2.2" data-path="getting-started.html"><a href="getting-started.html#build-profiles"><i class="fa fa-check"></i><b>3.2.2</b> Build Profiles</a></li>
+<li class="chapter" data-level="3.2.3" data-path="getting-started.html"><a href="getting-started.html#stability"><i class="fa fa-check"></i><b>3.2.3</b> Stability</a></li>
+<li class="chapter" data-level="3.2.4" data-path="getting-started.html"><a href="getting-started.html#technical-details-and-limitations"><i class="fa fa-check"></i><b>3.2.4</b> Technical Details and Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#fyroxed-overview"><i class="fa fa-check"></i><b>3.3</b> FyroxEd Overview</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#windows"><i class="fa fa-check"></i><b>3.3.1</b> Windows</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#creating-or-loading-a-scene"><i class="fa fa-check"></i><b>3.3.2</b> Creating or loading a Scene</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#populating-a-scene"><i class="fa fa-check"></i><b>3.3.3</b> Populating a Scene</a></li>
+<li class="chapter" data-level="3.3.4" data-path="getting-started.html"><a href="getting-started.html#saving-a-scene"><i class="fa fa-check"></i><b>3.3.4</b> Saving a Scene</a></li>
+<li class="chapter" data-level="3.3.5" data-path="getting-started.html"><a href="getting-started.html#undoing-and-redoing"><i class="fa fa-check"></i><b>3.3.5</b> Undoing and redoing</a></li>
+<li class="chapter" data-level="3.3.6" data-path="getting-started.html"><a href="getting-started.html#controls"><i class="fa fa-check"></i><b>3.3.6</b> Controls</a></li>
+<li class="chapter" data-level="3.3.7" data-path="getting-started.html"><a href="getting-started.html#play-mode"><i class="fa fa-check"></i><b>3.3.7</b> Play Mode</a></li>
+<li class="chapter" data-level="3.3.8" data-path="getting-started.html"><a href="getting-started.html#additional-utilities"><i class="fa fa-check"></i><b>3.3.8</b> Additional Utilities</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#scene-and-scene-graph"><i class="fa fa-check"></i><b>3.4</b> Scene and Scene Graph</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="getting-started.html"><a href="getting-started.html#building-blocks-or-scene-nodes"><i class="fa fa-check"></i><b>3.4.1</b> Building Blocks or Scene Nodes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="getting-started.html"><a href="getting-started.html#local-and-global-coordinates"><i class="fa fa-check"></i><b>3.4.2</b> Local and Global Coordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="getting-started.html"><a href="getting-started.html#assets"><i class="fa fa-check"></i><b>3.5</b> Assets</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="getting-started.html"><a href="getting-started.html#asset-types"><i class="fa fa-check"></i><b>3.5.1</b> Asset Types</a></li>
+<li class="chapter" data-level="3.5.2" data-path="getting-started.html"><a href="getting-started.html#asset-management-1"><i class="fa fa-check"></i><b>3.5.2</b> Asset Management</a></li>
+<li class="chapter" data-level="3.5.3" data-path="getting-started.html"><a href="getting-started.html#asset-instantiation"><i class="fa fa-check"></i><b>3.5.3</b> Asset Instantiation</a></li>
+<li class="chapter" data-level="3.5.4" data-path="getting-started.html"><a href="getting-started.html#loading-assets"><i class="fa fa-check"></i><b>3.5.4</b> Loading Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="getting-started.html"><a href="getting-started.html#data-management"><i class="fa fa-check"></i><b>3.6</b> Data Management</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="getting-started.html"><a href="getting-started.html#motivation"><i class="fa fa-check"></i><b>3.6.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.6.2" data-path="getting-started.html"><a href="getting-started.html#technical-details"><i class="fa fa-check"></i><b>3.6.2</b> Technical Details</a></li>
+<li class="chapter" data-level="3.6.3" data-path="getting-started.html"><a href="getting-started.html#advantages"><i class="fa fa-check"></i><b>3.6.3</b> Advantages</a></li>
+<li class="chapter" data-level="3.6.4" data-path="getting-started.html"><a href="getting-started.html#disadvantages"><i class="fa fa-check"></i><b>3.6.4</b> Disadvantages</a></li>
+<li class="chapter" data-level="3.6.5" data-path="getting-started.html"><a href="getting-started.html#usage"><i class="fa fa-check"></i><b>3.6.5</b> Usage</a></li>
+<li class="chapter" data-level="3.6.6" data-path="getting-started.html"><a href="getting-started.html#borrowing"><i class="fa fa-check"></i><b>3.6.6</b> Borrowing</a></li>
+<li class="chapter" data-level="3.6.7" data-path="getting-started.html"><a href="getting-started.html#freeing"><i class="fa fa-check"></i><b>3.6.7</b> Freeing</a></li>
+<li class="chapter" data-level="3.6.8" data-path="getting-started.html"><a href="getting-started.html#take-and-reserve"><i class="fa fa-check"></i><b>3.6.8</b> Take and Reserve</a></li>
+<li class="chapter" data-level="3.6.9" data-path="getting-started.html"><a href="getting-started.html#iterators"><i class="fa fa-check"></i><b>3.6.9</b> Iterators</a></li>
+<li class="chapter" data-level="3.6.10" data-path="getting-started.html"><a href="getting-started.html#direct-access"><i class="fa fa-check"></i><b>3.6.10</b> Direct Access</a></li>
+<li class="chapter" data-level="3.6.11" data-path="getting-started.html"><a href="getting-started.html#validation"><i class="fa fa-check"></i><b>3.6.11</b> Validation</a></li>
+<li class="chapter" data-level="3.6.12" data-path="getting-started.html"><a href="getting-started.html#type-erased-handles"><i class="fa fa-check"></i><b>3.6.12</b> Type-erased Handles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="getting-started.html"><a href="getting-started.html#borrow-checker"><i class="fa fa-check"></i><b>3.7</b> Borrow Checker</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="getting-started.html"><a href="getting-started.html#multiple-borrowing"><i class="fa fa-check"></i><b>3.7.1</b> Multiple Borrowing</a></li>
+<li class="chapter" data-level="3.7.2" data-path="getting-started.html"><a href="getting-started.html#message-passing"><i class="fa fa-check"></i><b>3.7.2</b> Message Passing</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="scripting.html"><a href="scripting.html"><i class="fa fa-check"></i><b>4</b> Scripting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="scripting.html"><a href="scripting.html#plugins-1"><i class="fa fa-check"></i><b>4.1</b> Plugins</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="scripting.html"><a href="scripting.html#structure"><i class="fa fa-check"></i><b>4.1.1</b> Structure</a></li>
+<li class="chapter" data-level="4.1.2" data-path="scripting.html"><a href="scripting.html#plugin-context"><i class="fa fa-check"></i><b>4.1.2</b> Plugin Context</a></li>
+<li class="chapter" data-level="4.1.3" data-path="scripting.html"><a href="scripting.html#control-flow"><i class="fa fa-check"></i><b>4.1.3</b> Control Flow</a></li>
+<li class="chapter" data-level="4.1.4" data-path="scripting.html"><a href="scripting.html#editor-and-plugins"><i class="fa fa-check"></i><b>4.1.4</b> Editor and Plugins</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="scripting.html"><a href="scripting.html#executor"><i class="fa fa-check"></i><b>4.2</b> Executor</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="scripting.html"><a href="scripting.html#usage-1"><i class="fa fa-check"></i><b>4.2.1</b> Usage</a></li>
+<li class="chapter" data-level="4.2.2" data-path="scripting.html"><a href="scripting.html#typical-use-cases"><i class="fa fa-check"></i><b>4.2.2</b> Typical Use Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="scripting.html"><a href="scripting.html#scripts-1"><i class="fa fa-check"></i><b>4.3</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="scripting.html"><a href="scripting.html#when-to-use-scripts-and-when-not"><i class="fa fa-check"></i><b>4.3.1</b> When to Use Scripts and When Not</a></li>
+<li class="chapter" data-level="4.3.2" data-path="scripting.html"><a href="scripting.html#script-structure"><i class="fa fa-check"></i><b>4.3.2</b> Script Structure</a></li>
+<li class="chapter" data-level="4.3.3" data-path="scripting.html"><a href="scripting.html#script-template-generator"><i class="fa fa-check"></i><b>4.3.3</b> Script Template Generator</a></li>
+<li class="chapter" data-level="4.3.4" data-path="scripting.html"><a href="scripting.html#script-registration"><i class="fa fa-check"></i><b>4.3.4</b> Script Registration</a></li>
+<li class="chapter" data-level="4.3.5" data-path="scripting.html"><a href="scripting.html#script-attachment"><i class="fa fa-check"></i><b>4.3.5</b> Script Attachment</a></li>
+<li class="chapter" data-level="4.3.6" data-path="scripting.html"><a href="scripting.html#script-context"><i class="fa fa-check"></i><b>4.3.6</b> Script Context</a></li>
+<li class="chapter" data-level="4.3.7" data-path="scripting.html"><a href="scripting.html#execution-order"><i class="fa fa-check"></i><b>4.3.7</b> Execution order</a></li>
+<li class="chapter" data-level="4.3.8" data-path="scripting.html"><a href="scripting.html#message-passing-1"><i class="fa fa-check"></i><b>4.3.8</b> Message passing</a></li>
+<li class="chapter" data-level="4.3.9" data-path="scripting.html"><a href="scripting.html#accessing-other-scripts-data"><i class="fa fa-check"></i><b>4.3.9</b> Accessing Other Script’s Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="scripting.html"><a href="scripting.html#tasks"><i class="fa fa-check"></i><b>4.4</b> Tasks</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="scripting.html"><a href="scripting.html#how-it-works"><i class="fa fa-check"></i><b>4.4.1</b> How it works</a></li>
+<li class="chapter" data-level="4.4.2" data-path="scripting.html"><a href="scripting.html#examples"><i class="fa fa-check"></i><b>4.4.2</b> Examples</a></li>
+<li class="chapter" data-level="4.4.3" data-path="scripting.html"><a href="scripting.html#performance-1"><i class="fa fa-check"></i><b>4.4.3</b> Performance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="scene-1.html"><a href="scene-1.html"><i class="fa fa-check"></i><b>5</b> Scene</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create"><i class="fa fa-check"></i><b>5.0.1</b> How to create</a></li>
+<li class="chapter" data-level="5.0.2" data-path="scene-1.html"><a href="scene-1.html#where-all-my-scenes-located"><i class="fa fa-check"></i><b>5.0.2</b> Where all my scenes located?</a></li>
+<li class="chapter" data-level="5.0.3" data-path="scene-1.html"><a href="scene-1.html#building-scene-asynchronously"><i class="fa fa-check"></i><b>5.0.3</b> Building scene asynchronously</a></li>
+<li class="chapter" data-level="5.0.4" data-path="scene-1.html"><a href="scene-1.html#managing-multiple-scenes"><i class="fa fa-check"></i><b>5.0.4</b> Managing multiple scenes</a></li>
+<li class="chapter" data-level="5.0.5" data-path="scene-1.html"><a href="scene-1.html#ambient-lighting"><i class="fa fa-check"></i><b>5.0.5</b> Ambient lighting</a></li>
+<li class="chapter" data-level="5.1" data-path="scene-1.html"><a href="scene-1.html#graph"><i class="fa fa-check"></i><b>5.1</b> Graph</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-1"><i class="fa fa-check"></i><b>5.1.1</b> How to create</a></li>
+<li class="chapter" data-level="5.1.2" data-path="scene-1.html"><a href="scene-1.html#adding-nodes"><i class="fa fa-check"></i><b>5.1.2</b> Adding nodes</a></li>
+<li class="chapter" data-level="5.1.3" data-path="scene-1.html"><a href="scene-1.html#how-to-modify-the-hierarchy"><i class="fa fa-check"></i><b>5.1.3</b> How to modify the hierarchy</a></li>
+<li class="chapter" data-level="5.1.4" data-path="scene-1.html"><a href="scene-1.html#how-to-remove-nodes"><i class="fa fa-check"></i><b>5.1.4</b> How to remove nodes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="scene-1.html"><a href="scene-1.html#transformation"><i class="fa fa-check"></i><b>5.2</b> Transformation</a></li>
+<li class="chapter" data-level="5.3" data-path="scene-1.html"><a href="scene-1.html#prefabs"><i class="fa fa-check"></i><b>5.3</b> Prefabs</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-and-use-a-prefab"><i class="fa fa-check"></i><b>5.3.1</b> How to create and use a prefab</a></li>
+<li class="chapter" data-level="5.3.2" data-path="scene-1.html"><a href="scene-1.html#property-inheritance"><i class="fa fa-check"></i><b>5.3.2</b> Property inheritance</a></li>
+<li class="chapter" data-level="5.3.3" data-path="scene-1.html"><a href="scene-1.html#hierarchical-prefabs"><i class="fa fa-check"></i><b>5.3.3</b> Hierarchical Prefabs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="scene-1.html"><a href="scene-1.html#property-inheritance-1"><i class="fa fa-check"></i><b>5.4</b> Property Inheritance</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-inheritable-properties"><i class="fa fa-check"></i><b>5.4.1</b> How To Create Inheritable Properties</a></li>
+<li class="chapter" data-level="5.4.2" data-path="scene-1.html"><a href="scene-1.html#which-fields-should-be-inheritable"><i class="fa fa-check"></i><b>5.4.2</b> Which Fields Should Be Inheritable?</a></li>
+<li class="chapter" data-level="5.4.3" data-path="scene-1.html"><a href="scene-1.html#editor"><i class="fa fa-check"></i><b>5.4.3</b> Editor</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="scene-1.html"><a href="scene-1.html#base-node"><i class="fa fa-check"></i><b>5.5</b> Base node</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-2"><i class="fa fa-check"></i><b>5.5.1</b> How to create</a></li>
+<li class="chapter" data-level="5.5.2" data-path="scene-1.html"><a href="scene-1.html#building-a-complex-hierarchy"><i class="fa fa-check"></i><b>5.5.2</b> Building a complex hierarchy</a></li>
+<li class="chapter" data-level="5.5.3" data-path="scene-1.html"><a href="scene-1.html#transform"><i class="fa fa-check"></i><b>5.5.3</b> Transform</a></li>
+<li class="chapter" data-level="5.5.4" data-path="scene-1.html"><a href="scene-1.html#visibility"><i class="fa fa-check"></i><b>5.5.4</b> Visibility</a></li>
+<li class="chapter" data-level="5.5.5" data-path="scene-1.html"><a href="scene-1.html#enablingdisabling-scene-nodes"><i class="fa fa-check"></i><b>5.5.5</b> Enabling/disabling scene nodes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="scene-1.html"><a href="scene-1.html#mesh-node"><i class="fa fa-check"></i><b>5.6</b> Mesh node</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="scene-1.html"><a href="scene-1.html#surfaces"><i class="fa fa-check"></i><b>5.6.1</b> Surfaces</a></li>
+<li class="chapter" data-level="5.6.2" data-path="scene-1.html"><a href="scene-1.html#how-to-create-3"><i class="fa fa-check"></i><b>5.6.2</b> How to create</a></li>
+<li class="chapter" data-level="5.6.3" data-path="scene-1.html"><a href="scene-1.html#animation-1"><i class="fa fa-check"></i><b>5.6.3</b> Animation</a></li>
+<li class="chapter" data-level="5.6.4" data-path="scene-1.html"><a href="scene-1.html#data-buffers"><i class="fa fa-check"></i><b>5.6.4</b> Data Buffers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="scene-1.html"><a href="scene-1.html#light-node"><i class="fa fa-check"></i><b>5.7</b> Light node</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="scene-1.html"><a href="scene-1.html#light-types"><i class="fa fa-check"></i><b>5.7.1</b> Light types</a></li>
+<li class="chapter" data-level="5.7.2" data-path="scene-1.html"><a href="scene-1.html#light-scattering"><i class="fa fa-check"></i><b>5.7.2</b> Light scattering</a></li>
+<li class="chapter" data-level="5.7.3" data-path="scene-1.html"><a href="scene-1.html#shadows"><i class="fa fa-check"></i><b>5.7.3</b> Shadows</a></li>
+<li class="chapter" data-level="5.7.4" data-path="scene-1.html"><a href="scene-1.html#performance-2"><i class="fa fa-check"></i><b>5.7.4</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="scene-1.html"><a href="scene-1.html#sprite"><i class="fa fa-check"></i><b>5.8</b> Sprite</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-4"><i class="fa fa-check"></i><b>5.8.1</b> How to create</a></li>
+<li class="chapter" data-level="5.8.2" data-path="scene-1.html"><a href="scene-1.html#animation-2"><i class="fa fa-check"></i><b>5.8.2</b> Animation</a></li>
+<li class="chapter" data-level="5.8.3" data-path="scene-1.html"><a href="scene-1.html#general-rules"><i class="fa fa-check"></i><b>5.8.3</b> General rules</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="scene-1.html"><a href="scene-1.html#particle-system"><i class="fa fa-check"></i><b>5.9</b> Particle system</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="scene-1.html"><a href="scene-1.html#basic-concepts-1"><i class="fa fa-check"></i><b>5.9.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="5.9.2" data-path="scene-1.html"><a href="scene-1.html#how-to-create-5"><i class="fa fa-check"></i><b>5.9.2</b> How to create</a></li>
+<li class="chapter" data-level="5.9.3" data-path="scene-1.html"><a href="scene-1.html#soft-particles"><i class="fa fa-check"></i><b>5.9.3</b> Soft particles</a></li>
+<li class="chapter" data-level="5.9.4" data-path="scene-1.html"><a href="scene-1.html#restarting-emission"><i class="fa fa-check"></i><b>5.9.4</b> Restarting emission</a></li>
+<li class="chapter" data-level="5.9.5" data-path="scene-1.html"><a href="scene-1.html#enabling-or-disabling-particle-systems"><i class="fa fa-check"></i><b>5.9.5</b> Enabling or disabling particle systems</a></li>
+<li class="chapter" data-level="5.9.6" data-path="scene-1.html"><a href="scene-1.html#performance-3"><i class="fa fa-check"></i><b>5.9.6</b> Performance</a></li>
+<li class="chapter" data-level="5.9.7" data-path="scene-1.html"><a href="scene-1.html#limitations"><i class="fa fa-check"></i><b>5.9.7</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="scene-1.html"><a href="scene-1.html#terrain"><i class="fa fa-check"></i><b>5.10</b> Terrain</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="scene-1.html"><a href="scene-1.html#basic-concepts-2"><i class="fa fa-check"></i><b>5.10.1</b> Basic concepts</a></li>
+<li class="chapter" data-level="5.10.2" data-path="scene-1.html"><a href="scene-1.html#creating-terrain-in-the-editor"><i class="fa fa-check"></i><b>5.10.2</b> Creating terrain in the editor</a></li>
+<li class="chapter" data-level="5.10.3" data-path="scene-1.html"><a href="scene-1.html#creating-terrain-from-code"><i class="fa fa-check"></i><b>5.10.3</b> Creating terrain from code</a></li>
+<li class="chapter" data-level="5.10.4" data-path="scene-1.html"><a href="scene-1.html#physics-1"><i class="fa fa-check"></i><b>5.10.4</b> Physics</a></li>
+<li class="chapter" data-level="5.10.5" data-path="scene-1.html"><a href="scene-1.html#performance-4"><i class="fa fa-check"></i><b>5.10.5</b> Performance</a></li>
+<li class="chapter" data-level="5.10.6" data-path="scene-1.html"><a href="scene-1.html#chunking"><i class="fa fa-check"></i><b>5.10.6</b> Chunking</a></li>
+<li class="chapter" data-level="5.10.7" data-path="scene-1.html"><a href="scene-1.html#level-of-detail"><i class="fa fa-check"></i><b>5.10.7</b> Level-of-detail</a></li>
+<li class="chapter" data-level="5.10.8" data-path="scene-1.html"><a href="scene-1.html#limitations-and-known-issues"><i class="fa fa-check"></i><b>5.10.8</b> Limitations and known issues</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="scene-1.html"><a href="scene-1.html#camera-node"><i class="fa fa-check"></i><b>5.11</b> Camera node</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-6"><i class="fa fa-check"></i><b>5.11.1</b> How to create</a></li>
+<li class="chapter" data-level="5.11.2" data-path="scene-1.html"><a href="scene-1.html#projection-modes"><i class="fa fa-check"></i><b>5.11.2</b> Projection modes</a></li>
+<li class="chapter" data-level="5.11.3" data-path="scene-1.html"><a href="scene-1.html#performance-5"><i class="fa fa-check"></i><b>5.11.3</b> Performance</a></li>
+<li class="chapter" data-level="5.11.4" data-path="scene-1.html"><a href="scene-1.html#skybox"><i class="fa fa-check"></i><b>5.11.4</b> Skybox</a></li>
+<li class="chapter" data-level="5.11.5" data-path="scene-1.html"><a href="scene-1.html#color-grading-look-up-tables"><i class="fa fa-check"></i><b>5.11.5</b> Color grading look-up tables</a></li>
+<li class="chapter" data-level="5.11.6" data-path="scene-1.html"><a href="scene-1.html#picking"><i class="fa fa-check"></i><b>5.11.6</b> Picking</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="scene-1.html"><a href="scene-1.html#exposure-and-hdr"><i class="fa fa-check"></i><b>5.12</b> Exposure and HDR</a></li>
+<li class="chapter" data-level="5.13" data-path="scene-1.html"><a href="scene-1.html#decal-node"><i class="fa fa-check"></i><b>5.13</b> Decal node</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-7"><i class="fa fa-check"></i><b>5.13.1</b> How to create</a></li>
+<li class="chapter" data-level="5.13.2" data-path="scene-1.html"><a href="scene-1.html#textures"><i class="fa fa-check"></i><b>5.13.2</b> Textures</a></li>
+<li class="chapter" data-level="5.13.3" data-path="scene-1.html"><a href="scene-1.html#rendering-1"><i class="fa fa-check"></i><b>5.13.3</b> Rendering</a></li>
+<li class="chapter" data-level="5.13.4" data-path="scene-1.html"><a href="scene-1.html#bounds"><i class="fa fa-check"></i><b>5.13.4</b> Bounds</a></li>
+<li class="chapter" data-level="5.13.5" data-path="scene-1.html"><a href="scene-1.html#layers-1"><i class="fa fa-check"></i><b>5.13.5</b> Layers</a></li>
+<li class="chapter" data-level="5.13.6" data-path="scene-1.html"><a href="scene-1.html#performance-6"><i class="fa fa-check"></i><b>5.13.6</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="scene-1.html"><a href="scene-1.html#rectangle-node"><i class="fa fa-check"></i><b>5.14</b> Rectangle node</a>
+<ul>
+<li class="chapter" data-level="5.14.1" data-path="scene-1.html"><a href="scene-1.html#how-to-create-8"><i class="fa fa-check"></i><b>5.14.1</b> How to create</a></li>
+<li class="chapter" data-level="5.14.2" data-path="scene-1.html"><a href="scene-1.html#specifying-image-portion-for-rendering"><i class="fa fa-check"></i><b>5.14.2</b> Specifying image portion for rendering</a></li>
+<li class="chapter" data-level="5.14.3" data-path="scene-1.html"><a href="scene-1.html#animation-3"><i class="fa fa-check"></i><b>5.14.3</b> Animation</a></li>
+<li class="chapter" data-level="5.14.4" data-path="scene-1.html"><a href="scene-1.html#performance-7"><i class="fa fa-check"></i><b>5.14.4</b> Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.15" data-path="scene-1.html"><a href="scene-1.html#custom-scene-node"><i class="fa fa-check"></i><b>5.15</b> Custom Scene Node</a>
+<ul>
+<li class="chapter" data-level="5.15.1" data-path="scene-1.html"><a href="scene-1.html#limitations-1"><i class="fa fa-check"></i><b>5.15.1</b> Limitations</a></li>
+<li class="chapter" data-level="5.15.2" data-path="scene-1.html"><a href="scene-1.html#editor-support"><i class="fa fa-check"></i><b>5.15.2</b> Editor support</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="physics-2.html"><a href="physics-2.html"><i class="fa fa-check"></i><b>6</b> Physics</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="physics-2.html"><a href="physics-2.html#differences-between-3d-and-2d"><i class="fa fa-check"></i><b>6.0.1</b> Differences between 3D and 2D</a></li>
+<li class="chapter" data-level="6.1" data-path="physics-2.html"><a href="physics-2.html#rigid-body-node"><i class="fa fa-check"></i><b>6.1</b> Rigid body node</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="physics-2.html"><a href="physics-2.html#how-to-create-9"><i class="fa fa-check"></i><b>6.1.1</b> How to create</a></li>
+<li class="chapter" data-level="6.1.2" data-path="physics-2.html"><a href="physics-2.html#colliders"><i class="fa fa-check"></i><b>6.1.2</b> Colliders</a></li>
+<li class="chapter" data-level="6.1.3" data-path="physics-2.html"><a href="physics-2.html#force-and-torque"><i class="fa fa-check"></i><b>6.1.3</b> Force and torque</a></li>
+<li class="chapter" data-level="6.1.4" data-path="physics-2.html"><a href="physics-2.html#kinematic-rigid-bodies"><i class="fa fa-check"></i><b>6.1.4</b> Kinematic rigid bodies</a></li>
+<li class="chapter" data-level="6.1.5" data-path="physics-2.html"><a href="physics-2.html#continuous-collision-detection"><i class="fa fa-check"></i><b>6.1.5</b> Continuous collision detection</a></li>
+<li class="chapter" data-level="6.1.6" data-path="physics-2.html"><a href="physics-2.html#dominance"><i class="fa fa-check"></i><b>6.1.6</b> Dominance</a></li>
+<li class="chapter" data-level="6.1.7" data-path="physics-2.html"><a href="physics-2.html#d-rigid-bodies"><i class="fa fa-check"></i><b>6.1.7</b> 2D rigid bodies</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="physics-2.html"><a href="physics-2.html#collider-node"><i class="fa fa-check"></i><b>6.2</b> Collider node</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="physics-2.html"><a href="physics-2.html#shapes"><i class="fa fa-check"></i><b>6.2.1</b> Shapes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="physics-2.html"><a href="physics-2.html#how-to-create-10"><i class="fa fa-check"></i><b>6.2.2</b> How to create</a></li>
+<li class="chapter" data-level="6.2.3" data-path="physics-2.html"><a href="physics-2.html#collision-filtering"><i class="fa fa-check"></i><b>6.2.3</b> Collision filtering</a></li>
+<li class="chapter" data-level="6.2.4" data-path="physics-2.html"><a href="physics-2.html#using-colliders-for-hit-boxes"><i class="fa fa-check"></i><b>6.2.4</b> Using colliders for hit boxes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="physics-2.html"><a href="physics-2.html#joint"><i class="fa fa-check"></i><b>6.3</b> Joint</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="physics-2.html"><a href="physics-2.html#bodies-binding"><i class="fa fa-check"></i><b>6.3.1</b> Bodies Binding</a></li>
+<li class="chapter" data-level="6.3.2" data-path="physics-2.html"><a href="physics-2.html#how-to-create-11"><i class="fa fa-check"></i><b>6.3.2</b> How to create</a></li>
+<li class="chapter" data-level="6.3.3" data-path="physics-2.html"><a href="physics-2.html#limits"><i class="fa fa-check"></i><b>6.3.3</b> Limits</a></li>
+<li class="chapter" data-level="6.3.4" data-path="physics-2.html"><a href="physics-2.html#usage-2"><i class="fa fa-check"></i><b>6.3.4</b> Usage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="physics-2.html"><a href="physics-2.html#ray-casting"><i class="fa fa-check"></i><b>6.4</b> Ray Casting</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="physics-2.html"><a href="physics-2.html#avoiding-unnecessary-allocations"><i class="fa fa-check"></i><b>6.4.1</b> Avoiding unnecessary allocations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="physics-2.html"><a href="physics-2.html#ragdoll"><i class="fa fa-check"></i><b>6.5</b> Ragdoll</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="physics-2.html"><a href="physics-2.html#how-to-create-12"><i class="fa fa-check"></i><b>6.5.1</b> How To Create</a></li>
+<li class="chapter" data-level="6.5.2" data-path="physics-2.html"><a href="physics-2.html#video-tutorials"><i class="fa fa-check"></i><b>6.5.2</b> Video Tutorials</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sound-system.html"><a href="sound-system.html"><i class="fa fa-check"></i><b>7</b> Sound System</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sound-system.html"><a href="sound-system.html#audio-bus"><i class="fa fa-check"></i><b>7.1</b> Audio Bus</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="sound-system.html"><a href="sound-system.html#graph-1"><i class="fa fa-check"></i><b>7.1.1</b> Graph</a></li>
+<li class="chapter" data-level="7.1.2" data-path="sound-system.html"><a href="sound-system.html#effects"><i class="fa fa-check"></i><b>7.1.2</b> Effects</a></li>
+<li class="chapter" data-level="7.1.3" data-path="sound-system.html"><a href="sound-system.html#editor-1"><i class="fa fa-check"></i><b>7.1.3</b> Editor</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="sound-system.html"><a href="sound-system.html#sound-1"><i class="fa fa-check"></i><b>7.2</b> Sound</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="sound-system.html"><a href="sound-system.html#how-to-create-13"><i class="fa fa-check"></i><b>7.2.1</b> How to create</a></li>
+<li class="chapter" data-level="7.2.2" data-path="sound-system.html"><a href="sound-system.html#d-and-3d"><i class="fa fa-check"></i><b>7.2.2</b> 2D and 3D</a></li>
+<li class="chapter" data-level="7.2.3" data-path="sound-system.html"><a href="sound-system.html#audio-bus-1"><i class="fa fa-check"></i><b>7.2.3</b> Audio bus</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="sound-system.html"><a href="sound-system.html#head-related-transfer-function"><i class="fa fa-check"></i><b>7.3</b> Head Related Transfer Function</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="sound-system.html"><a href="sound-system.html#hrtf-on-practice"><i class="fa fa-check"></i><b>7.3.1</b> HRTF on practice</a></li>
+<li class="chapter" data-level="7.3.2" data-path="sound-system.html"><a href="sound-system.html#performance-8"><i class="fa fa-check"></i><b>7.3.2</b> Performance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="animation-4.html"><a href="animation-4.html"><i class="fa fa-check"></i><b>8</b> Animation</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="animation-4.html"><a href="animation-4.html#web-demo"><i class="fa fa-check"></i><b>8.0.1</b> Web Demo</a></li>
+<li class="chapter" data-level="8.0.2" data-path="animation-4.html"><a href="animation-4.html#track-binding"><i class="fa fa-check"></i><b>8.0.2</b> Track binding</a></li>
+<li class="chapter" data-level="8.0.3" data-path="animation-4.html"><a href="animation-4.html#time-slice-and-looping"><i class="fa fa-check"></i><b>8.0.3</b> Time slice and looping</a></li>
+<li class="chapter" data-level="8.0.4" data-path="animation-4.html"><a href="animation-4.html#speed"><i class="fa fa-check"></i><b>8.0.4</b> Speed</a></li>
+<li class="chapter" data-level="8.0.5" data-path="animation-4.html"><a href="animation-4.html#enabling-or-disabling-animations"><i class="fa fa-check"></i><b>8.0.5</b> Enabling or disabling animations</a></li>
+<li class="chapter" data-level="8.0.6" data-path="animation-4.html"><a href="animation-4.html#signals"><i class="fa fa-check"></i><b>8.0.6</b> Signals</a></li>
+<li class="chapter" data-level="8.0.7" data-path="animation-4.html"><a href="animation-4.html#creating-from-code"><i class="fa fa-check"></i><b>8.0.7</b> Creating From Code</a></li>
+<li class="chapter" data-level="8.0.8" data-path="animation-4.html"><a href="animation-4.html#importing"><i class="fa fa-check"></i><b>8.0.8</b> Importing</a></li>
+<li class="chapter" data-level="8.0.9" data-path="animation-4.html"><a href="animation-4.html#playing-an-animation"><i class="fa fa-check"></i><b>8.0.9</b> Playing an Animation</a></li>
+<li class="chapter" data-level="8.1" data-path="animation-4.html"><a href="animation-4.html#animation-editor"><i class="fa fa-check"></i><b>8.1</b> Animation Editor</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="animation-4.html"><a href="animation-4.html#typical-workflow"><i class="fa fa-check"></i><b>8.1.1</b> Typical Workflow</a></li>
+<li class="chapter" data-level="8.1.2" data-path="animation-4.html"><a href="animation-4.html#toolbar"><i class="fa fa-check"></i><b>8.1.2</b> Toolbar</a></li>
+<li class="chapter" data-level="8.1.3" data-path="animation-4.html"><a href="animation-4.html#track-list"><i class="fa fa-check"></i><b>8.1.3</b> Track List</a></li>
+<li class="chapter" data-level="8.1.4" data-path="animation-4.html"><a href="animation-4.html#curve-editor"><i class="fa fa-check"></i><b>8.1.4</b> Curve Editor</a></li>
+<li class="chapter" data-level="8.1.5" data-path="animation-4.html"><a href="animation-4.html#property-binding"><i class="fa fa-check"></i><b>8.1.5</b> Property Binding</a></li>
+<li class="chapter" data-level="8.1.6" data-path="animation-4.html"><a href="animation-4.html#animation-importing"><i class="fa fa-check"></i><b>8.1.6</b> Animation Importing</a></li>
+<li class="chapter" data-level="8.1.7" data-path="animation-4.html"><a href="animation-4.html#preview-mode"><i class="fa fa-check"></i><b>8.1.7</b> Preview Mode</a></li>
+<li class="chapter" data-level="8.1.8" data-path="animation-4.html"><a href="animation-4.html#root-motion"><i class="fa fa-check"></i><b>8.1.8</b> Root Motion</a></li>
+<li class="chapter" data-level="8.1.9" data-path="animation-4.html"><a href="animation-4.html#limitations-2"><i class="fa fa-check"></i><b>8.1.9</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="animation-4.html"><a href="animation-4.html#animation-blending"><i class="fa fa-check"></i><b>8.2</b> Animation Blending</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="animation-4.html"><a href="animation-4.html#how-to-create-14"><i class="fa fa-check"></i><b>8.2.1</b> How to create</a></li>
+<li class="chapter" data-level="8.2.2" data-path="animation-4.html"><a href="animation-4.html#from-editor-2"><i class="fa fa-check"></i><b>8.2.2</b> From editor</a></li>
+<li class="chapter" data-level="8.2.3" data-path="animation-4.html"><a href="animation-4.html#from-code-2"><i class="fa fa-check"></i><b>8.2.3</b> From code</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="animation-4.html"><a href="animation-4.html#animation-blending-state-machine-absm-editor"><i class="fa fa-check"></i><b>8.3</b> Animation Blending State Machine (ABSM) Editor</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="animation-4.html"><a href="animation-4.html#toolbar-1"><i class="fa fa-check"></i><b>8.3.1</b> Toolbar</a></li>
+<li class="chapter" data-level="8.3.2" data-path="animation-4.html"><a href="animation-4.html#parameters"><i class="fa fa-check"></i><b>8.3.2</b> Parameters</a></li>
+<li class="chapter" data-level="8.3.3" data-path="animation-4.html"><a href="animation-4.html#state-graph"><i class="fa fa-check"></i><b>8.3.3</b> State Graph</a></li>
+<li class="chapter" data-level="8.3.4" data-path="animation-4.html"><a href="animation-4.html#state-viewer"><i class="fa fa-check"></i><b>8.3.4</b> State Viewer</a></li>
+<li class="chapter" data-level="8.3.5" data-path="animation-4.html"><a href="animation-4.html#layer-mask"><i class="fa fa-check"></i><b>8.3.5</b> Layer Mask</a></li>
+<li class="chapter" data-level="8.3.6" data-path="animation-4.html"><a href="animation-4.html#preview-mode-1"><i class="fa fa-check"></i><b>8.3.6</b> Preview Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="animation-4.html"><a href="animation-4.html#signals-1"><i class="fa fa-check"></i><b>8.4</b> Signals</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="animation-4.html"><a href="animation-4.html#how-to-add"><i class="fa fa-check"></i><b>8.4.1</b> How to add</a></li>
+<li class="chapter" data-level="8.4.2" data-path="animation-4.html"><a href="animation-4.html#reacting-to-signal-events"><i class="fa fa-check"></i><b>8.4.2</b> Reacting to signal events</a></li>
+<li class="chapter" data-level="8.4.3" data-path="animation-4.html"><a href="animation-4.html#events-from-absm"><i class="fa fa-check"></i><b>8.4.3</b> Events from ABSM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="animation-4.html"><a href="animation-4.html#root-motion-1"><i class="fa fa-check"></i><b>8.5</b> Root Motion</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="animation-4.html"><a href="animation-4.html#how-to-enable"><i class="fa fa-check"></i><b>8.5.1</b> How to enable</a></li>
+<li class="chapter" data-level="8.5.2" data-path="animation-4.html"><a href="animation-4.html#how-to-use-1"><i class="fa fa-check"></i><b>8.5.2</b> How to use</a></li>
+<li class="chapter" data-level="8.5.3" data-path="animation-4.html"><a href="animation-4.html#combining-root-motion-with-procedural-motion"><i class="fa fa-check"></i><b>8.5.3</b> Combining root motion with procedural motion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="animation-4.html"><a href="animation-4.html#sprite-animation"><i class="fa fa-check"></i><b>8.6</b> Sprite Animation</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="animation-4.html"><a href="animation-4.html#how-to-use-2"><i class="fa fa-check"></i><b>8.6.1</b> How to use</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>9</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>9.1</b> Equations</a></li>
+<li class="chapter" data-level="9.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>9.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="9.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>9.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>10</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>10.1</b> Publishing</a></li>
+<li class="chapter" data-level="10.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>10.2</b> 404 pages</a></li>
+<li class="chapter" data-level="10.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>10.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fyrox Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="getting-started" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Getting Started<a href="getting-started.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This section of the book will guide you through the basics of the engine. You will learn how to create a project, use plugins, scripts, assets, and the editor. Fyrox is a modern game engine with its own scene editor, that helps you to edit game worlds, manage assets, and many more. At the end of reading this section, you’ll also learn how to manage game and engine entities, how they’re structured and what are the basics of data management in the engine.</p>
+<p>Next chapter will guide you through major setup of the engine - creating a game project using special project generator tool.</p>
+<div id="editor-plugins-and-scripts" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Editor, Plugins and Scripts<a href="getting-started.html#editor-plugins-and-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every Fyrox game is just a plugin for both the engine and the editor, such approach allows the game to run from the editor and be able to edit the game entities in it. A game can define any number of scripts, which can be assigned to scene objects to run custom game logic on them. This chapter will cover how to install the engine with its platform-specific dependencies, how to use the plugins and scripting system, how to run the editor.</p>
+<div id="platform-specific-dependencies" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Platform-specific Dependencies<a href="getting-started.html#platform-specific-dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before starting to use the engine, make sure all required platform-specific development dependencies are installed. If using Windows or macOS, no additional dependencies are required other than the latest Rust installed with appropriate toolchain for your platform.</p>
+<div id="linux" class="section level4 hasAnchor" number="3.1.1.1">
+<h4><span class="header-section-number">3.1.1.1</span> Linux<a href="getting-started.html#linux" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>On Linux, Fyrox needs the following libraries for development: <code>libxcb-shape0</code>, <code>libxcb-xfixes0</code>, <code>libxcb1</code>, <code>libxkbcommon</code>, <code>libasound2</code> and the <code>build-essential</code> package group.</p>
+<p>For Debian based distros like Ubuntu, they can be installed like below:</p>
+<pre class="shell"><code>sudo apt install libxcb-shape0-dev libxcb-xfixes0-dev libxcb1-dev libxkbcommon-dev libasound2-dev build-essential</code></pre>
+<p>For NixOS, you can use a <code>shell.nix</code> like below:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode nix"><code class="sourceCode nix"><span id="cb3-1"><a href="getting-started.html#cb3-1" tabindex="-1"></a><span class="op">{</span> <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span> <span class="op">}</span>:</span>
+<span id="cb3-2"><a href="getting-started.html#cb3-2" tabindex="-1"></a>pkgs.mkShell <span class="kw">rec</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="getting-started.html#cb3-3" tabindex="-1"></a>  <span class="va">nativeBuildInputs</span> <span class="op">=</span> <span class="kw">with</span> pkgs.buildPackages<span class="op">;</span> <span class="op">[</span></span>
+<span id="cb3-4"><a href="getting-started.html#cb3-4" tabindex="-1"></a>    pkg-config</span>
+<span id="cb3-5"><a href="getting-started.html#cb3-5" tabindex="-1"></a>    xorg.libxcb</span>
+<span id="cb3-6"><a href="getting-started.html#cb3-6" tabindex="-1"></a>    alsa-lib</span>
+<span id="cb3-7"><a href="getting-started.html#cb3-7" tabindex="-1"></a>    wayland</span>
+<span id="cb3-8"><a href="getting-started.html#cb3-8" tabindex="-1"></a>    libxkbcommon</span>
+<span id="cb3-9"><a href="getting-started.html#cb3-9" tabindex="-1"></a>    libGL</span>
+<span id="cb3-10"><a href="getting-started.html#cb3-10" tabindex="-1"></a>  <span class="op">];</span></span>
+<span id="cb3-11"><a href="getting-started.html#cb3-11" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="getting-started.html#cb3-12" tabindex="-1"></a>  <span class="va">shellHook</span> <span class="op">=</span> <span class="kw">with</span> pkgs.lib<span class="op">;</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb3-13"><a href="getting-started.html#cb3-13" tabindex="-1"></a><span class="st">    export LD_LIBRARY_PATH=</span><span class="sc">${</span>makeLibraryPath nativeBuildInputs<span class="sc">}</span><span class="st">:/run/opengl-driver/lib:$LD_LIBRARY_PATH</span></span>
+<span id="cb3-14"><a href="getting-started.html#cb3-14" tabindex="-1"></a><span class="st">  &#39;&#39;</span><span class="op">;</span></span>
+<span id="cb3-15"><a href="getting-started.html#cb3-15" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div>
+</div>
+<div id="quick-start" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Quick Start<a href="getting-started.html#quick-start" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Run the following commands to start using the editor as quickly as possible.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="getting-started.html#cb4-1" tabindex="-1"></a><span class="ex">cargo</span> install fyrox-template</span>
+<span id="cb4-2"><a href="getting-started.html#cb4-2" tabindex="-1"></a><span class="ex">fyrox-template</span> init <span class="at">--name</span> fyrox_test <span class="at">--style</span> 2d</span>
+<span id="cb4-3"><a href="getting-started.html#cb4-3" tabindex="-1"></a><span class="bu">cd</span> fyrox_test</span>
+<span id="cb4-4"><a href="getting-started.html#cb4-4" tabindex="-1"></a><span class="ex">cargo</span> run <span class="at">--package</span> editor <span class="at">--release</span></span></code></pre></div>
+</div>
+<div id="project-generator" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Project Generator<a href="getting-started.html#project-generator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Fyrox plugins are written in Rust, this means that if the source code of the game changes one must recompile. This architecture requires some boilerplate code. Fyrox offers a special tiny command line tool - <code>fyrox-template</code>. It helps generate all this boilerplate with a single command. Install it by running the following command:</p>
+<pre class="shell"><code>cargo install fyrox-template</code></pre>
+<p><em>Note for Linux:</em> This installs it in <code>$user/.cargo/bin</code>. If receiving errors about the <code>fyrox-template</code> command not being found, add this hidden cargo bin folder to the operating systems <code>$PATH</code> environment variable.</p>
+<p>Now, navigate to the desired project folder and run the following command:</p>
+<pre class="shell"><code>fyrox-template init --name my_game --style 3d</code></pre>
+<p>Note that unlike <code>cargo init</code>, this will create a new folder with the given name.</p>
+<p>The tool accepts two arguments - a project name (<code>--name</code>) and a style (<code>--style</code>), which defines the contents of the default scene. After initializing the project, go to <code>game/src/lib.rs</code> - this is where the game logic is located, as you can see, the <code>fyrox-template</code> generated quite a bit of code for you. There are comments explaining what each place is for. For more info about each method, please refer <a href="https://docs.rs/fyrox/latest/fyrox/plugin/trait.Plugin.html">to the docs</a>.</p>
+<p>Once the project is generated, memorize the two commands that will help run your game in different modes:</p>
+<ul>
+<li><code>cargo run --package editor --release</code> - launches the editor with your game attached. The editor allows you to run your game from it and edit its game entities. It is intended to be used only for development.</li>
+<li><code>cargo run --package executor --release</code> - creates and runs the production binary of your game, which can be shipped (for example - to a store).</li>
+</ul>
+<p>Navigate to your project’s directory and run <code>cargo run --package editor --release</code>, after some time you should see the editor:</p>
+<div class="float">
+<img src="images/beginning_editor.png" alt="editor" />
+<div class="figcaption">editor</div>
+</div>
+<p>In the editor you can start building your game scene. <strong>Important note:</strong> your scene must have at least one camera, otherwise you won’t see a thing. Read the next chapter to learn how to use the editor.</p>
+</div>
+<div id="using-the-latest-engine-version" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Using the Latest Engine Version<a href="getting-started.html#using-the-latest-engine-version" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Due to the nature of the software development, some bugs will inevitably sneak into the major releases, due to this, you may want to use the latest engine version from the repository on GitHub, since it is the most likely to have bugs fixed (you can also contribute by fixing any bugs you find or at least, by <a href="https://github.com/FyroxEngine/Fyrox/issues">filing an issue</a>).</p>
+<div id="automatic" class="section level4 hasAnchor" number="3.1.4.1">
+<h4><span class="header-section-number">3.1.4.1</span> Automatic<a href="getting-started.html#automatic" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<blockquote>
+<p>⚠️ <code>fyrox-template</code> has special sub-command - <code>upgrade</code> to quickly upgrade to desired engine version. To upgrade to
+the latest version (<code>nightly</code>) you should execute <code>fyrox-template upgrade --version nightly</code> command in your game’s
+directory.</p>
+</blockquote>
+<p>There are three main variants for <code>--version</code> switch:</p>
+<ul>
+<li><code>nightly</code> - uses latest nightly version of the engine from GitHub directly. This is the preferable version if you want to use the latest changes and bug fixes as they release.</li>
+<li><code>latest</code> - uses latest stable version of the engine. This option also supports <code>--local</code> key, that sets the path to the engine to <code>../Fyrox/fyrox</code> and the editor to <code>../Fyrox/editor</code>. Obviously, such path requires the engine to be located in the parent directory of your project. This option could be useful if you want to use custom version of the engine (for example, if you’re developing a patch for the engine).</li>
+<li><code>major.minor.patch</code> - uses specific stable version from crates.io (<code>0.30.0</code> for example).</li>
+</ul>
+</div>
+<div id="manual" class="section level4 hasAnchor" number="3.1.4.2">
+<h4><span class="header-section-number">3.1.4.2</span> Manual<a href="getting-started.html#manual" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Engine version can also be updated manually. The first step to take is to install the latest <code>fyrox-template</code>, this can be done with a single <code>cargo</code> command:</p>
+<pre class="shell"><code>cargo install fyrox-template --force --git https://github.com/FyroxEngine/Fyrox</code></pre>
+<p>This will ensure you’re using the latest project/script template generator, which is important, since old versions of the template generator will most likely generate outdated code, no longer be compatible with the engine.</p>
+<p>To switch existing projects to the latest version of the engine, you need to specify paths pointing to the remote repository for the <code>fyrox</code> and <code>fyroxed_base</code> dependencies. You need to do this in the <code>game</code>, <code>executor</code>, and <code>editor</code> projects. First, open <code>game/Cargo.toml</code> and change the <code>fyrox</code> dependency to the following:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb8-1"><a href="getting-started.html#cb8-1" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
+<span id="cb8-2"><a href="getting-started.html#cb8-2" tabindex="-1"></a><span class="dt">fyrox</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op"> }</span></span></code></pre></div>
+<p>Do the same for <code>executor/Cargo.toml</code>. The <code>editor</code> has two dependencies we need to change: <code>fyrox</code> and <code>fyroxed_base</code>. Open the <code>editor/Cargo.toml</code> and set both dependencies to the following:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb9-1"><a href="getting-started.html#cb9-1" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
+<span id="cb9-2"><a href="getting-started.html#cb9-2" tabindex="-1"></a><span class="dt">fyrox</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op"> }</span></span>
+<span id="cb9-3"><a href="getting-started.html#cb9-3" tabindex="-1"></a><span class="dt">fyroxed_base</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op"> }</span></span></code></pre></div>
+<p>Now your game will use the latest engine and editor, but beware - new commits could bring some API breaks. You can avoid these by specifying a particular commit, just add <code>rev = "desired_commit_hash"</code> to every dependency like so:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb10-1"><a href="getting-started.html#cb10-1" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
+<span id="cb10-2"><a href="getting-started.html#cb10-2" tabindex="-1"></a><span class="dt">fyrox</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op">, </span><span class="dt">rev</span><span class="op"> =</span> <span class="st">&quot;0195666b30562c1961a9808be38b5e5715da43af&quot;</span><span class="op"> }</span></span>
+<span id="cb10-3"><a href="getting-started.html#cb10-3" tabindex="-1"></a><span class="dt">fyroxed_base</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op">, </span><span class="dt">rev</span><span class="op"> =</span> <span class="st">&quot;0195666b30562c1961a9808be38b5e5715da43af&quot;</span><span class="op"> }</span></span></code></pre></div>
+<p>To bring a local git repository of the engine to being up-to-date, just call <code>cargo update</code> at the root of the project’s workspace. This will pull the latest changes from the remote, unless there is no <code>rev</code> specified.</p>
+<p>Learn more about dependency paths on the official <code>cargo</code> documentation, <a href="https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories">here</a>.</p>
+</div>
+</div>
+<div id="adding-game-logic" class="section level3 hasAnchor" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Adding Game Logic<a href="getting-started.html#adding-game-logic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Any object-specific game logic should be added using scripts. A script is a “container” for data and code, that will be executed by the engine. Read the <a href="../scripting/script.md">Scripts</a> chapter to learn how to create, edit, and use scripts in your game.</p>
+</div>
+</div>
+<div id="code-hot-reloading" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Code Hot Reloading<a href="getting-started.html#code-hot-reloading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Fyrox supports code hot reloading (CHR for short), which allows you to recompile the game code while the game is running. This functionality significantly reduces iteration times and allows rapid prototyping. This way, Rust becomes a sort of “scripting” language, but with all Rust safety and performance guarantees. CHR in action looks like this:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vq6P3Npydmw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="how-to-use" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> How To Use<a href="getting-started.html#how-to-use" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>⚠️ If you have an existing project from one of the previous versions of the engine, the best way to add support for
+CHR is to re-generate the entire project and copy all the assets and game code in the new project. CHR requires very
+specific project structure and a small mistake in it could lead to incorrect behavior.</p>
+</blockquote>
+<p>CHR is quite simple to use - a project generated by <code>fyrox-template</code> already has all that is needed for hot reloading. Yet, it requires some bootstrapping to start using it. At first, you need to compile your game plugin using the following command:</p>
+<pre class="shell"><code>RUSTFLAGS=&quot;-C prefer-dynamic=yes&quot; cargo build --package game_dylib --no-default-features --features=&quot;dylib-engine&quot; --profile dev-hot-reload</code></pre>
+<p>This command will compile the engine DLL (<code>fyrox_dylib.dll/so</code>) and the plugin DLL (<code>game_dylib.dll/so</code>). Please note the mandatory environment variable <code>RUSTFLAGS="-C prefer-dynamic=yes"</code>. It forces the compiler to link standard library dynamically. It is very important, because if not set, the standard library will be duplicated in game plugin and engine, which will lead to subtle bugs.</p>
+<blockquote>
+<p>⚠️ Environment variables can be set in a different ways, depending on your OS. On Linux it simply prepends the actual
+command, on Windows it requires a <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1#examples">separate command</a>.
+Other OSes can have their own ways of setting environment variables.</p>
+</blockquote>
+<p>The next step is to compile the editor in CHR mode. To do that, run the following command:</p>
+<pre class="shell"><code>RUSTFLAGS=&quot;-C prefer-dynamic=yes&quot; cargo run --package editor --no-default-features --features=&quot;dylib&quot; --profile dev-hot-reload</code></pre>
+<p>This command will compile the editor in CHR mode and run it. After this, all you need to do is to select build profile in the editor to be <code>Debug (HR)</code>:</p>
+<div class="float">
+<img src="images/beginning_build_profile.png" alt="build_profile" />
+<div class="figcaption">build_profile</div>
+</div>
+<p>Once that’s done you can run your game by clicking on the green <code>Play</code> button. You can switch between CHR and normal mode (static linking) at any time. Keep in mind, that if you run the editor in CHR mode, it will also reload all changed plugins.</p>
+</div>
+<div id="build-profiles" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Build Profiles<a href="getting-started.html#build-profiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>CHR uses separate build profiles: <code>dev-hot-reload</code> (no optimizations) and <code>release-hot-reload</code> (with optimizations). Separate build profiles allows you to quickly switch between statically linked plugins and code hot reloading. This could be useful if you’re experiencing some issues with hot reloading (see next section for more info).</p>
+</div>
+<div id="stability" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Stability<a href="getting-started.html#stability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>CHR is very new and experimental feature of the engine, it is based on wildly unsafe functionality which could result in memory corruption, subtle bugs, etc. If you experience weird behaviour of your game after hot reloading, run the game in normal (static linking) mode instead. Please report any bugs in the <a href="https://github.com/FyroxEngine/Fyrox/issues">issue tracker</a> of the engine. CHR was tested on two relatively large games - <a href="https://github.com/mrDIMAS/FishFolly">Fish Folly</a> and <a href="https://github.com/mrDIMAS/StationIapetus">Station Iapetus</a>. You can download these projects and try CHR yourself.</p>
+</div>
+<div id="technical-details-and-limitations" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Technical Details and Limitations<a href="getting-started.html#technical-details-and-limitations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>CHR is using standard operating system (OS) mechanism of shared libraries (DLL for short). Pretty much any OS can load native code into a running process dynamically from a DLL. Any dynamically loaded library can then be unloaded from the process memory. This gives a perfect opportunity to reload game code in runtime. It may sound quite easy, but on practice there are a lot of issues.</p>
+<div id="plugin-entities-and-reloading" class="section level4 hasAnchor" number="3.2.4.1">
+<h4><span class="header-section-number">3.2.4.1</span> Plugin Entities and Reloading<a href="getting-started.html#plugin-entities-and-reloading" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Plugins can supply the engine with a predefined set of entities (such as scripts, etc.). These entities are serialized into a memory blob before the plugin itself is unloaded. When all plugins are reloaded, this memory blob is used to restore the state of plugin entities. That being said, pretty much all plugin entities must be serializable (implement <code>Visit</code> trait).</p>
+</div>
+<div id="trait-objects" class="section level4 hasAnchor" number="3.2.4.2">
+<h4><span class="header-section-number">3.2.4.2</span> Trait Objects<a href="getting-started.html#trait-objects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Trait object are very problematic with hot reloading, because internally trait objects contains vtable with function pointers. These pointers can be easily invalidated if the plugin is unloaded. This applies even to engine trait objects, if they’re created directly from the plugin side. The only way to bypass this issue is to use special methods from the engine to create its trait objects. It is possible to add a lint to clippy to check for such cases (see the respective <a href="https://github.com/rust-lang/rust-clippy/issues/12819">issue</a>).</p>
+</div>
+<div id="dangling-objects" class="section level4 hasAnchor" number="3.2.4.3">
+<h4><span class="header-section-number">3.2.4.3</span> Dangling Objects<a href="getting-started.html#dangling-objects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Current plugin system tries its best to remove all plugin’s entities from the engine internals before reloading plugins. However, some objects could be overlooked by this system, which could result in crash or memory corruption. Current approach of preventing to having dangling objects is based on built-in reflection system - the plugin system iterates across all fields of every object and checks its assembly name. If the assembly name match the plugin’s assembly name, then this object must be deleted before the plugin is unloaded.</p>
+</div>
+<div id="non-serializable-entities" class="section level4 hasAnchor" number="3.2.4.4">
+<h4><span class="header-section-number">3.2.4.4</span> Non-serializable Entities<a href="getting-started.html#non-serializable-entities" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Not every object can be serialized, and in this case the current plugin system calls a special method to restore such non-serializable entities after hot reloading. Such entities could include server connections, job queues, etc.</p>
+</div>
+</div>
+</div>
+<div id="fyroxed-overview" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> FyroxEd Overview<a href="getting-started.html#fyroxed-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>FyroxEd - is the native editor of Fyrox, it is made with one purpose - to be an integrated game development environment that helps you build your game from start to finish with relatively low effort.</p>
+<p>You’ll be spending a lot of time in the editor, so you should get familiar with it and learn how to use its basic functionalities. This chapter will guide you through the basics, advanced topics will be covered in their respective chapters.</p>
+<div id="windows" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Windows<a href="getting-started.html#windows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you open the editor for the first time you may be confused by the amount of windows, buttons, lists, etc. you’ll be presented with. Each window serves a different purpose, but all of them work together to help you make your game. Let’s take a look at a screenshot of the editor and learn what each part of it is responsible for (please note that this can change over time, because development is quite fast and images can easily become outdated):</p>
+<div class="float">
+<img src="images/beginning_overview.png" alt="Windows" />
+<div class="figcaption">Windows</div>
+</div>
+<ul>
+<li><strong>World viewer</strong> - shows every object in the scene and their relationships. Allows inspecting and editing the contents of the scene in a hierarchical form.</li>
+<li><strong>Scene preview</strong> - renders the scene with debug info and various editor-specific objects (gizmos, entity icons, etc.). Allows you to select, move, rotate, scale, delete, etc. various entities. The <strong>Toolbar</strong> on its left side shows available context-dependent tools.</li>
+<li><strong>Inspector</strong> - allows you to modify various properties of the selected object.</li>
+<li><strong>Message Log</strong> - displays important messages from the editor.</li>
+<li><strong>Navmesh Panel</strong> - allows you to create, delete, and edit navigational meshes.</li>
+<li><strong>Command Stack</strong> - displays your most recent actions and allows you to undo or redo their changes.</li>
+<li><strong>Asset Browser</strong> - allows you to inspect the assets of your game and to instantiate resources in the scene, among other things.</li>
+<li><strong>Audio Context</strong> - allows you to edit the settings of the scene’s sound context (global volume, available audio buses, effects, etc.)</li>
+</ul>
+</div>
+<div id="creating-or-loading-a-scene" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Creating or loading a Scene<a href="getting-started.html#creating-or-loading-a-scene" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>FyroxEd works with scenes - a scene is a container for game entities, you can create and edit one scene at a time. You must have a scene loaded to begin working with the editor. To create a scene go to <code>File -&gt; New Scene</code>.</p>
+<p>To load an existing scene, go to <code>File -&gt; Load</code> and select the desired scene through the file browser. Recently opened scenes can be loaded more quickly by going to <code>File -&gt; Recent Scenes</code> and selecting the desired one.</p>
+</div>
+<div id="populating-a-scene" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Populating a Scene<a href="getting-started.html#populating-a-scene" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A scene can contain various game entities. There are two equivalent ways of creating these:</p>
+<ul>
+<li>By going to <code>Create</code> in the main menu and selecting the desired entity from the drop down.</li>
+<li>By right-clicking on a game entity in the <code>World Viewer</code> and selecting the desired entity from the <code>Create Child</code> sub-menu.</li>
+</ul>
+<p>Complex objects usually made in 3D modelling software (Blender, 3Ds Max, Maya, etc.) can be saved in various formats. Fyrox supports FBX format, which is supported by pretty much any 3D modelling software. You can instantiate such objects by simply dragging the one you want and dropping it on the <code>Scene Preview</code>. While dragging it, you’ll also see a preview of the object.</p>
+<p>You can do the same with other scenes made in the editor (<code>rgs</code> files), for example, you can create a scene with a few objects in it with some scripts and re-use them within other scenes. Such scenes are called <a href="../scene/prefab.md">prefabs</a>.</p>
+</div>
+<div id="saving-a-scene" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Saving a Scene<a href="getting-started.html#saving-a-scene" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To save your work, go to <code>File -&gt; Save</code>. If you’re saving a new scene, the editor will ask you to specify a file name and a path to where the scene will be saved. Scenes loaded from a file will automatically be saved to the path they were loaded from.</p>
+</div>
+<div id="undoing-and-redoing" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Undoing and redoing<a href="getting-started.html#undoing-and-redoing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>FyroxEd remembers your actions and allows you to undo and redo the changes done by these. You can undo or redo changes by either going to <code>Edit -&gt; Undo/Redo</code> or through the usual shortcuts: <code>Ctrl+Z</code> - to undo, <code>Ctrl+Y</code> - to redo.</p>
+</div>
+<div id="controls" class="section level3 hasAnchor" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> Controls<a href="getting-started.html#controls" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are number of control keys that you’ll be using most of the time, pretty much all of them work in the <code>Scene Preview</code> window:</p>
+<div id="editor-camera-movement" class="section level4 hasAnchor" number="3.3.6.1">
+<h4><span class="header-section-number">3.3.6.1</span> Editor camera movement<a href="getting-started.html#editor-camera-movement" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Click and hold <code>[Right Mouse Button]</code> within the <code>Scene Preview</code> window to enable the movement controls:
+- <code>[W][S][A][D]</code> - Move camera forward/backward/left/right
+- <code>[Space][Q]/[E]</code> - Raise/Lower Camera
+- <code>[Ctrl]</code> - Speed up
+- <code>[Shift]</code>- Slowdown
+#### Others
+- <code>[Left Mouse Button]</code> - Select
+- <code>[Middle Mouse Button]</code> - Pan camera in viewing plane
+- <code>[1]</code> - Select interaction mode
+- <code>[2]</code> - Move interaction mode
+- <code>[3]</code> - Scale interaction mode
+- <code>[4]</code> - Rotate interaction mode
+- <code>[5]</code> - Navigational mesh editing mode
+- <code>[6]</code> - Terrain editing interaction mode
+- <code>[Ctrl]+[Z]</code> - Undo
+- <code>[Ctrl]+[Y]</code> - Redo
+- <code>[Delete]</code> - Delete current selection.</p>
+</div>
+</div>
+<div id="play-mode" class="section level3 hasAnchor" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Play Mode<a href="getting-started.html#play-mode" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the key features of the editor is that it allows you to run your game from it in a separate process. Use the <code>Play/Stop</code> button at the top of the <code>Scene Preview</code> window to enter or leave Play Mode. Keep in mind, that the editor UI will be locked while you’re in Play Mode.</p>
+<p>Play Mode can be activated only for projects made with the <code>fyrox-template</code> (or for projects with a similar structure). The editor calls <code>cargo</code> commands to build and run your game in a separate process. Running the game in a separate process ensures that the editor won’t crash if your game does, it also provides excellent isolation between the game and the editor, not giving a chance to break the editor by running the game.</p>
+</div>
+<div id="additional-utilities" class="section level3 hasAnchor" number="3.3.8">
+<h3><span class="header-section-number">3.3.8</span> Additional Utilities<a href="getting-started.html#additional-utilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are also number of powerful utilities that will make your life easier, they can be found under the <code>Utils</code> section of the main menu:</p>
+<ul>
+<li>Curve Editor - allows you to create and edit curve resources to make complex laws for game parameters.</li>
+<li>Path Fixer - helps you fix incorrect resource references in your scenes.</li>
+</ul>
+</div>
+</div>
+<div id="scene-and-scene-graph" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Scene and Scene Graph<a href="getting-started.html#scene-and-scene-graph" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you’re playing a game, you often see various objects scattered around the screen, all of them are forming a <em>scene</em>. A scene is just a set of a variety objects, as in many other game engines, Fyrox allows you to create multiple scenes for multiple purposes, for example, one scene could be used for a menu, a bunch of others for game levels, and another one for an ending screen. Scenes can also be used to create a source of data for other scenes, such scenes are called <em>prefabs</em>. Scenes can also be rendered in a texture, which can be used in other scenes - this way you can create interactive screens that show other places.</p>
+<p>While playing games, you may have noticed that some objects behaves as if they were linked to other objects, for example, a character in a role-playing game could carry a sword. While the character holds the sword, it is linked to his arm. Such relations between the objects can be presented by a graph structure.</p>
+<p>Simply speaking, a graph is a set of objects with hierarchical relationships between each object. Each object in the graph is called a <em>node</em>. In the example with the sword and the character, the sword is a <em>child</em> node of the character, and the character is a <em>parent</em> node of the sword (here we ignore the fact that in reality, character models usually contain complex skeletons, with the sword actually being attached to one of the hands’ bones, not to the character).</p>
+<p>You can change the hierarchy of nodes in the editor using a simple drag’n’drop functionality in the <code>World Viewer</code> - drag a node onto some other node, and it will attach itself to it.</p>
+<div id="building-blocks-or-scene-nodes" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Building Blocks or Scene Nodes<a href="getting-started.html#building-blocks-or-scene-nodes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The engine offers various types of “building blocks” for your scene, each such block is called a <em>scene node</em>.</p>
+<ul>
+<li><a href="../scene/base_node.md">Base</a> - stores hierarchical information (a handle to the parent node and handles to children nodes), local and global transform, name, tag, lifetime, etc. It has self-describing name - it’s used as a base node for every other scene node via composition.</li>
+<li><a href="../scene/mesh_node.md">Mesh</a> - represents a 3D model. This one of the most commonly used nodes in almost every game. Meshes can be easily created either programmatically, or be made in some 3D modelling software, such as Blender, and then loaded into the scene.</li>
+<li><a href="../scene/light_node.md">Light</a> - represents a light source. There are three types of light sources:
+<ul>
+<li><strong>Point</strong> - emits light in every direction. A real-world example would be a light bulb.</li>
+<li><strong>Spot</strong> - emits light in a particular direction, with a cone-like shape. A real-world example would be a flashlight.</li>
+<li><strong>Directional</strong> - emits light in a particular direction, but does not have position. The closest real-world example would be the Sun.</li>
+</ul></li>
+<li><a href="../scene/camera_node.md">Camera</a> - allows you to see the world. You must have at least one camera in your scene to be able to see anything.</li>
+<li><a href="../scene/sprite_node.md">Sprite</a> - represents a quad that always faces towards a camera. It can have a texture and size and can also can be rotated around the “look” axis.</li>
+<li><a href="../scene/particle_system_node.md">Particle system</a> - allows you to create visual effects using a huge set of small particles. It can be used to create smoke, sparks, blood splatters, etc.</li>
+<li><a href="../scene/terrain_node.md">Terrain</a> - allows you to create complex landscapes with minimal effort.</li>
+<li><a href="../scene/decal_node.md">Decal</a> - paints on other nodes using a texture. It is used to simulate cracks in concrete walls, damaged parts of the road, blood splatters, bullet holes, etc.</li>
+<li><a href="../physics/rigid_body.md">Rigid Body</a> - a physical entity that is responsible for the dynamic of the rigid. There is a special variant for 2D - <code>RigidBody2D</code>.</li>
+<li><a href="../physics/collider.md">Collider</a> - a physical shape for a rigid body. It is responsible for contact manifold generation, without it, any rigid body will not participate in simulation correctly, so every rigid body must have at least one collider. There is a special variant for 2D - <code>Collider2D</code>.</li>
+<li><a href="../physics/joint.md">Joint</a> - a physical entity that restricts motion between two rigid bodies. It has various amounts of degrees of freedom depending on the type of the joint. There is a special variant for 2D - <code>Joint2D</code>.</li>
+<li><a href="../scene/rectangle.md">Rectangle</a> - a simple rectangle mesh that can have a texture and a color. It is a very simple version of a Mesh node, yet it uses very optimized renderer, that allows you to render dozens of rectangles simultaneously. This node is intended for use in <strong>2D games</strong> only.</li>
+<li><a href="../sound/sound.md">Sound</a> - a sound source universal for 2D and 3D. Spatial blend factor allows you to select a proportion between 2D and 3D.</li>
+<li>Listener - an audio receiver that captures the sound at a particular point in your scene and sends it to an audio context for processing and outputting to an audio playback device.</li>
+<li>Animation Player - a container for multiple animations. It can play animations made in the <a href="../animation/anim_editor.md">animation editor</a> and apply animation poses to respective scene nodes.</li>
+<li>Animation Blending State Machine - a state machine that mixes multiple animations from multiple states into one; each state is backed by one or more animation playing or blending nodes. See its <a href="../animation/absm_editor.md">respective chapter</a> for more info.</li>
+</ul>
+<p>Every node can be created either in the editor (through <code>Create</code> on the main menu, or through <code>Add Child</code> after right-clicking on a game entity) or programmatically via their respective node builder (see <a href="https://docs.rs/fyrox/latest/fyrox/scene/index.html">API docs</a> for more info). These scene nodes allow you to build almost any kind of game. It is also possible to create your own types of nodes, but that is an advanced topic, which is covered in a <a href="../scene/custom_node.md">future chapter</a>.</p>
+</div>
+<div id="local-and-global-coordinates" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Local and Global Coordinates<a href="getting-started.html#local-and-global-coordinates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A graph describes your scene in a very natural way, allowing you think in terms of relative and absolute coordinates when working with <em>scene nodes</em>.</p>
+<p>A scene node has two kinds of transform - a local and global. The local transform defines where the node is located relative to its origin, its scale as a percentage, and its rotation around any arbitrary axis.The global transform is almost the same, but it also includes the whole chain of transforms of the parent nodes. Going back to the example of the character and the sword, if the character moves, and by extension the sword, the global transform of the sword will reflect the changes made to the character position, yet its local transform will not, since that represents the sword’s position’s relative to the character’s, which didn’t change.</p>
+<p>This mechanism is very simple, yet powerful. The full grace of it unfolds when you’re working with 3D models with skeletons. Each bone in a skeleton has its parent and a set of children, which allows you to rotate, translate, or scale them to animate your entire character.</p>
+</div>
+</div>
+<div id="assets" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Assets<a href="getting-started.html#assets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pretty much every game depends on various assets, such as 3D models, textures, sounds, etc. Fyrox has its own assets pipeline made to make your life easier.</p>
+<div id="asset-types" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Asset Types<a href="getting-started.html#asset-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The engine offers a set of assets that should cover all of your needs:</p>
+<ul>
+<li><a href="../resources/model.md">Models</a> - are a set of objects. They can be a simple 3D model (barrels, bushes, weapons,
+etc.) or complex scenes with lots of objects and possibly other model instances. Fyrox supports two main formats:
+FBX - which can be used to import 3D models, RGS - which are scenes made in FyroxEd. RGS models are special, as they can be
+used as <em>hierarchical prefabs</em>.</li>
+<li><a href="../resources/texture.md">Textures</a> - are images used to add graphical details to objects. The
+engine supports multiple texture formats, such as PNG, JPG, BMP, etc. Compressed textures in DDS format are also supported.</li>
+<li><a href="../resources/sound.md">Sound buffers</a> - are data buffers for sound sources. Fyrox supports WAV and OGG formats.</li>
+<li><a href="../resources/curve.md">Curves</a> - are parametric curves. They’re used to create complex functions for numeric parameters.
+They can be made in the <code>Curve Editor</code> (<code>Utils -&gt; Curve Editor</code>)</li>
+<li><a href="../sound/hrtf.md">HRIR Spheres</a> - head-related impulse response collection used for head-related transfer function
+in the HRTF sound rendering.</li>
+<li><a href="../ui/font.md">Fonts</a> - arbitrary TTF/OTF fonts.</li>
+<li><a href="../rendering/materials.md">Materials</a> - materials for rendering.</li>
+<li><a href="../rendering/shaders.md">Shaders</a> - shaders for rendering.</li>
+<li>It is also possible to create custom assets. See <a href="../resources/custom.md">respective chapter</a> for more info.</li>
+</ul>
+</div>
+<div id="asset-management-1" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Asset Management<a href="getting-started.html#asset-management-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Asset management is performed from the <code>Asset Browser</code> window in the editor, you can select an asset, preview it, and edit its import options. Here’s a screenshot of the asset browser with a texture selected:</p>
+<div class="float">
+<img src="images/beginning_assets.png" alt="asset browser" />
+<div class="figcaption">asset browser</div>
+</div>
+<p>The most interesting part here is the import options section under the previewer. It allows you to set asset-specific import options and apply them. Every asset has its own set of import options. See their respective asset page from the section above to learn what each import option is for.</p>
+</div>
+<div id="asset-instantiation" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Asset Instantiation<a href="getting-started.html#asset-instantiation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Some asset types can be instantiated in scenes; for now, you can only create direct instances from models. This is done by simply dragging the model you want to instantiate and dropping it on the <code>Scene Preview</code>. While dragging it, you’ll also see a preview of the model.</p>
+<div class="float">
+<img src="images/preview.gif" alt="preview" />
+<div class="figcaption">preview</div>
+</div>
+<p>The maximum amount of asset instances is not limited by the engine but it is by the memory and CPU resources of your PC. Note that the engine does try to reuse data across instances as much as possible.</p>
+<p>You can also instantiate assets dynamically from your code. Here’s an example of that for a Model:</p>
+<pre class="rust,no_run,edition2018"><code>{{#include ../code/snippets/src/resource/mod.rs:instantiate_model}}</code></pre>
+<p>This is very useful with prefabs that you may want to instantiate in a scene at runtime.</p>
+</div>
+<div id="loading-assets" class="section level3 hasAnchor" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Loading Assets<a href="getting-started.html#loading-assets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Usually, there is no need to manually handle the loading of assets since you have the editor to help with that - just create a scene with all the required assets. However, there are times when you may need to instantiate some asset dynamically, for example, a bot prefab. For these cases, you can use the <code>ResourceManager::request&lt;T&gt;</code> method with the appropriate type, such as <code>Model</code>, <code>Texture</code>, <code>SoundBuffer</code>, etc.</p>
+</div>
+</div>
+<div id="data-management" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Data Management<a href="getting-started.html#data-management" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The engine uses pools to store most objects (scene nodes in a graph, animations in an animation player, sound sources in an audio context, etc.). Since you’ll use them quite often, reading and understanding this chapter is recommended.</p>
+<div id="motivation" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Motivation<a href="getting-started.html#motivation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rust ownership system and borrow checker, in particular, dictate the rules of data management. In game development, you often have the need to reference objects from other objects. In languages like C, this is usually achieved by simply storing a raw pointer and calling it a day. That works, yet it’s remarkably unsafe - you risk either forgetting to destroy an object and leaking memory or destroying an object still being referenced and then trying to access deallocated memory. Other languages, like C++, allow you to store <em>shared pointers</em> to your data, which by keeping a reference count, ensures the previous doesn’t happen at the cost of a, most often, negligible overhead. Rust counts with smart pointers similar to this, though not without their limitations. There is the <code>Rc/Arc</code> - they function like <em>shared pointers</em>, except they don’t allow mutating their content, only reading it. If you want mutability, you use either a <code>RefCell</code> for a single-threaded environment, or a <code>Mutex</code> for a multithreaded environment. That is where the problems begin. For types such as <code>Rc&lt;RefCell&gt;</code> or <code>Arc&lt;Mutex&gt;</code>, Rust enforces its borrowing rules at runtime, which are unlimited readers but a single writer. Any attempt to borrow mutably more than once at a time will lead to a runtime error.</p>
+<p>Another problem with these shared references is that is very easy to accidentally create cyclical references that prevent objects from ever being destroyed. While the previous could be lived with, the last problem is especially severe in the case of games: the overhead of runtime checks. In the case of a <code>Rc&lt;RefCell&gt;</code>, it is a single reference counter for given accesses to the data, but in the case of a <code>Arc&lt;Mutex&gt;</code>, it is a mutex lock.</p>
+<p>The solution to these problems is far from ideal; it certainly has its own downfalls. Instead of scattering objects across memory and then having to manage the lifetime of each of them through reference counting, we can store all of the objects in a single and contiguous memory block and then use indices to access each object. Such a structure is called a pool.</p>
+</div>
+<div id="technical-details" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Technical Details<a href="getting-started.html#technical-details" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A pool is an efficient method of data management. A pool is a vector with entries that can be either vacant or occupied. Each entry, regardless of its status, also stores a number called a <em>generation</em> number. This is used to understand whether an entry has changed over time or not. When an entry is reused, its generation number is increased, rendering all previously created handles leading to the entry invalid. This is a simple and efficient algorithm for tracking the lifetime of objects.</p>
+<p>To access the data in the entries, the engine uses the previously mentioned <em>handles</em>. A handle is a pair of the index of an entry
+and a generation number. When you put an object in the pool, this gives you the handle that leads to the object, as well as the
+entry’s current generation number. The number remains valid until you “free” the object, which makes the entry vacant again.</p>
+</div>
+<div id="advantages" class="section level3 hasAnchor" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> Advantages<a href="getting-started.html#advantages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Since a pool is a contiguous memory block, it is far more CPU cache-friendly. This reduces the occurrences of CPU cache misses, which makes accesses to data blazingly fast.</li>
+<li>Almost every entity in Fyrox lives on its own pool, which makes it easy to create data structures
+like graphs, where nodes refer to other nodes. In this case, nodes simply need to store a handle to refer to other nodes.</li>
+<li>Simple lifetime management. There is no way to leak memory since cross-references can only be done via handles.</li>
+<li>Fast random access with a constant complexity.</li>
+<li>Handles are the same size as a pointer on a 64-bit architecture, just 8 bytes.</li>
+</ul>
+</div>
+<div id="disadvantages" class="section level3 hasAnchor" number="3.6.4">
+<h3><span class="header-section-number">3.6.4</span> Disadvantages<a href="getting-started.html#disadvantages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Pools can contain lots of gaps between currently used memory, which may lead to less efficient memory usage.</li>
+<li>Handles are sort of weak references, but worse. Since they do not own any data nor even point to their data, you need a reference to its pool instance in order to borrow the data a handle leads to.</li>
+<li>Handles introduce a level of indirection that can hurt performance in places with high loads that require random access, though this is not too significant as random access is already somewhat slow because of potential CPU cache misses.</li>
+</ul>
+</div>
+<div id="usage" class="section level3 hasAnchor" number="3.6.5">
+<h3><span class="header-section-number">3.6.5</span> Usage<a href="getting-started.html#usage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You’ll use <code>Handle</code> <em>a lot</em> while working with Fyrox. So where are the main usages of pools and handles? The largest is in a <a href="../scene/graph.md">scene graph</a>. This stores all the nodes in a pool and gives handles to each node. Each scene node stores a handle to their parent node and a set of handles to their children nodes. A scene graph automatically ensures that such handles are valid. In <a href="../scripting/script.md">scripts</a>, you can also store handles to scene nodes and assign them in the editor. <a href="../animation/animation.md">Animation</a> is another place that stores handles to animated scene nodes. <a href="../animation/blending.md">Animation Blending State Machine</a> stores its own state graph using a pool; it also takes handles to animations from an animation player in a scene.</p>
+<p>And the list could keep going for a long time. This is why you need to understand the basic concepts of data management, as to efficiently and fearlessly use Fyrox.</p>
+</div>
+<div id="borrowing" class="section level3 hasAnchor" number="3.6.6">
+<h3><span class="header-section-number">3.6.6</span> Borrowing<a href="getting-started.html#borrowing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Once an object is placed in a pool, you have to use its respective handle to get a reference to it. This can be done with either <code>pool.borrow(handle)</code> or <code>pool.borrow_mute(handle)</code>, or by using the <code>Index</code> trait: <code>pool[handle]</code>. Note that these methods panic when the handle given is invalid. If you want to be safe, use the <code>try_borrow(handle)</code> or <code>try_borrow_mut(handle)</code> method.</p>
+<pre class="rust,no_run"><code># extern crate fyrox;
+# use fyrox::core::pool::Pool;
+#
+# fn main() {
+let mut pool = Pool::&lt;u32&gt;::new();
+let handle = pool.spawn(1);
+
+let obj = pool.borrow_mut(handle);
+*obj = 11;
+
+let obj = pool.borrow(handle);
+assert_eq!(*obj, 11);
+# }</code></pre>
+</div>
+<div id="freeing" class="section level3 hasAnchor" number="3.6.7">
+<h3><span class="header-section-number">3.6.7</span> Freeing<a href="getting-started.html#freeing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can extract an object from a pool by calling <code>pool.free(handle)</code>. This will give you the object back and make all current handles to it invalid.</p>
+<pre class="rust,no_run"><code># extern crate fyrox;
+# use fyrox::core::pool::Pool;
+#
+# fn main() {
+let mut pool = Pool::&lt;u32&gt;::new();
+let handle = pool.spawn(1);
+
+pool.free(handle);
+
+let obj = pool.try_borrow(handle);
+assert_eq!(obj, None);
+# }</code></pre>
+</div>
+<div id="take-and-reserve" class="section level3 hasAnchor" number="3.6.8">
+<h3><span class="header-section-number">3.6.8</span> Take and Reserve<a href="getting-started.html#take-and-reserve" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes you may want to temporarily extract an object from a pool, do something with it, and then put it back, yet not want to break every handle to the object in the process. There are three methods for this:</p>
+<ol style="list-style-type: decimal">
+<li><code>take_reserve</code> + <code>try_take_reserve</code> - moves an object out of the pool but leaves the entry in an occupied state. This function returns a tuple with two values <code>(Ticket&lt;T&gt;, T)</code>. The latter one being your object, and the former one being a wrapper over its index that allows you to return the object once you’re done with it. This is called a ticket. Note that attempting to borrow a moved object will cause a panic!</li>
+<li><code>put_back</code> - moves the object back using the given ticket. The ticket contains information about where in the pool to return the object to.</li>
+<li><code>forget_ticket</code> - makes the pool entry vacant again. Useful in cases where you move an object out of the pool, and then decide you won’t return it. If this is the case, you <strong>must</strong> call this method, otherwise, the corresponding entry will remain unusable.</li>
+</ol>
+<p>Reservation example:</p>
+<pre class="rust,no_run"><code># extern crate fyrox;
+# use fyrox::core::pool::Pool;
+#
+# fn main() {
+let mut pool = Pool::&lt;u32&gt;::new();
+let handle = pool.spawn(1);
+
+let (ticket, ref mut obj) = pool.take_reserve(handle);
+
+*obj = 123;
+
+// Attempting to fetch while there is an existing reservation, will fail.
+
+let attempt_obj = pool.try_borrow(handle);
+assert_eq!(attempt_obj, None);
+
+// Put the object back, allowing borrowing again.
+
+pool.put_back(ticket, *obj);
+
+let obj = pool.borrow(handle);
+
+assert_eq!(obj, &amp;123);
+# }</code></pre>
+<p>Forget example:</p>
+<pre class="rust,no_run"><code># extern crate fyrox;
+# use fyrox::core::pool::Pool;
+#
+# fn main() {
+let mut pool = Pool::&lt;u32&gt;::new();
+let handle = pool.spawn(1);
+
+let (ticket, _obj) = pool.take_reserve(handle);
+
+pool.forget_ticket(ticket);
+
+let obj = pool.try_borrow(handle);
+
+assert_eq!(obj, None);
+# }</code></pre>
+</div>
+<div id="iterators" class="section level3 hasAnchor" number="3.6.9">
+<h3><span class="header-section-number">3.6.9</span> Iterators<a href="getting-started.html#iterators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are a few possible iterators, each one serving its own purpose:</p>
+<ol style="list-style-type: decimal">
+<li><code>iter/iter_mut</code> - creates an iterator over occupied pool entries, returning references to each object.</li>
+<li><code>pair_iter/pair_iter_mut</code> - creates an iterator over occupied pool entries, returning tuples of a handle and reference to each object.</li>
+</ol>
+<pre class="rust,no_run"><code># extern crate fyrox;
+# use fyrox::core::pool::Pool;
+#
+# fn main() {
+let mut pool = Pool::&lt;u32&gt;::new();
+let _handle = pool.spawn(1);
+
+let mut iter = pool.iter_mut();
+
+let next_obj = iter.next().unwrap();
+
+assert_eq!(next_obj, &amp;1);
+
+let next_obj = iter.next();
+
+assert_eq!(next_obj, None);
+# }</code></pre>
+</div>
+<div id="direct-access" class="section level3 hasAnchor" number="3.6.10">
+<h3><span class="header-section-number">3.6.10</span> Direct Access<a href="getting-started.html#direct-access" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have the ability to get an object from a pool using only an index. The methods for that are <code>at</code> and <code>at_mut</code>.</p>
+</div>
+<div id="validation" class="section level3 hasAnchor" number="3.6.11">
+<h3><span class="header-section-number">3.6.11</span> Validation<a href="getting-started.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To check if a handle is valid, you can use the <code>is_valid_handle</code> method.</p>
+</div>
+<div id="type-erased-handles" class="section level3 hasAnchor" number="3.6.12">
+<h3><span class="header-section-number">3.6.12</span> Type-erased Handles<a href="getting-started.html#type-erased-handles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The pool module also offers type-erased handles that can be of use in some situations. Still, try to avoid using these, as they may introduce hard-to-reproduce bugs. Type safety is always good :3</p>
+<p>A type-erased handle is called an <code>ErasedHandle</code> and can be created either manually or from a strongly-typed handle. Both handle types are interchangeable; you can use the <code>From</code> and <code>Into</code> traits to convert from one to the other.</p>
+<div id="getting-a-handle-to-an-object-by-its-reference" class="section level4 hasAnchor" number="3.6.12.1">
+<h4><span class="header-section-number">3.6.12.1</span> Getting a Handle to an Object by its Reference<a href="getting-started.html#getting-a-handle-to-an-object-by-its-reference" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you need to get a handle to an object from only having a reference to it, you can use the <code>handle_of</code> method.</p>
+</div>
+<div id="iterate-over-and-filter-out-objects" class="section level4 hasAnchor" number="3.6.12.2">
+<h4><span class="header-section-number">3.6.12.2</span> Iterate Over and Filter Out Objects<a href="getting-started.html#iterate-over-and-filter-out-objects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>retain</code> method allows you to filter your pool’s content using a closure provided by you.</p>
+</div>
+</div>
+</div>
+<div id="borrow-checker" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Borrow Checker<a href="getting-started.html#borrow-checker" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rust has a <a href="https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html">famous borrow checker</a>, that became a sort of horror story for newcomers. It usually treated like an enemy, that prevents your from writing anything useful as you may get used in other languages. In fact, it is a very useful part of Rust that proves correctness of your program and does not let you doing nasty things like memory corruption, data races, etc. This chapter explains how Fyrox solves the most common borrowing issues and makes game development as easy as in any other game engine.</p>
+<div id="multiple-borrowing" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Multiple Borrowing<a href="getting-started.html#multiple-borrowing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When writing a script logic there is often a need to do a multiple borrowing of some data, usually it is other scene nodes. In normal circumstances you can borrow each node one-by-one, but in other cases you can’t do an action without borrowing two or more nodes simultaneously. In this case you can use multi-borrowing:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb19-1"><a href="getting-started.html#cb19-1" tabindex="-1"></a><span class="op">{{</span>#include <span class="op">../</span>code<span class="op">/</span>snippets<span class="op">/</span>src<span class="op">/</span>borrowck<span class="op">/</span><span class="kw">mod</span><span class="op">.</span>rs<span class="op">:</span>synthetic_example<span class="op">}}</span></span></code></pre></div>
+<p>As you can see, you can borrow multiple nodes at once with no compilation errors. Borrowing rules in this case are enforced at runtime. They’re the same as standard Rust borrowing rules:</p>
+<ol style="list-style-type: decimal">
+<li>You can have infinite number of immutable references to the same object.</li>
+<li>You can have only one mutable reference to the same object.</li>
+</ol>
+<p>Multi-borrow context provides detailed error messages for cases when borrowing has failed. For example, it will tell you if you’re trying to mutably borrow an object, that was already borrowed as immutable (and vice versa).
+It also provides handle validation and will tell you what’s wrong with it. It could be either invalid index of it, or the generation. The latter means that the object at the handle was changed and the handle is invalid.</p>
+<p>The previous example looks kinda synthetic and does not show the real-world code that could lead to borrowing issues. Let’s fix this. Imagine that you’re making a shooter, and you have bots, that can follow and attack targets. Then the code could look like this:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb20-1"><a href="getting-started.html#cb20-1" tabindex="-1"></a><span class="op">{{</span>#include <span class="op">../</span>code<span class="op">/</span>snippets<span class="op">/</span>src<span class="op">/</span>borrowck<span class="op">/</span><span class="kw">mod</span><span class="op">.</span>rs<span class="op">:</span>bot_example<span class="op">}}</span></span></code></pre></div>
+<p>As you can see, for this code to compile we need to borrow at least two nodes simultaneously: the node with <code>Bot</code> script and the <code>target</code> node. This is because we’re calculating distance between the two nodes to switch animations accordingly (attack if the target is close enough). As pretty much any approach, this one is not ideal and comes with its own pros and cons. The pros are quite simple:</p>
+<ul>
+<li>No compilation errors - sometimes Rust is too strict about borrowing rules, and valid code does not pass its checks.</li>
+<li>Better ergonomics - no need to juggle with temporary variable here and there to perform an action.</li>
+</ul>
+<p>The cons are:</p>
+<ul>
+<li>Multi-borrowing is slightly slower (~1-4% depending on your use case) - this happens because the multi-borrowing context checks borrowing rules at runtime.</li>
+</ul>
+</div>
+<div id="message-passing" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> Message Passing<a href="getting-started.html#message-passing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes the code becomes so convoluted, so it is simply hard to maintain and understand what it is doing. This happens when code coupling get to a certain point, which requires very broad context for the code to be executed. For example, if bots in your game have weapons it is so tempting to just borrow the weapon and call something like <code>weapon.shoot(..)</code>. When your weapon is simple then it might work fine, however when your game gets bigger and weapons get new features simple <code>weapon.shoot(..)</code> could be not enough. It could be because <code>shoot</code> method get more and more arguments or by some other reason. This is quite common case and in general when your code become tightly coupled it becomes hard to maintain it and what’s more important - it could easily result in compilation errors, that comes from borrow checker. To illustrate this, let’s look at this code:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb21-1"><a href="getting-started.html#cb21-1" tabindex="-1"></a><span class="op">{{</span>#include <span class="op">../</span>code<span class="op">/</span>snippets<span class="op">/</span>src<span class="op">/</span>borrowck<span class="op">/</span>without_message_passing<span class="op">.</span>rs<span class="op">:</span>without_message_passing<span class="op">}}</span></span></code></pre></div>
+<p>This is probably one of the typical implementations of shooting in games - you cast a ray from the weapon and if it hits a bot, you’re applying some damage to it. In this case bots can also shoot, and this is where borrow checker again gets in our way. If you try to uncomment the <code>// weapon.shoot(ctx.handle, &amp;mut ctx.scene.graph);</code> line you’ll get a compilation error, that tells you that <code>ctx.scene.graph</code> is already borrowed. It seems that we’ve stuck, and we need to somehow fix this issue. We can’t use multi-borrowing in this case, because it still enforces borrowing rules and instead of compilation error, you’ll runtime error.</p>
+<p>To solve this, you can use well-known message passing mechanism. The core idea of it is to not call methods immediately, but to collect all the needed data for the call and send it an object, so it can do the call later. Here’s how it will look:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb22-1"><a href="getting-started.html#cb22-1" tabindex="-1"></a><span class="op">{{</span>#include <span class="op">../</span>code<span class="op">/</span>snippets<span class="op">/</span>src<span class="op">/</span>borrowck<span class="op">/</span>message_passing<span class="op">.</span>rs<span class="op">:</span>message_passing<span class="op">}}</span></span></code></pre></div>
+<p>The weapon now subscribes to <code>ShootMessage</code> and listens to it in <code>on_message</code> method and from there it can perform the actual shooting without any borrowing issues. The bot now just sends the <code>ShootMessage</code> instead of borrowing the weapon trying to call <code>shoot</code> directly. The messages do not add any one-frame delay as you might think, they’re processed in the same frame so there’s no one-or-more frames desynchronization.</p>
+<p>This approach with messages has its own pros and cons. The pros are quite significant:</p>
+<ul>
+<li>Decoupling - coupling is now very loose and done mostly on message side.</li>
+<li>Easy to refactor - since the coupling is loose, you can refactor the internals with low chance of breaking existing code, that could otherwise be done because of intertwined and convoluted code.</li>
+<li>No borrowing issues - the method calls are done in different places and there’s no lifetime collisions.</li>
+<li>Easy to write unit and integration tests - this comes from loose coupling.</li>
+</ul>
+<p>The cons are the following:</p>
+<ul>
+<li>Message passing is slightly slower than direct method calls (~1-7% depending on your use case) - you should keep message granularity at a reasonable level. Do not use message passing for tiny changes, it will most likely make your game slower.</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scripting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-beginning.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

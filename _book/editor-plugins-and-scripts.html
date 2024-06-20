@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Editor, Plugins and Scripts | Fyrox Book</title>
+  <meta name="description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Editor, Plugins and Scripts | Fyrox Book" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Editor, Plugins and Scripts | Fyrox Book" />
+  
+  <meta name="twitter:description" content="<p>A book for the Fyrox Game Engine
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Dmitry Stepanov" />
+
+
+<meta name="date" content="2024-06-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="getting-started.html"/>
+<link rel="next" href="parts.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Fyrox Game Engine Book</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#engine-version"><i class="fa fa-check"></i><b>1.1</b> Engine Version</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#how-to-read-the-book"><i class="fa fa-check"></i><b>1.2</b> How to read the book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#api-documentation"><i class="fa fa-check"></i><b>1.3</b> API Documentation</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#required-knowledge"><i class="fa fa-check"></i><b>1.4</b> Required knowledge</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#support-the-development"><i class="fa fa-check"></i><b>1.5</b> Support the development</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#introduction-to-fyrox"><i class="fa fa-check"></i><b>2.1</b> Introduction to Fyrox</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#what-can-the-engine-do"><i class="fa fa-check"></i><b>2.1.1</b> What can the engine do?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction.html"><a href="introduction.html#how-does-the-engine-work"><i class="fa fa-check"></i><b>2.1.2</b> How does the engine work?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction.html"><a href="introduction.html#programming-languages"><i class="fa fa-check"></i><b>2.1.3</b> Programming languages</a></li>
+<li class="chapter" data-level="2.1.4" data-path="introduction.html"><a href="introduction.html#engine-features"><i class="fa fa-check"></i><b>2.1.4</b> Engine Features</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#system-requirements"><i class="fa fa-check"></i><b>2.2</b> System Requirements</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#supported-platforms"><i class="fa fa-check"></i><b>2.2.1</b> Supported Platforms</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#basic-concepts"><i class="fa fa-check"></i><b>2.3</b> Basic concepts</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction.html"><a href="introduction.html#classic-oop"><i class="fa fa-check"></i><b>2.3.1</b> Classic OOP</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction.html"><a href="introduction.html#scenes"><i class="fa fa-check"></i><b>2.3.2</b> Scenes</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction.html"><a href="introduction.html#nodes-and-scene-graph"><i class="fa fa-check"></i><b>2.3.3</b> Nodes and Scene Graph</a></li>
+<li class="chapter" data-level="2.3.4" data-path="introduction.html"><a href="introduction.html#plugins"><i class="fa fa-check"></i><b>2.3.4</b> Plugins</a></li>
+<li class="chapter" data-level="2.3.5" data-path="introduction.html"><a href="introduction.html#scripts"><i class="fa fa-check"></i><b>2.3.5</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#design-philosophy-and-goals"><i class="fa fa-check"></i><b>2.4</b> Design Philosophy and Goals</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction.html"><a href="introduction.html#safety"><i class="fa fa-check"></i><b>2.4.1</b> Safety</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction.html"><a href="introduction.html#performance"><i class="fa fa-check"></i><b>2.4.2</b> Performance</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introduction.html"><a href="introduction.html#ease-of-use"><i class="fa fa-check"></i><b>2.4.3</b> Ease of use</a></li>
+<li class="chapter" data-level="2.4.4" data-path="introduction.html"><a href="introduction.html#battle-tested"><i class="fa fa-check"></i><b>2.4.4</b> Battle-tested</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#frequently-asked-questions"><i class="fa fa-check"></i><b>2.5</b> Frequently Asked Questions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#which-graphics-api-does-the-engine-use"><i class="fa fa-check"></i><b>2.5.1</b> Which graphics API does the engine use?</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction.html"><a href="introduction.html#is-the-engine-based-on-ecs"><i class="fa fa-check"></i><b>2.5.2</b> Is the engine based on ECS?</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction.html"><a href="introduction.html#what-kinds-of-games-can-i-make-using-fyrox"><i class="fa fa-check"></i><b>2.5.3</b> What kinds of games can I make using Fyrox?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting Started</a></li>
+<li class="chapter" data-level="4" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html"><i class="fa fa-check"></i><b>4</b> Editor, Plugins and Scripts</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html#platform-specific-dependencies"><i class="fa fa-check"></i><b>4.1</b> Platform-specific Dependencies</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html#linux"><i class="fa fa-check"></i><b>4.1.1</b> Linux</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html#quick-start"><i class="fa fa-check"></i><b>4.2</b> Quick Start</a></li>
+<li class="chapter" data-level="4.3" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html#project-generator"><i class="fa fa-check"></i><b>4.3</b> Project Generator</a></li>
+<li class="chapter" data-level="4.4" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html#using-the-latest-engine-version"><i class="fa fa-check"></i><b>4.4</b> Using the Latest Engine Version</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html#automatic"><i class="fa fa-check"></i><b>4.4.1</b> Automatic</a></li>
+<li class="chapter" data-level="4.4.2" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html#manual"><i class="fa fa-check"></i><b>4.4.2</b> Manual</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="editor-plugins-and-scripts.html"><a href="editor-plugins-and-scripts.html#adding-game-logic"><i class="fa fa-check"></i><b>4.5</b> Adding Game Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>5</b> Parts</a></li>
+<li class="chapter" data-level="6" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>6</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>6.1</b> Footnotes</a></li>
+<li class="chapter" data-level="6.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>6.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>7</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>7.1</b> Equations</a></li>
+<li class="chapter" data-level="7.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>7.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="7.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>7.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>8</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>8.1</b> Publishing</a></li>
+<li class="chapter" data-level="8.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>8.2</b> 404 pages</a></li>
+<li class="chapter" data-level="8.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>8.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fyrox Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="editor-plugins-and-scripts" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Editor, Plugins and Scripts<a href="editor-plugins-and-scripts.html#editor-plugins-and-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Every Fyrox game is just a plugin for both the engine and the editor, such approach allows the game to run from the editor and be able to edit the game entities in it. A game can define any number of scripts, which can be assigned to scene objects to run custom game logic on them. This chapter will cover how to install the engine with its platform-specific dependencies, how to use the plugins and scripting system, how to run the editor.</p>
+<div id="platform-specific-dependencies" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Platform-specific Dependencies<a href="editor-plugins-and-scripts.html#platform-specific-dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before starting to use the engine, make sure all required platform-specific development dependencies are installed. If using Windows or macOS, no additional dependencies are required other than the latest Rust installed with appropriate toolchain for your platform.</p>
+<div id="linux" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Linux<a href="editor-plugins-and-scripts.html#linux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On Linux, Fyrox needs the following libraries for development: <code>libxcb-shape0</code>, <code>libxcb-xfixes0</code>, <code>libxcb1</code>, <code>libxkbcommon</code>, <code>libasound2</code> and the <code>build-essential</code> package group.</p>
+<p>For Debian based distros like Ubuntu, they can be installed like below:</p>
+<pre class="shell"><code>sudo apt install libxcb-shape0-dev libxcb-xfixes0-dev libxcb1-dev libxkbcommon-dev libasound2-dev build-essential</code></pre>
+<p>For NixOS, you can use a <code>shell.nix</code> like below:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode nix"><code class="sourceCode nix"><span id="cb3-1"><a href="editor-plugins-and-scripts.html#cb3-1" tabindex="-1"></a><span class="op">{</span> <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span> <span class="op">}</span>:</span>
+<span id="cb3-2"><a href="editor-plugins-and-scripts.html#cb3-2" tabindex="-1"></a>pkgs.mkShell <span class="kw">rec</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="editor-plugins-and-scripts.html#cb3-3" tabindex="-1"></a>  <span class="va">nativeBuildInputs</span> <span class="op">=</span> <span class="kw">with</span> pkgs.buildPackages<span class="op">;</span> <span class="op">[</span></span>
+<span id="cb3-4"><a href="editor-plugins-and-scripts.html#cb3-4" tabindex="-1"></a>    pkg-config</span>
+<span id="cb3-5"><a href="editor-plugins-and-scripts.html#cb3-5" tabindex="-1"></a>    xorg.libxcb</span>
+<span id="cb3-6"><a href="editor-plugins-and-scripts.html#cb3-6" tabindex="-1"></a>    alsa-lib</span>
+<span id="cb3-7"><a href="editor-plugins-and-scripts.html#cb3-7" tabindex="-1"></a>    wayland</span>
+<span id="cb3-8"><a href="editor-plugins-and-scripts.html#cb3-8" tabindex="-1"></a>    libxkbcommon</span>
+<span id="cb3-9"><a href="editor-plugins-and-scripts.html#cb3-9" tabindex="-1"></a>    libGL</span>
+<span id="cb3-10"><a href="editor-plugins-and-scripts.html#cb3-10" tabindex="-1"></a>  <span class="op">];</span></span>
+<span id="cb3-11"><a href="editor-plugins-and-scripts.html#cb3-11" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="editor-plugins-and-scripts.html#cb3-12" tabindex="-1"></a>  <span class="va">shellHook</span> <span class="op">=</span> <span class="kw">with</span> pkgs.lib<span class="op">;</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb3-13"><a href="editor-plugins-and-scripts.html#cb3-13" tabindex="-1"></a><span class="st">    export LD_LIBRARY_PATH=</span><span class="sc">${</span>makeLibraryPath nativeBuildInputs<span class="sc">}</span><span class="st">:/run/opengl-driver/lib:$LD_LIBRARY_PATH</span></span>
+<span id="cb3-14"><a href="editor-plugins-and-scripts.html#cb3-14" tabindex="-1"></a><span class="st">  &#39;&#39;</span><span class="op">;</span></span>
+<span id="cb3-15"><a href="editor-plugins-and-scripts.html#cb3-15" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div>
+</div>
+<div id="quick-start" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Quick Start<a href="editor-plugins-and-scripts.html#quick-start" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Run the following commands to start using the editor as quickly as possible.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="editor-plugins-and-scripts.html#cb4-1" tabindex="-1"></a><span class="ex">cargo</span> install fyrox-template</span>
+<span id="cb4-2"><a href="editor-plugins-and-scripts.html#cb4-2" tabindex="-1"></a><span class="ex">fyrox-template</span> init <span class="at">--name</span> fyrox_test <span class="at">--style</span> 2d</span>
+<span id="cb4-3"><a href="editor-plugins-and-scripts.html#cb4-3" tabindex="-1"></a><span class="bu">cd</span> fyrox_test</span>
+<span id="cb4-4"><a href="editor-plugins-and-scripts.html#cb4-4" tabindex="-1"></a><span class="ex">cargo</span> run <span class="at">--package</span> editor <span class="at">--release</span></span></code></pre></div>
+</div>
+<div id="project-generator" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Project Generator<a href="editor-plugins-and-scripts.html#project-generator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Fyrox plugins are written in Rust, this means that if the source code of the game changes one must recompile. This architecture requires some boilerplate code. Fyrox offers a special tiny command line tool - <code>fyrox-template</code>. It helps generate all this boilerplate with a single command. Install it by running the following command:</p>
+<pre class="shell"><code>cargo install fyrox-template</code></pre>
+<p><em>Note for Linux:</em> This installs it in <code>$user/.cargo/bin</code>. If receiving errors about the <code>fyrox-template</code> command not<br />
+being found, add this hidden cargo bin folder to the operating systems <code>$PATH</code> environment variable.</p>
+<p>Now, navigate to the desired project folder and run the following command:</p>
+<pre class="shell"><code>fyrox-template init --name my_game --style 3d</code></pre>
+<p>Note that unlike <code>cargo init</code>, this will create a new folder with the given name.</p>
+<p>The tool accepts two arguments - a project name (<code>--name</code>) and a style (<code>--style</code>), which defines the contents of the default scene. After initializing the project, go to <code>game/src/lib.rs</code> - this is where the game logic is located, as you can see, the <code>fyrox-template</code> generated quite a bit of code for you. There are comments explaining what each place is for. For more info about each method, please refer <a href="https://docs.rs/fyrox/latest/fyrox/plugin/trait.Plugin.html">to the docs</a>.</p>
+<p>Once the project is generated, memorize the two commands that will help run your game in different modes:</p>
+<ul>
+<li><code>cargo run --package editor --release</code> - launches the editor with your game attached. The editor allows you to run your game from it and edit its game entities. It is intended to be used only for development.</li>
+<li><code>cargo run --package executor --release</code> - creates and runs the production binary of your game, which can be shipped (for
+example - to a store).</li>
+</ul>
+<p>Navigate to your project’s directory and run <code>cargo run --package editor --release</code>, after some time you should see the
+editor:</p>
+<div class="float">
+<img src="editor.png" alt="editor" />
+<div class="figcaption">editor</div>
+</div>
+<p>In the editor you can start building your game scene. <strong>Important note:</strong> your scene must have at least one camera,
+otherwise you won’t see a thing. Read the next chapter to learn how to use the editor.</p>
+</div>
+<div id="using-the-latest-engine-version" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Using the Latest Engine Version<a href="editor-plugins-and-scripts.html#using-the-latest-engine-version" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Due to the nature of the software development, some bugs will inevitably sneak into the major releases, due to this,
+you may want to use the latest engine version from the repository on GitHub, since it is the most likely to have bugs fixed
+(you can also contribute by fixing any bugs you find or at least, by <a href="https://github.com/FyroxEngine/Fyrox/issues">filing an issue</a>).</p>
+<div id="automatic" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Automatic<a href="editor-plugins-and-scripts.html#automatic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>⚠️ <code>fyrox-template</code> has special sub-command - <code>upgrade</code> to quickly upgrade to desired engine version. To upgrade to
+the latest version (<code>nightly</code>) you should execute <code>fyrox-template upgrade --version nightly</code> command in your game’s
+directory.</p>
+</blockquote>
+<p>There are three main variants for <code>--version</code> switch:</p>
+<ul>
+<li><code>nightly</code> - uses latest nightly version of the engine from GitHub directly. This is the preferable version if you want
+to use the latest changes and bug fixes as they release.</li>
+<li><code>latest</code> - uses latest stable version of the engine. This option also supports <code>--local</code> key, that sets the path to
+the engine to <code>../Fyrox/fyrox</code> and the editor to <code>../Fyrox/editor</code>. Obviously, such path requires the engine to be located
+in the parent directory of your project. This option could be useful if you want to use custom version of the engine
+(for example, if you’re developing a patch for the engine).</li>
+<li><code>major.minor.patch</code> - uses specific stable version from crates.io (<code>0.30.0</code> for example).</li>
+</ul>
+</div>
+<div id="manual" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Manual<a href="editor-plugins-and-scripts.html#manual" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Engine version can also be updated manually. The first step to take is to install the latest <code>fyrox-template</code>, this can be done
+with a single <code>cargo</code> command:</p>
+<pre class="shell"><code>cargo install fyrox-template --force --git https://github.com/FyroxEngine/Fyrox</code></pre>
+<p>This will ensure you’re using the latest project/script template generator, which is important, since old versions
+of the template generator will most likely generate outdated code, no longer be compatible with the engine.</p>
+<p>To switch existing projects to the latest version of the engine, you need to specify paths pointing to the remote repository
+for the <code>fyrox</code> and <code>fyroxed_base</code> dependencies. You need to do this in the <code>game</code>, <code>executor</code>, and <code>editor</code> projects. First,
+open <code>game/Cargo.toml</code> and change the <code>fyrox</code> dependency to the following:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb8-1"><a href="editor-plugins-and-scripts.html#cb8-1" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
+<span id="cb8-2"><a href="editor-plugins-and-scripts.html#cb8-2" tabindex="-1"></a><span class="dt">fyrox</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op"> }</span></span></code></pre></div>
+<p>Do the same for <code>executor/Cargo.toml</code>. The <code>editor</code> has two dependencies we need to change: <code>fyrox</code> and <code>fyroxed_base</code>.
+Open the <code>editor/Cargo.toml</code> and set both dependencies to the following:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb9-1"><a href="editor-plugins-and-scripts.html#cb9-1" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
+<span id="cb9-2"><a href="editor-plugins-and-scripts.html#cb9-2" tabindex="-1"></a><span class="dt">fyrox</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op"> }</span></span>
+<span id="cb9-3"><a href="editor-plugins-and-scripts.html#cb9-3" tabindex="-1"></a><span class="dt">fyroxed_base</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op"> }</span></span></code></pre></div>
+<p>Now your game will use the latest engine and editor, but beware - new commits could bring some API breaks. You can avoid these by
+specifying a particular commit, just add <code>rev = "desired_commit_hash"</code> to every dependency like so:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb10-1"><a href="editor-plugins-and-scripts.html#cb10-1" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
+<span id="cb10-2"><a href="editor-plugins-and-scripts.html#cb10-2" tabindex="-1"></a><span class="dt">fyrox</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op">, </span><span class="dt">rev</span><span class="op"> =</span> <span class="st">&quot;0195666b30562c1961a9808be38b5e5715da43af&quot;</span><span class="op"> }</span></span>
+<span id="cb10-3"><a href="editor-plugins-and-scripts.html#cb10-3" tabindex="-1"></a><span class="dt">fyroxed_base</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">git</span><span class="op"> =</span> <span class="st">&quot;https://github.com/FyroxEngine/Fyrox&quot;</span><span class="op">, </span><span class="dt">rev</span><span class="op"> =</span> <span class="st">&quot;0195666b30562c1961a9808be38b5e5715da43af&quot;</span><span class="op"> }</span></span></code></pre></div>
+<p>To bring a local git repository of the engine to being up-to-date, just call <code>cargo update</code> at the root of the project’s
+workspace. This will pull the latest changes from the remote, unless there is no <code>rev</code> specified.</p>
+<p>Learn more about dependency paths on the official <code>cargo</code> documentation,
+<a href="https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories">here</a>.</p>
+</div>
+</div>
+<div id="adding-game-logic" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Adding Game Logic<a href="editor-plugins-and-scripts.html#adding-game-logic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Any object-specific game logic should be added using scripts. A script is a “container” for data and code, that will be
+executed by the engine. Read the <a href="../scripting/script.md">Scripts</a> chapter to learn how to create, edit, and use scripts in
+your game.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-beginning.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
